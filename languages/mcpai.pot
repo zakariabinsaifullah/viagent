@@ -1,0 +1,3318 @@
+# Copyright (C) 2026 Mcpai
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mcpai 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mcpai\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-29T11:29:13+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: mcpai\n"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+#: mcpai.php
+#: includes/admin/class-admin.php:56
+#: includes/admin/class-admin.php:57
+#: src/admin/index.js:76
+msgid "Mcpai"
+msgstr ""
+
+#. Description of the plugin
+#: mcpai.php
+msgid "Connect your WordPress site to AI agents like Claude, ChatGPT, Cursor, Codex and more using the Model Context Protocol (MCP) — in a few clicks."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:24
+msgid "Site"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:24
+msgid "Site information and search."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:25
+msgid "Content"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:25
+msgid "Posts, pages and custom post types."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:26
+msgid "Blocks & patterns"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:26
+msgid "Block types and patterns for building layouts."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:27
+msgid "Categories & tags"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:27
+msgid "Categories, tags and custom taxonomies."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:28
+msgid "Media"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:28
+msgid "Images, documents and other uploads."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:29
+msgid "Comments"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:29
+msgid "Reading, replying to and moderating comments."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:30
+msgid "Users"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:30
+msgid "User accounts and profiles."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:31
+msgid "Menus"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:31
+msgid "Navigation menus."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:32
+#: includes/admin/class-admin.php:181
+#: src/admin/index.js:25
+#: src/admin/screens/settings.js:209
+msgid "Settings"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:32
+msgid "General, reading and discussion settings."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:33
+msgid "Plugins & themes"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:33
+msgid "Installing and activating plugins and themes."
+msgstr ""
+
+#: includes/abilities/class-abilities.php:34
+msgid "Diagnostics"
+msgstr ""
+
+#: includes/abilities/class-abilities.php:34
+msgid "Site health and error logs."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:27
+msgid "List block types"
+msgstr ""
+
+#: includes/abilities/class-blocks.php:28
+msgid "Lists blocks available on this site (core and from plugins) that can be used in content markup."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:33
+msgid "e.g. \"text\", \"media\", \"design\", \"widgets\", \"theme\", \"embed\"."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:46
+msgid "List patterns"
+msgstr ""
+
+#: includes/abilities/class-blocks.php:47
+msgid "Lists ready-made block patterns (theme, plugin and saved patterns) such as heroes, pricing tables or footers. Use get_pattern to fetch the markup and insert it into content."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:62
+msgid "Get pattern"
+msgstr ""
+
+#: includes/abilities/class-blocks.php:63
+msgid "Gets the block markup of a pattern by name (from list_patterns). Saved patterns use the name \"saved/<id>\"."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:155
+msgid "Saved pattern. Insert as <!-- wp:block {\"ref\":ID} /--> to keep it synced."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:176
+msgid "No saved pattern found with that name."
+msgstr ""
+
+#: includes/abilities/class-blocks.php:188
+msgid "No pattern found with that name. Use list_patterns."
+msgstr ""
+
+#: includes/abilities/class-comments.php:35
+msgid "List comments"
+msgstr ""
+
+#: includes/abilities/class-comments.php:36
+msgid "Lists comments, newest first. Filter by post and status (\"hold\" = waiting for approval)."
+msgstr ""
+
+#: includes/abilities/class-comments.php:62
+msgid "Reply to comment"
+msgstr ""
+
+#: includes/abilities/class-comments.php:63
+msgid "Publishes a reply to a comment as the connected user. The reply is public immediately."
+msgstr ""
+
+#: includes/abilities/class-comments.php:82
+msgid "Moderate comment"
+msgstr ""
+
+#: includes/abilities/class-comments.php:83
+msgid "Approves, unapproves, marks as spam or trashes a comment."
+msgstr ""
+
+#: includes/abilities/class-comments.php:169
+#: includes/abilities/class-comments.php:204
+msgid "No comment found with that ID."
+msgstr ""
+
+#: includes/abilities/class-comments.php:188
+msgid "Could not save the reply."
+msgstr ""
+
+#: includes/abilities/class-content.php:29
+msgid "List post types"
+msgstr ""
+
+#: includes/abilities/class-content.php:30
+msgid "Lists content types you can work with (posts, pages and custom post types) with their taxonomies and whether they support the block editor."
+msgstr ""
+
+#: includes/abilities/class-content.php:44
+msgid "List posts"
+msgstr ""
+
+#: includes/abilities/class-content.php:45
+msgid "Lists posts, pages or items of any post type, newest first. Filter by status, search words, author or category/tag. Returns summaries; use get_post for full content."
+msgstr ""
+
+#: includes/abilities/class-content.php:53
+msgid "Post type name, e.g. \"post\" or \"page\". See list_post_types."
+msgstr ""
+
+#: includes/abilities/class-content.php:59
+msgid "\"any\" returns every status except trash."
+msgstr ""
+
+#: includes/abilities/class-content.php:64
+msgid "Author user ID."
+msgstr ""
+
+#: includes/abilities/class-content.php:68
+msgid "Category slug (posts only)."
+msgstr ""
+
+#: includes/abilities/class-content.php:72
+msgid "Tag slug (posts only)."
+msgstr ""
+
+#: includes/abilities/class-content.php:109
+msgid "Get post"
+msgstr ""
+
+#: includes/abilities/class-content.php:110
+msgid "Gets one post, page or custom post type item by ID, including its full block content, excerpt, categories/tags/terms, featured image and links."
+msgstr ""
+
+#: includes/abilities/class-content.php:144
+msgid "Create post"
+msgstr ""
+
+#: includes/abilities/class-content.php:145
+msgid "Creates a post, page or custom post type item. Content should be block markup (<!-- wp:paragraph --><p>…</p><!-- /wp:paragraph -->). Status defaults to \"draft\". Terms can be given as names (created if missing) or IDs."
+msgstr ""
+
+#: includes/abilities/class-content.php:169
+msgid "Update post"
+msgstr ""
+
+#: includes/abilities/class-content.php:170
+msgid "Updates a post, page or custom post type item. Only the fields you pass are changed. To edit content, first read it with get_post, then send the full new block markup. The previous version is kept so the site owner can undo the change."
+msgstr ""
+
+#: includes/abilities/class-content.php:193
+msgid "Delete post"
+msgstr ""
+
+#: includes/abilities/class-content.php:194
+msgid "Moves a post, page or custom post type item to the trash (it can be restored with restore_post). Permanent deletion with force=true only works if the site owner allowed it."
+msgstr ""
+
+#: includes/abilities/class-content.php:203
+msgid "Skip the trash and delete permanently."
+msgstr ""
+
+#: includes/abilities/class-content.php:219
+msgid "Restore post from trash"
+msgstr ""
+
+#: includes/abilities/class-content.php:220
+msgid "Restores a trashed post, page or custom post type item. It comes back as a draft."
+msgstr ""
+
+#: includes/abilities/class-content.php:246
+msgid "List revisions"
+msgstr ""
+
+#: includes/abilities/class-content.php:247
+msgid "Lists saved revisions (earlier versions) of a post or page, newest first."
+msgstr ""
+
+#: includes/abilities/class-content.php:267
+msgid "Restore revision"
+msgstr ""
+
+#: includes/abilities/class-content.php:268
+msgid "Rolls a post or page back to an earlier revision (see list_revisions)."
+msgstr ""
+
+#: includes/abilities/class-content.php:296
+msgid "Block markup."
+msgstr ""
+
+#: includes/abilities/class-content.php:302
+msgid "Use \"future\" with a date to schedule."
+msgstr ""
+
+#: includes/abilities/class-content.php:307
+msgid "Publish date in site time, \"YYYY-MM-DD HH:MM:SS\"."
+msgstr ""
+
+#: includes/abilities/class-content.php:312
+msgid "Parent ID for hierarchical types such as pages."
+msgstr ""
+
+#: includes/abilities/class-content.php:317
+msgid "Page template slug; empty string for the default."
+msgstr ""
+
+#: includes/abilities/class-content.php:325
+msgid "Terms per taxonomy, replacing existing ones, e.g. {\"category\": [\"News\"], \"post_tag\": [\"ai\", \"wordpress\"]}."
+msgstr ""
+
+#: includes/abilities/class-content.php:334
+msgid "Media library ID; 0 removes the featured image."
+msgstr ""
+
+#: includes/abilities/class-content.php:364
+msgid "You are not allowed to publish this type of content. Save it as \"pending\" for review instead."
+msgstr ""
+
+#: includes/abilities/class-content.php:421
+msgid "featured_image_id is not an image in the media library."
+msgstr ""
+
+#. translators: %s: post type
+#: includes/abilities/class-content.php:439
+#: includes/abilities/class-content.php:802
+#, php-format
+msgid "Unknown post type \"%s\". Use list_post_types to see available types."
+msgstr ""
+
+#: includes/abilities/class-content.php:500
+#: includes/abilities/class-users.php:304
+msgid "Pass at least one field to change."
+msgstr ""
+
+#: includes/abilities/class-content.php:594
+msgid "Permanent deletion is turned off on this site. Move the item to the trash instead (omit force)."
+msgstr ""
+
+#: includes/abilities/class-content.php:598
+msgid "Could not delete the item."
+msgstr ""
+
+#: includes/abilities/class-content.php:608
+msgid "This item is already in the trash."
+msgstr ""
+
+#: includes/abilities/class-content.php:611
+#: includes/log/class-activity-log.php:275
+msgid "Could not move the item to the trash."
+msgstr ""
+
+#: includes/abilities/class-content.php:640
+msgid "This item is not in the trash."
+msgstr ""
+
+#: includes/abilities/class-content.php:643
+msgid "Could not restore the item."
+msgstr ""
+
+#: includes/abilities/class-content.php:692
+msgid "No revision found with that ID."
+msgstr ""
+
+#: includes/abilities/class-content.php:704
+msgid "Could not restore the revision."
+msgstr ""
+
+#: includes/abilities/class-content.php:766
+#: includes/integrations/class-acf.php:205
+#: includes/integrations/class-acf.php:232
+msgid "No post found with that ID."
+msgstr ""
+
+#: includes/abilities/class-content.php:811
+msgid "You are not allowed to list items with that status."
+msgstr ""
+
+#: includes/abilities/class-diagnostics.php:30
+msgid "Get site health"
+msgstr ""
+
+#: includes/abilities/class-diagnostics.php:31
+msgid "Technical overview for troubleshooting: WordPress/PHP versions, pending updates, debug settings, memory, HTTPS and cron."
+msgstr ""
+
+#: includes/abilities/class-diagnostics.php:45
+msgid "Get PHP error log"
+msgstr ""
+
+#: includes/abilities/class-diagnostics.php:46
+msgid "Returns the last lines of the PHP / WordPress debug log to help find errors."
+msgstr ""
+
+#: includes/abilities/class-diagnostics.php:127
+msgid "No readable error log. The site owner can turn on WP_DEBUG_LOG to start logging."
+msgstr ""
+
+#: includes/abilities/class-diagnostics.php:133
+msgid "The error log could not be opened."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:27
+msgid "Plugin slug (e.g. \"akismet\") or file (e.g. \"akismet/akismet.php\")."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:34
+msgid "List plugins"
+msgstr ""
+
+#: includes/abilities/class-extensions.php:35
+msgid "Lists installed plugins with version, active state and whether an update is available."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:46
+msgid "Activate plugin"
+msgstr ""
+
+#: includes/abilities/class-extensions.php:47
+msgid "Activates an installed plugin."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:60
+msgid "Deactivate plugin"
+msgstr ""
+
+#: includes/abilities/class-extensions.php:61
+msgid "Deactivates a plugin. Mcpai itself cannot be deactivated this way."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:74
+msgid "Install plugin"
+msgstr ""
+
+#: includes/abilities/class-extensions.php:75
+msgid "Installs a plugin from the WordPress.org directory by slug, optionally activating it."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:97
+msgid "List themes"
+msgstr ""
+
+#: includes/abilities/class-extensions.php:98
+msgid "Lists installed themes and which one is active."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:109
+msgid "Activate theme"
+msgstr ""
+
+#: includes/abilities/class-extensions.php:110
+msgid "Switches the active theme. This changes how the whole site looks."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:114
+msgid "Theme folder name from list_themes."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:150
+msgid "That plugin is not installed. Use list_plugins to see installed plugins, or install_plugin to add one."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:212
+msgid "Mcpai cannot deactivate itself — that would disconnect you. The site owner can do it from the Plugins screen."
+msgstr ""
+
+#. translators: %s: plugin file
+#: includes/abilities/class-extensions.php:238
+#, php-format
+msgid "This plugin is already installed (%s). Use activate_plugin."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:249
+msgid "No plugin with that slug was found on WordPress.org."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:253
+msgid "WordPress cannot write files on this server without FTP credentials, so plugins must be installed from the Plugins screen."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:270
+msgid "The plugin could not be installed."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:324
+msgid "That theme is not installed. Use list_themes to see installed themes."
+msgstr ""
+
+#: includes/abilities/class-extensions.php:327
+msgid "That theme is not allowed on this site."
+msgstr ""
+
+#: includes/abilities/class-media.php:32
+msgid "Describes the image for screen readers and SEO."
+msgstr ""
+
+#: includes/abilities/class-media.php:39
+msgid "Optional post ID to attach the file to."
+msgstr ""
+
+#: includes/abilities/class-media.php:51
+msgid "List media"
+msgstr ""
+
+#: includes/abilities/class-media.php:52
+msgid "Lists files in the media library, newest first, with URLs, sizes and alt text."
+msgstr ""
+
+#: includes/abilities/class-media.php:58
+msgid "e.g. \"image\", \"image/png\", \"application/pdf\", \"video\"."
+msgstr ""
+
+#: includes/abilities/class-media.php:73
+msgid "Upload media from URL"
+msgstr ""
+
+#: includes/abilities/class-media.php:74
+msgid "Downloads a file from a public http(s) URL into the media library and returns its ID and URL. Use the ID as featured_image_id or in image blocks."
+msgstr ""
+
+#: includes/abilities/class-media.php:83
+msgid "Optional file name including extension."
+msgstr ""
+
+#: includes/abilities/class-media.php:99
+msgid "Upload media (base64)"
+msgstr ""
+
+#: includes/abilities/class-media.php:100
+msgid "Uploads a base64-encoded file (max 6 MB) to the media library. Prefer upload_media_from_url when the file is online."
+msgstr ""
+
+#: includes/abilities/class-media.php:105
+msgid "File name including extension, e.g. \"hero.png\"."
+msgstr ""
+
+#: includes/abilities/class-media.php:109
+msgid "Base64 file contents (a data: URL prefix is allowed)."
+msgstr ""
+
+#: includes/abilities/class-media.php:125
+msgid "Update media details"
+msgstr ""
+
+#: includes/abilities/class-media.php:126
+msgid "Updates the title, alt text, caption or description of a media library item."
+msgstr ""
+
+#: includes/abilities/class-media.php:147
+msgid "Set featured image"
+msgstr ""
+
+#: includes/abilities/class-media.php:148
+msgid "Sets (or with image_id 0, removes) the featured image of a post or page."
+msgstr ""
+
+#: includes/abilities/class-media.php:175
+msgid "Delete media"
+msgstr ""
+
+#: includes/abilities/class-media.php:176
+msgid "Permanently deletes a file from the media library (media has no trash). Only works if the site owner allows permanent deletion."
+msgstr ""
+
+#: includes/abilities/class-media.php:220
+msgid "No media item found with that ID."
+msgstr ""
+
+#: includes/abilities/class-media.php:263
+msgid "Only public http(s) URLs can be downloaded."
+msgstr ""
+
+#: includes/abilities/class-media.php:291
+msgid "data is not valid base64."
+msgstr ""
+
+#: includes/abilities/class-media.php:294
+msgid "File is larger than 6 MB. Upload it from a URL instead."
+msgstr ""
+
+#: includes/abilities/class-media.php:301
+msgid "Could not write the temporary file."
+msgstr ""
+
+#: includes/abilities/class-media.php:321
+msgid "This file type is not allowed. Use an image, PDF, audio, video or another allowed type, with a matching file extension."
+msgstr ""
+
+#: includes/abilities/class-media.php:418
+msgid "image_id is not an image in the media library."
+msgstr ""
+
+#: includes/abilities/class-media.php:451
+msgid "Deleting media is permanent and is turned off on this site. Ask the site owner to allow permanent deletion in Mcpai."
+msgstr ""
+
+#: includes/abilities/class-media.php:456
+msgid "Could not delete the media item."
+msgstr ""
+
+#: includes/abilities/class-menus.php:34
+msgid "List menus"
+msgstr ""
+
+#: includes/abilities/class-menus.php:35
+msgid "Lists navigation menus. Block themes use \"block\" menus (Navigation block, edited as block markup); classic themes use \"classic\" menus with items and theme locations."
+msgstr ""
+
+#: includes/abilities/class-menus.php:46
+msgid "Get menu"
+msgstr ""
+
+#: includes/abilities/class-menus.php:47
+msgid "Gets a menu: items for classic menus, block markup for block menus."
+msgstr ""
+
+#: includes/abilities/class-menus.php:67
+msgid "Add classic menu item"
+msgstr ""
+
+#: includes/abilities/class-menus.php:68
+msgid "Adds a link to a classic menu. Link either to a post/page/term (object_type + object_id) or to a custom url."
+msgstr ""
+
+#: includes/abilities/class-menus.php:75
+msgid "Post type (e.g. \"page\") or taxonomy (e.g. \"category\")."
+msgstr ""
+
+#: includes/abilities/class-menus.php:101
+msgid "Remove classic menu item"
+msgstr ""
+
+#: includes/abilities/class-menus.php:102
+msgid "Removes an item from a classic menu."
+msgstr ""
+
+#: includes/abilities/class-menus.php:115
+msgid "Update block navigation menu"
+msgstr ""
+
+#: includes/abilities/class-menus.php:116
+msgid "Replaces the block markup of a block-theme navigation menu, e.g. <!-- wp:navigation-link {\"label\":\"About\",\"url\":\"/about/\",\"kind\":\"custom\"} /-->. Read it first with get_menu (type \"block\")."
+msgstr ""
+
+#: includes/abilities/class-menus.php:180
+#: includes/abilities/class-menus.php:285
+msgid "No block menu found with that ID."
+msgstr ""
+
+#: includes/abilities/class-menus.php:191
+#: includes/abilities/class-menus.php:224
+msgid "No classic menu found with that ID."
+msgstr ""
+
+#: includes/abilities/class-menus.php:242
+msgid "Pass either url, or object_type and object_id."
+msgstr ""
+
+#: includes/abilities/class-menus.php:263
+msgid "No menu item found with that ID."
+msgstr ""
+
+#: includes/abilities/class-menus.php:268
+msgid "Could not remove the menu item."
+msgstr ""
+
+#: includes/abilities/class-meta.php:36
+msgid "Get custom fields"
+msgstr ""
+
+#: includes/abilities/class-meta.php:37
+msgid "Gets the custom fields (post meta) of a post, or a single field by key."
+msgstr ""
+
+#: includes/abilities/class-meta.php:55
+msgid "Update custom field"
+msgstr ""
+
+#: includes/abilities/class-meta.php:56
+msgid "Sets or deletes one custom field (post meta) on a post."
+msgstr ""
+
+#: includes/abilities/class-meta.php:65
+msgid "New value. Omit or pass null with delete=true to remove the field."
+msgstr ""
+
+#: includes/abilities/class-meta.php:117
+msgid "This custom field is private to a plugin and cannot be read."
+msgstr ""
+
+#: includes/abilities/class-meta.php:149
+msgid "This custom field is private to a plugin and cannot be changed."
+msgstr ""
+
+#: includes/abilities/class-settings.php:31
+msgid "Site title."
+msgstr ""
+
+#: includes/abilities/class-settings.php:35
+msgid "Tagline."
+msgstr ""
+
+#: includes/abilities/class-settings.php:39
+msgid "e.g. \"Europe/London\"."
+msgstr ""
+
+#: includes/abilities/class-settings.php:56
+msgid "Homepage shows latest posts or a static page."
+msgstr ""
+
+#: includes/abilities/class-settings.php:61
+msgid "Page ID used as the homepage when show_on_front is \"page\"."
+msgstr ""
+
+#: includes/abilities/class-settings.php:66
+msgid "Page ID that lists posts when show_on_front is \"page\"."
+msgstr ""
+
+#: includes/abilities/class-settings.php:74
+msgid "Comments must be manually approved."
+msgstr ""
+
+#: includes/abilities/class-settings.php:78
+msgid "Allow search engines to index the site."
+msgstr ""
+
+#: includes/abilities/class-settings.php:83
+msgid "Media library image ID used as the site icon."
+msgstr ""
+
+#: includes/abilities/class-settings.php:103
+msgid "Get settings"
+msgstr ""
+
+#: includes/abilities/class-settings.php:104
+msgid "Gets general, reading and discussion settings (site title, tagline, homepage, timezone, comments…)."
+msgstr ""
+
+#: includes/abilities/class-settings.php:115
+msgid "Update settings"
+msgstr ""
+
+#: includes/abilities/class-settings.php:116
+msgid "Changes one or more site settings. Only the settings listed in the input are allowed."
+msgstr ""
+
+#: includes/abilities/class-settings.php:157
+msgid "Pass at least one setting to change."
+msgstr ""
+
+#. translators: %s: option name
+#: includes/abilities/class-settings.php:162
+#, php-format
+msgid "%s must be the ID of a page."
+msgstr ""
+
+#: includes/abilities/class-settings.php:166
+msgid "Unknown timezone. Use a name like \"America/New_York\"."
+msgstr ""
+
+#: includes/abilities/class-site.php:26
+msgid "Get site info"
+msgstr ""
+
+#: includes/abilities/class-site.php:27
+msgid "Overview of the WordPress site: name, URLs, language, timezone, active theme, available post types and who you are connected as. Call this first."
+msgstr ""
+
+#: includes/abilities/class-site.php:41
+msgid "Search content"
+msgstr ""
+
+#: includes/abilities/class-site.php:42
+msgid "Full-text search across posts, pages and other public content types. Returns matching items with ID, type, title and link."
+msgstr ""
+
+#: includes/abilities/class-site.php:50
+msgid "Words to search for."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:30
+msgid "Taxonomy name, e.g. \"category\" or \"post_tag\". See list_taxonomies."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:41
+msgid "List taxonomies"
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:42
+msgid "Lists taxonomies (categories, tags and custom ones) with the post types they apply to."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:53
+msgid "List terms"
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:54
+msgid "Lists terms (e.g. categories or tags) of a taxonomy, including empty ones, with post counts."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:86
+msgid "Create term"
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:87
+msgid "Creates a category, tag or custom taxonomy term."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:103
+msgid "Update term"
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:104
+msgid "Renames or edits a term (name, slug, description, parent)."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:119
+msgid "Delete term"
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:120
+msgid "Permanently deletes a term. Posts keep existing but lose this term. The default category cannot be deleted."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:135
+msgid "Assign terms to post"
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:136
+msgid "Sets or adds terms on a post. Terms can be names, slugs or IDs; missing names are created."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:147
+msgid "Add to existing terms instead of replacing them."
+msgstr ""
+
+#. translators: %s: taxonomy
+#: includes/abilities/class-taxonomies.php:180
+#, php-format
+msgid "Unknown taxonomy \"%s\". Use list_taxonomies to see available ones."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:288
+#: includes/abilities/class-taxonomies.php:314
+msgid "No term found with that ID."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:324
+msgid "This term cannot be deleted (it may be the default category)."
+msgstr ""
+
+#. translators: 1: taxonomy, 2: post type
+#: includes/abilities/class-taxonomies.php:387
+#, php-format
+msgid "The taxonomy \"%1$s\" is not used by \"%2$s\"."
+msgstr ""
+
+#: includes/abilities/class-taxonomies.php:390
+msgid "You are not allowed to assign these terms."
+msgstr ""
+
+#. translators: %s: term name
+#: includes/abilities/class-taxonomies.php:408
+#, php-format
+msgid "The term \"%s\" does not exist and you are not allowed to create it."
+msgstr ""
+
+#: includes/abilities/class-users.php:38
+msgid "Role slug, e.g. \"subscriber\", \"author\" or \"editor\". Administrator cannot be assigned."
+msgstr ""
+
+#: includes/abilities/class-users.php:46
+msgid "List users"
+msgstr ""
+
+#: includes/abilities/class-users.php:47
+msgid "Lists user accounts with their roles. Filter by role or search by name/email."
+msgstr ""
+
+#: includes/abilities/class-users.php:65
+msgid "Get user"
+msgstr ""
+
+#: includes/abilities/class-users.php:66
+msgid "Gets one user account by ID."
+msgstr ""
+
+#: includes/abilities/class-users.php:84
+msgid "Create user"
+msgstr ""
+
+#: includes/abilities/class-users.php:85
+msgid "Creates a user account. A strong password is generated and the new user gets an email to set their own."
+msgstr ""
+
+#: includes/abilities/class-users.php:106
+msgid "Update user"
+msgstr ""
+
+#: includes/abilities/class-users.php:107
+msgid "Updates a user's profile or role. Passwords cannot be changed, and administrators cannot be edited."
+msgstr ""
+
+#: includes/abilities/class-users.php:201
+#: includes/abilities/class-users.php:287
+msgid "No user found with that ID."
+msgstr ""
+
+#. translators: 1: role, 2: allowed roles
+#: includes/abilities/class-users.php:216
+#, php-format
+msgid "The role \"%1$s\" cannot be assigned by an AI agent. Allowed roles: %2$s. Administrators must be added by a person in WordPress."
+msgstr ""
+
+#: includes/abilities/class-users.php:275
+msgid "The user was emailed a link to set their password."
+msgstr ""
+
+#: includes/abilities/class-users.php:290
+msgid "Administrator accounts cannot be changed by an AI agent."
+msgstr ""
+
+#: includes/abilities/class-users.php:294
+msgid "You cannot change your own role."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:310
+#: includes/admin/class-admin-api.php:344
+msgid "(deleted user)"
+msgstr ""
+
+#: includes/admin/class-admin-api.php:339
+#: includes/auth/class-authenticator.php:145
+#: includes/auth/oauth/class-oauth.php:193
+#: src/admin/components.js:163
+msgid "AI app"
+msgstr ""
+
+#: includes/admin/class-admin-api.php:396
+#: includes/admin/class-admin-api.php:413
+#: includes/admin/class-admin-api.php:477
+msgid "Connection not found."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:502
+msgid "From other plugins"
+msgstr ""
+
+#: includes/admin/class-admin-api.php:503
+msgid "Abilities added by WordPress or your other plugins. They are off until you switch them on; review them before allowing AI apps to use them."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:549
+msgid "See the site name, address, language, theme and content types."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:550
+msgid "Search all posts, pages and other content."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:551
+msgid "See which kinds of content the site has."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:552
+msgid "Browse posts, pages and other content."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:553
+msgid "Read a post or page in full."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:554
+msgid "Write new posts and pages."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:555
+msgid "Edit existing posts and pages."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:556
+msgid "Move posts and pages to the trash."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:557
+msgid "Bring posts and pages back from the trash."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:558
+msgid "See earlier versions of a post or page."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:559
+msgid "Roll a post or page back to an earlier version."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:560
+msgid "Read custom fields on a post."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:561
+msgid "Change custom fields on a post."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:562
+msgid "See which blocks can be used in content."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:563
+msgid "Browse ready-made layouts (patterns)."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:564
+msgid "Use a ready-made layout in content."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:565
+msgid "See the kinds of categories and tags."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:566
+msgid "Browse categories and tags."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:567
+msgid "Add new categories and tags."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:568
+msgid "Rename or edit categories and tags."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:569
+msgid "Delete categories and tags."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:570
+msgid "Put posts into categories and add tags."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:571
+msgid "Browse the media library."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:572
+msgid "Add images and files from a web address."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:573
+msgid "Upload images and files the AI created."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:574
+msgid "Edit image titles, captions and alt text."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:575
+msgid "Choose the featured image of a post."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:576
+msgid "Permanently delete files from the media library."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:577
+msgid "Read comments, including ones waiting for approval."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:578
+msgid "Reply to comments publicly."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:579
+msgid "Approve, hold, mark as spam or trash comments."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:580
+msgid "See user accounts and their roles."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:581
+msgid "See one user account."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:582
+msgid "Add user accounts (never administrators)."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:583
+msgid "Edit user profiles and roles (never administrators)."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:584
+msgid "See the site’s navigation menus."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:585
+msgid "See the links in a menu."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:586
+msgid "Add links to a menu."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:587
+msgid "Remove links from a menu."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:588
+msgid "Edit the navigation menu of a block theme."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:589
+msgid "See the site title, homepage, timezone and other settings."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:590
+msgid "Change the site title, homepage, timezone and similar settings."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:591
+msgid "See installed plugins."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:592
+msgid "Turn installed plugins on."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:593
+msgid "Turn plugins off."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:594
+msgid "Install plugins from WordPress.org."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:595
+msgid "See installed themes."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:596
+msgid "Switch the site’s theme."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:597
+msgid "Check versions, updates and technical health."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:598
+msgid "Read the PHP error log to help fix problems."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:618
+msgid "Tool not found."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:672
+msgid "Task not found."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:759
+msgid "The item the AI created will be moved to the trash."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:761
+msgid "The item will be restored from the trash."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:763
+msgid "The title, content and status will go back to how they were before this change."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:765
+msgid "The field will go back to its previous value."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:767
+msgid "The categories or tags will go back to how they were."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:769
+msgid "The settings will go back to their previous values."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:771
+msgid "The fields will go back to their previous values."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:780
+msgid "This change will be rolled back."
+msgstr ""
+
+#: includes/admin/class-admin-api.php:817
+msgid "(no title)"
+msgstr ""
+
+#. translators: %d: comment ID
+#: includes/admin/class-admin-api.php:828
+#, php-format
+msgid "Comment #%d"
+msgstr ""
+
+#. translators: %s: order number
+#: includes/admin/class-admin-api.php:841
+#, php-format
+msgid "Order #%s"
+msgstr ""
+
+#: includes/admin/class-admin.php:68
+#: src/admin/screens/overview.js:130
+msgid "Loading…"
+msgstr ""
+
+#: includes/admin/class-admin.php:167
+#: src/admin/index.js:91
+msgid "AI access paused"
+msgstr ""
+
+#: includes/admin/class-admin.php:169
+msgid "AI apps cannot connect. Click to resume."
+msgstr ""
+
+#: includes/admin/class-health.php:96
+msgid "AI access is paused"
+msgstr ""
+
+#: includes/admin/class-health.php:97
+msgid "All AI apps are blocked until you resume access."
+msgstr ""
+
+#: includes/admin/class-health.php:98
+msgid "Turn off \"Pause all AI access\" to reconnect."
+msgstr ""
+
+#: includes/admin/class-health.php:109
+#: includes/admin/class-health.php:114
+msgid "Permalinks"
+msgstr ""
+
+#: includes/admin/class-health.php:109
+msgid "Pretty permalinks are on."
+msgstr ""
+
+#: includes/admin/class-health.php:115
+msgid "Plain permalinks are in use, so the connection URL contains \"?rest_route=\". It still works, but some apps prefer clean URLs."
+msgstr ""
+
+#: includes/admin/class-health.php:116
+msgid "Go to Settings → Permalinks and choose \"Post name\"."
+msgstr ""
+
+#: includes/admin/class-health.php:127
+#: includes/admin/class-health.php:132
+msgid "HTTPS"
+msgstr ""
+
+#: includes/admin/class-health.php:127
+msgid "Your site uses a secure (HTTPS) address, so keys are encrypted in transit."
+msgstr ""
+
+#: includes/admin/class-health.php:133
+msgid "Your site does not use HTTPS, so connection keys travel unencrypted. Web apps like Claude.ai and ChatGPT require HTTPS."
+msgstr ""
+
+#: includes/admin/class-health.php:134
+msgid "Ask your host to enable a free SSL certificate, then switch to https:// in Settings → General."
+msgstr ""
+
+#: includes/admin/class-health.php:150
+msgid "Local site"
+msgstr ""
+
+#: includes/admin/class-health.php:151
+msgid "This site runs on your computer. Apps on the same computer (Claude Code, Claude Desktop, Cursor, VS Code, Codex…) can connect. Web apps like Claude.ai and ChatGPT cannot reach it."
+msgstr ""
+
+#: includes/admin/class-health.php:152
+msgid "To use web apps, publish the site or share it through a tunnel or a WordPress Studio preview site."
+msgstr ""
+
+#: includes/auth/class-api-keys.php:58
+msgid "That user does not exist."
+msgstr ""
+
+#: includes/auth/class-api-keys.php:61
+msgid "Unknown access level."
+msgstr ""
+
+#: includes/auth/class-api-keys.php:67
+msgid "AI connection"
+msgstr ""
+
+#: includes/auth/class-api-keys.php:79
+msgid "Could not save the key."
+msgstr ""
+
+#: includes/auth/class-authenticator.php:50
+msgid "AI access to this site is paused by the site owner."
+msgstr ""
+
+#: includes/auth/class-authenticator.php:64
+msgid "Missing or invalid Mcpai key. Create a connection in WordPress under Mcpai."
+msgstr ""
+
+#: includes/auth/class-authenticator.php:175
+msgid "Application Password"
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:64
+msgid "This app is not registered with your site. Please start the connection again from your AI app."
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:67
+msgid "The app sent an unexpected return address, so the request was stopped for your safety."
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:129
+msgid "AI access to this site is paused. Resume it in Mcpai → Settings, then try again."
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:164
+msgid "Please choose what the app may do."
+msgstr ""
+
+#. translators: %s: URL scheme such as "cursor"
+#: includes/auth/oauth/class-authorize.php:199
+#, php-format
+msgid "the %s app on this computer"
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:213
+#: includes/auth/oauth/class-authorize.php:276
+msgid "Connect an AI app"
+msgstr ""
+
+#. translators: 1: app name, 2: site name
+#: includes/auth/oauth/class-authorize.php:221
+#, php-format
+msgid "%1$s wants to connect to %2$s"
+msgstr ""
+
+#. translators: 1: user name, 2: destination host
+#: includes/auth/oauth/class-authorize.php:231
+#, php-format
+msgid "It will act as %1$s. After you approve, you’ll return to %2$s."
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:239
+msgid "What may it do?"
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:252
+msgid "Only approve apps you trust. You can see everything it does and disconnect it any time in Mcpai."
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:261
+#: src/admin/screens/activity.js:325
+#: src/admin/screens/connections.js:221
+msgid "Cancel"
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:262
+msgid "Approve"
+msgstr ""
+
+#: includes/auth/oauth/class-authorize.php:278
+msgid "We couldn’t connect this app"
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:552
+#: includes/security/class-policy.php:57
+#: src/admin/screens/connect.js:40
+msgid "Read only"
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:553
+msgid "Look at posts, pages, media and settings. Cannot change anything."
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:560
+msgid "Write drafts"
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:561
+msgid "Create and edit drafts and upload media. You review and publish."
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:568
+msgid "Write and publish"
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:569
+msgid "Publish, edit and trash content, and moderate comments."
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:576
+#: includes/security/class-policy.php:59
+#: src/admin/screens/connect.js:59
+msgid "Full control"
+msgstr ""
+
+#: includes/auth/oauth/class-oauth.php:577
+msgid "Everything above plus settings, menus, plugins, themes and users (never administrators)."
+msgstr ""
+
+#: includes/clients/catalog.php:50
+msgid "Start Claude Code by typing claude, then type /mcp. “{{name}}” should say connected."
+msgstr ""
+
+#: includes/clients/catalog.php:51
+msgid "Anthropic's coding agent in your terminal"
+msgstr ""
+
+#: includes/clients/catalog.php:57
+msgid "Open a terminal."
+msgstr ""
+
+#: includes/clients/catalog.php:58
+msgid "Paste this command and press Enter."
+msgstr ""
+
+#: includes/clients/catalog.php:59
+msgid "Start Claude Code and ask it about your site."
+msgstr ""
+
+#: includes/clients/catalog.php:62
+msgid "This site runs on your computer with a development certificate. If Claude Code reports a certificate error, start it with: NODE_TLS_REJECT_UNAUTHORIZED=0 claude"
+msgstr ""
+
+#: includes/clients/catalog.php:68
+msgid "Quit Claude Desktop completely (Cmd+Q on Mac, or Quit from the system tray on Windows) and open it again. In a new chat, click the + button (lower left) → Connectors: “{{name}}” should be listed and switched on."
+msgstr ""
+
+#: includes/clients/catalog.php:69
+msgid "The Claude app for Mac and Windows"
+msgstr ""
+
+#: includes/clients/catalog.php:75
+msgid "Requires Node.js 18 or newer on your computer (nodejs.org). If your site is online, the Claude.ai option is easier — it also works in Claude Desktop, with no key or Node.js."
+msgstr ""
+
+#: includes/clients/catalog.php:77
+msgid "In Claude Desktop, open Settings → Developer → Edit Config."
+msgstr ""
+
+#: includes/clients/catalog.php:78
+msgid "Paste this into the file. If it already has \"mcpServers\", add just the inner block."
+msgstr ""
+
+#: includes/clients/catalog.php:79
+msgid "Save the file."
+msgstr ""
+
+#: includes/clients/catalog.php:87
+msgid "In a new chat, click the + button (lower left) → Connectors and make sure your site’s connector is switched on."
+msgstr ""
+
+#: includes/clients/catalog.php:88
+msgid "Claude on the web, desktop and mobile, via Connectors"
+msgstr ""
+
+#: includes/clients/catalog.php:94
+msgid "In Claude, open Customize → Connectors and click the + button next to Connectors. (On Team and Enterprise plans, an owner adds connectors in Organization settings.)"
+msgstr ""
+
+#: includes/clients/catalog.php:95
+msgid "Give it a name (e.g. your site name), paste the connector URL above, and click Add. Leave the advanced OAuth fields empty."
+msgstr ""
+
+#: includes/clients/catalog.php:96
+msgid "Click Connect. A WordPress window opens: sign in, choose what Claude may do, and click Approve."
+msgstr ""
+
+#: includes/clients/catalog.php:97
+msgid "In a chat, click + → Connectors to switch it on, then ask Claude about your site."
+msgstr ""
+
+#: includes/clients/catalog.php:99
+msgid "Claude connects from Anthropic’s cloud, so your site must be online and reachable from the internet over HTTPS."
+msgstr ""
+
+#: includes/clients/catalog.php:105
+msgid "In a new chat, open the composer’s Developer mode tools and select your site’s app. You can switch its tools on or off on the app’s page under Plugins."
+msgstr ""
+
+#: includes/clients/catalog.php:106
+msgid "OpenAI's assistant, via developer mode"
+msgstr ""
+
+#: includes/clients/catalog.php:111
+msgid "Needs ChatGPT on the web with a Plus, Pro, Business, Enterprise or Education plan. On Business and Enterprise workspaces, an admin must allow developer mode first. ChatGPT renames these menus from time to time — if a step looks different, open OpenAI’s guide below."
+msgstr ""
+
+#: includes/clients/catalog.php:113
+msgid "In ChatGPT on the web, open Settings → Security and login and turn on Developer mode."
+msgstr ""
+
+#: includes/clients/catalog.php:114
+msgid "Open Plugins, click the + button and choose “Create app” (not “Create plugin” or “Upload plugin”). If asked, choose “Create MCP app”."
+msgstr ""
+
+#: includes/clients/catalog.php:115
+msgid "Enter a name (e.g. your site name) and a short description. Under Connection, paste the connector URL above as the MCP server URL (public endpoint), and choose OAuth if asked how to sign in."
+msgstr ""
+
+#: includes/clients/catalog.php:116
+msgid "Create it. A WordPress window opens: sign in, choose what ChatGPT may do, and click Approve."
+msgstr ""
+
+#: includes/clients/catalog.php:123
+msgid "Open Cursor Settings → MCP. “{{name}}” should have a green dot. Chat in Agent mode."
+msgstr ""
+
+#: includes/clients/catalog.php:124
+msgid "AI code editor"
+msgstr ""
+
+#: includes/clients/catalog.php:133
+msgid "Click \"Add to Cursor\" and confirm in Cursor."
+msgstr ""
+
+#: includes/clients/catalog.php:134
+msgid "Or open Cursor Settings → MCP → Add new MCP server and paste this."
+msgstr ""
+
+#: includes/clients/catalog.php:149
+msgid "Open Copilot Chat, switch to Agent mode and click the tools icon: “{{name}}” should be listed. Click Start if VS Code asks."
+msgstr ""
+
+#: includes/clients/catalog.php:150
+msgid "GitHub Copilot agent mode"
+msgstr ""
+
+#: includes/clients/catalog.php:158
+msgid "Click \"Add to VS Code\" and confirm in VS Code."
+msgstr ""
+
+#: includes/clients/catalog.php:159
+msgid "Or run \"MCP: Open User Configuration\" from the Command Palette and paste this."
+msgstr ""
+
+#: includes/clients/catalog.php:175
+msgid "Open the MCP panel in Cascade: “{{name}}” should be listed as active."
+msgstr ""
+
+#: includes/clients/catalog.php:176
+msgid "AI code editor by Codeium"
+msgstr ""
+
+#: includes/clients/catalog.php:183
+msgid "In Windsurf, open Settings → Cascade → MCP Servers → View raw config."
+msgstr ""
+
+#: includes/clients/catalog.php:184
+msgid "Paste this and save. Click Refresh in the MCP panel."
+msgstr ""
+
+#: includes/clients/catalog.php:199
+msgid "Start Codex by typing codex, then type /mcp. “{{name}}” should be listed."
+msgstr ""
+
+#: includes/clients/catalog.php:200
+msgid "OpenAI's coding agent (CLI and IDE)"
+msgstr ""
+
+#: includes/clients/catalog.php:207
+msgid "Open ~/.codex/config.toml in a text editor (create it if missing)."
+msgstr ""
+
+#: includes/clients/catalog.php:208
+msgid "Paste this at the end and save."
+msgstr ""
+
+#: includes/clients/catalog.php:209
+msgid "Restart Codex."
+msgstr ""
+
+#: includes/clients/catalog.php:219
+msgid "Start Gemini CLI by typing gemini, then type /mcp. “{{name}}” should be listed as connected."
+msgstr ""
+
+#: includes/clients/catalog.php:220
+msgid "Google's AI agent in your terminal"
+msgstr ""
+
+#: includes/clients/catalog.php:227
+msgid "Open ~/.gemini/settings.json in a text editor."
+msgstr ""
+
+#: includes/clients/catalog.php:228
+#: includes/clients/catalog.php:253
+msgid "Paste this (merge with \"mcpServers\" if it exists) and save."
+msgstr ""
+
+#: includes/clients/catalog.php:229
+msgid "Restart Gemini CLI and run /mcp to check."
+msgstr ""
+
+#: includes/clients/catalog.php:244
+msgid "Open the MCP Servers panel: “{{name}}” should be listed. Then start a new Agent conversation so it picks up the server."
+msgstr ""
+
+#: includes/clients/catalog.php:245
+msgid "Google's agent-first IDE"
+msgstr ""
+
+#: includes/clients/catalog.php:252
+msgid "In Antigravity, open the Agent panel's \"…\" menu → MCP Servers → Manage MCP Servers → View raw config. (Or open ~/.gemini/antigravity-ide/mcp_config.json — older versions use ~/.gemini/antigravity/mcp_config.json.)"
+msgstr ""
+
+#: includes/clients/catalog.php:267
+msgid "Start OpenCode by typing opencode. “{{name}}” should appear in its MCP server list."
+msgstr ""
+
+#: includes/clients/catalog.php:268
+msgid "Open-source AI coding agent"
+msgstr ""
+
+#: includes/clients/catalog.php:275
+msgid "Open opencode.json in your project, or ~/.config/opencode/opencode.json for all projects."
+msgstr ""
+
+#: includes/clients/catalog.php:276
+msgid "Paste this (merge with \"mcp\" if it exists) and save."
+msgstr ""
+
+#: includes/clients/catalog.php:294
+msgid "Open OpenClaw’s MCP settings: “{{name}}” should be listed as connected."
+msgstr ""
+
+#: includes/clients/catalog.php:295
+msgid "Personal AI assistant"
+msgstr ""
+
+#: includes/clients/catalog.php:300
+msgid "Uses the mcp-remote bridge, which requires Node.js 18 or newer."
+msgstr ""
+
+#: includes/clients/catalog.php:302
+msgid "Open OpenClaw's MCP server settings."
+msgstr ""
+
+#: includes/clients/catalog.php:303
+msgid "Add a server using this configuration and save."
+msgstr ""
+
+#: includes/clients/catalog.php:310
+msgid "Open Command Code’s MCP settings: “{{name}}” should be listed as connected."
+msgstr ""
+
+#: includes/clients/catalog.php:311
+msgid "AI coding agent"
+msgstr ""
+
+#: includes/clients/catalog.php:317
+msgid "Open Command Code's MCP server settings."
+msgstr ""
+
+#: includes/clients/catalog.php:318
+msgid "Add a remote (HTTP) server with this configuration."
+msgstr ""
+
+#: includes/clients/catalog.php:331
+msgid "Other app"
+msgstr ""
+
+#: includes/clients/catalog.php:333
+msgid "Open your app’s MCP settings: “{{name}}” should be listed as connected."
+msgstr ""
+
+#: includes/clients/catalog.php:334
+msgid "Any MCP-compatible app, e.g. for DeepSeek or local models"
+msgstr ""
+
+#: includes/clients/catalog.php:339
+msgid "Models like DeepSeek connect through an MCP-capable app (for example OpenCode, Cherry Studio or LibreChat). Add your site there as a \"Streamable HTTP\" server."
+msgstr ""
+
+#: includes/clients/catalog.php:341
+msgid "Open your app's MCP server settings."
+msgstr ""
+
+#: includes/clients/catalog.php:342
+msgid "Add a \"Streamable HTTP\" server with the URL and header below."
+msgstr ""
+
+#: includes/integrations/class-acf.php:47
+msgid "Custom fields (ACF)"
+msgstr ""
+
+#: includes/integrations/class-acf.php:48
+msgid "Fields added with Advanced Custom Fields."
+msgstr ""
+
+#: includes/integrations/class-acf.php:77
+msgid "List ACF field groups"
+msgstr ""
+
+#: includes/integrations/class-acf.php:78
+msgid "Lists ACF field groups with their fields (name, label, type, choices) and where they appear. Optionally only groups that apply to one post."
+msgstr ""
+
+#: includes/integrations/class-acf.php:90
+msgid "Get ACF fields"
+msgstr ""
+
+#: includes/integrations/class-acf.php:91
+msgid "Gets all ACF field values of a post, page or product, with each field's label and type."
+msgstr ""
+
+#: includes/integrations/class-acf.php:106
+msgid "Update ACF field"
+msgstr ""
+
+#: includes/integrations/class-acf.php:107
+msgid "Sets one ACF field on a post by field name or key. Use IDs for image, file, post and user fields; arrays for checkboxes and relationships; true/false for toggles; \"Ymd\" dates such as \"20261231\" for date pickers."
+msgstr ""
+
+#: includes/integrations/class-acf.php:113
+msgid "Field name (e.g. \"price_note\") or key (e.g. \"field_abc123\")."
+msgstr ""
+
+#: includes/integrations/class-acf.php:245
+msgid "No ACF field with that name or key applies to this post. Use list_acf_field_groups with the post_id."
+msgstr ""
+
+#. translators: %s: field type
+#: includes/integrations/class-acf.php:249
+#, php-format
+msgid "Fields of type \"%s\" can be read but not changed by AI apps yet. Edit this field in WordPress."
+msgstr ""
+
+#: includes/integrations/class-acf.php:254
+msgid "The field could not be saved."
+msgstr ""
+
+#: includes/integrations/class-acf.php:286
+#: includes/log/class-activity-log.php:258
+msgid "You are not allowed to change this item."
+msgstr ""
+
+#: includes/integrations/class-acf.php:306
+msgid "See which custom fields exist and where."
+msgstr ""
+
+#: includes/integrations/class-acf.php:307
+msgid "Read the custom fields of a post or page."
+msgstr ""
+
+#: includes/integrations/class-acf.php:308
+msgid "Fill in or change custom fields."
+msgstr ""
+
+#: includes/integrations/class-forms.php:59
+msgid "Forms"
+msgstr ""
+
+#. translators: %s: form plugin names
+#: includes/integrations/class-forms.php:61
+#, php-format
+msgid "Forms and entries from %s."
+msgstr ""
+
+#: includes/integrations/class-forms.php:84
+msgid "Form plugin, as returned by list_forms."
+msgstr ""
+
+#: includes/integrations/class-forms.php:95
+msgid "List forms"
+msgstr ""
+
+#: includes/integrations/class-forms.php:96
+msgid "Lists all forms from the active form plugins with their field count, number of stored entries and the shortcode to embed them in a page."
+msgstr ""
+
+#: includes/integrations/class-forms.php:107
+msgid "Get form"
+msgstr ""
+
+#: includes/integrations/class-forms.php:108
+msgid "Gets a form's fields (label, type, required, choices) and embed code."
+msgstr ""
+
+#: includes/integrations/class-forms.php:124
+msgid "List form entries"
+msgstr ""
+
+#: includes/integrations/class-forms.php:125
+msgid "Lists submissions of a form, newest first, with every field value. Contact Form 7 needs the Flamingo plugin to store entries; WPForms Lite does not store entries."
+msgstr ""
+
+#: includes/integrations/class-forms.php:132
+msgid "Only entries containing this text."
+msgstr ""
+
+#: includes/integrations/class-forms.php:264
+#: includes/integrations/class-forms.php:311
+msgid "No Contact Form 7 form found with that ID."
+msgstr ""
+
+#: includes/integrations/class-forms.php:314
+msgid "Contact Form 7 does not store submissions by itself. Install the free Flamingo plugin to keep them."
+msgstr ""
+
+#: includes/integrations/class-forms.php:445
+msgid "No WPForms form found with that ID."
+msgstr ""
+
+#: includes/integrations/class-forms.php:467
+msgid "WPForms Lite does not store form entries — they are only emailed. Entries are available with WPForms Pro."
+msgstr ""
+
+#: includes/integrations/class-forms.php:551
+#: includes/integrations/class-forms.php:573
+msgid "No Gravity Forms form found with that ID."
+msgstr ""
+
+#: includes/integrations/class-forms.php:644
+msgid "See your forms and how to add them to a page."
+msgstr ""
+
+#: includes/integrations/class-forms.php:645
+msgid "See the fields of a form."
+msgstr ""
+
+#: includes/integrations/class-forms.php:646
+msgid "Read what people submitted through your forms."
+msgstr ""
+
+#: includes/integrations/class-integrations.php:33
+msgid "SEO (Yoast SEO or Rank Math)"
+msgstr ""
+
+#: includes/integrations/class-integrations.php:40
+msgid "Forms (Contact Form 7, WPForms, Gravity Forms)"
+msgstr ""
+
+#: includes/integrations/class-integrations.php:47
+msgid "Multisite network"
+msgstr ""
+
+#: includes/integrations/class-integrations.php:54
+msgid "Advanced Custom Fields"
+msgstr ""
+
+#: includes/integrations/class-network.php:48
+msgid "Network (multisite)"
+msgstr ""
+
+#: includes/integrations/class-network.php:49
+msgid "Sites in your WordPress network. Super admins only."
+msgstr ""
+
+#: includes/integrations/class-network.php:75
+msgid "List network sites"
+msgstr ""
+
+#: includes/integrations/class-network.php:76
+msgid "Lists the sites in this WordPress network with their ID, name, address, status and post count."
+msgstr ""
+
+#: includes/integrations/class-network.php:91
+msgid "Create network site"
+msgstr ""
+
+#: includes/integrations/class-network.php:92
+msgid "Creates a new site in the network. The connected super admin becomes its administrator."
+msgstr ""
+
+#: includes/integrations/class-network.php:101
+msgid "Lowercase address part, e.g. \"shop\" for shop.example.com or example.com/shop/."
+msgstr ""
+
+#: includes/integrations/class-network.php:115
+msgid "Run a tool on another site"
+msgstr ""
+
+#: includes/integrations/class-network.php:116
+msgid "Runs any other tool (e.g. list_posts, create_post, update_settings) on another site of the network. Pass the site_id from list_sites, the tool name and its arguments."
+msgstr ""
+
+#: includes/integrations/class-network.php:125
+#: includes/mcp/class-meta-tools.php:86
+msgid "Arguments for the tool."
+msgstr ""
+
+#: includes/integrations/class-network.php:204
+msgid "A site with that address already exists."
+msgstr ""
+
+#: includes/integrations/class-network.php:239
+msgid "run_on_site cannot run itself or the compact-mode tools."
+msgstr ""
+
+#: includes/integrations/class-network.php:243
+msgid "No active site found with that ID. Use list_sites."
+msgstr ""
+
+#: includes/integrations/class-network.php:246
+msgid "That is the site you are connected to; call the tool directly."
+msgstr ""
+
+#: includes/integrations/class-network.php:252
+msgid "AI access to that site is paused by its owner."
+msgstr ""
+
+#. translators: %s: tool name
+#: includes/integrations/class-network.php:258
+#, php-format
+msgid "The tool \"%s\" is not available on that site."
+msgstr ""
+
+#: includes/integrations/class-network.php:285
+msgid "See the sites in your network."
+msgstr ""
+
+#: includes/integrations/class-network.php:286
+msgid "Add new sites to your network."
+msgstr ""
+
+#: includes/integrations/class-network.php:287
+msgid "Work on any site of your network."
+msgstr ""
+
+#: includes/integrations/class-seo.php:91
+msgid "SEO"
+msgstr ""
+
+#. translators: %s: SEO plugin name
+#: includes/integrations/class-seo.php:93
+#, php-format
+msgid "Search titles and descriptions via %s."
+msgstr ""
+
+#: includes/integrations/class-seo.php:122
+msgid "Get SEO settings"
+msgstr ""
+
+#: includes/integrations/class-seo.php:123
+msgid "Gets the search title, meta description, focus keyword, canonical URL, indexing and social sharing text of a post, page or product."
+msgstr ""
+
+#: includes/integrations/class-seo.php:138
+msgid "Update SEO settings"
+msgstr ""
+
+#: includes/integrations/class-seo.php:139
+msgid "Sets the search title, meta description (ideally 120–155 characters), focus keyword, canonical URL, noindex or social sharing text. Only the fields you pass change; pass an empty string to clear one."
+msgstr ""
+
+#: includes/integrations/class-seo.php:144
+msgid "Search result title. Yoast and Rank Math variables such as %%sitename%% are allowed."
+msgstr ""
+
+#: includes/integrations/class-seo.php:151
+msgid "true hides the page from search engines."
+msgstr ""
+
+#: includes/integrations/class-seo.php:175
+msgid "Find SEO issues"
+msgstr ""
+
+#: includes/integrations/class-seo.php:176
+msgid "Finds published content with a missing meta description, focus keyword or custom search title, or that is hidden from search engines."
+msgstr ""
+
+#: includes/integrations/class-seo.php:205
+msgid "No public post, page or product found with that ID."
+msgstr ""
+
+#: includes/integrations/class-seo.php:287
+msgid "Pass at least one SEO field to change."
+msgstr ""
+
+#: includes/integrations/class-seo.php:420
+msgid "Read the search title and description of a page."
+msgstr ""
+
+#: includes/integrations/class-seo.php:421
+msgid "Write search titles, descriptions and focus keywords."
+msgstr ""
+
+#: includes/integrations/class-seo.php:422
+msgid "Find pages with missing or weak SEO data."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:54
+msgid "WooCommerce"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:55
+msgid "Products, orders, coupons and customers."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:100
+msgid "Store overview"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:101
+msgid "WooCommerce store summary: currency, product and order counts by status, revenue in the last 30 days and low-stock products."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:112
+msgid "List products"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:113
+msgid "Lists store products with price, stock and status. Filter by search words, status, category slug, SKU or stock status."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:124
+msgid "Product category slug."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:144
+msgid "Get product"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:145
+msgid "Gets one product with descriptions, prices, stock, images, categories, attributes and variations."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:158
+msgid "Create product"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:159
+msgid "Creates a simple or external product. Status defaults to \"draft\". Categories and tags can be names (created if missing). Use upload_media_from_url first to get image IDs."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:181
+msgid "Update product"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:182
+msgid "Updates a product. Only the fields you pass change. To remove a sale price, pass an empty string. The previous values are kept so the change can be undone."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:197
+msgid "Delete product"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:198
+msgid "Moves a product to the trash (it can be restored with restore_post)."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:220
+msgid "List orders"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:221
+msgid "Lists orders, newest first. Filter by status, customer email or date."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:231
+msgid "Only orders created after this date (YYYY-MM-DD)."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:246
+msgid "Get order"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:247
+msgid "Gets one order with items, totals, customer, addresses and notes."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:260
+msgid "Update order status"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:261
+msgid "Changes an order's status, e.g. to \"completed\". WooCommerce may email the customer about the change."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:270
+msgid "Optional private note explaining the change."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:284
+msgid "Add order note"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:285
+msgid "Adds a note to an order. Private by default; set customer_note to true to email it to the customer."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:308
+msgid "List coupons"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:309
+msgid "Lists discount coupons with amount, usage and expiry."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:321
+msgid "Create coupon"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:322
+msgid "Creates a discount coupon that customers can use right away."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:335
+msgid "Discount amount, e.g. \"10\" for 10% or 10 in the store currency."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:340
+msgid "Expiry date (YYYY-MM-DD)."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:361
+msgid "List customers"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:362
+msgid "Lists customer accounts with order count and total spent."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:379
+msgid "Decimal string, e.g. \"19.99\"."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:403
+msgid "Category names or IDs; replaces existing ones."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:412
+msgid "Main image (media library ID)."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:420
+msgid "External products only: where to buy."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:524
+msgid "No product found with that ID."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:628
+msgid "You are not allowed to publish products. Save it as \"pending\" instead."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:639
+msgid "Another product already uses that SKU."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:691
+msgid "The product could not be saved."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:778
+msgid "This product is already in the trash."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:827
+msgid "No order found with that ID."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1003
+msgid "A coupon with that code already exists."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1098
+msgid "The product no longer exists or you cannot edit it."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1111
+msgid "The order no longer exists or you cannot edit it."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1113
+msgid "Status restored from Mcpai activity."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1130
+msgid "The product’s previous prices, stock and details will be restored."
+msgstr ""
+
+#. translators: %s: order status
+#: includes/integrations/class-woocommerce.php:1133
+#, php-format
+msgid "The order will go back to “%s”. The customer may get an email."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1148
+msgid "See sales, orders and stock at a glance."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1149
+msgid "Browse store products with prices and stock."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1150
+msgid "Read one product in full."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1151
+msgid "Add new products."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1152
+msgid "Change product prices, stock and details."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1153
+msgid "Move products to the trash."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1154
+msgid "Browse orders."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1155
+msgid "Read one order with its items and customer."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1156
+msgid "Mark orders as completed, on hold, cancelled…"
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1157
+msgid "Add notes to orders, optionally emailed to the customer."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1158
+msgid "Browse discount coupons."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1159
+msgid "Create discount coupons."
+msgstr ""
+
+#: includes/integrations/class-woocommerce.php:1160
+msgid "See customers and what they have spent."
+msgstr ""
+
+#: includes/log/class-activity-log.php:218
+msgid "Activity entry not found."
+msgstr ""
+
+#: includes/log/class-activity-log.php:221
+msgid "This change was already reverted."
+msgstr ""
+
+#: includes/log/class-activity-log.php:225
+#: includes/log/class-activity-log.php:323
+msgid "This change cannot be reverted automatically."
+msgstr ""
+
+#: includes/log/class-activity-log.php:278
+msgid "Could not restore the item from the trash."
+msgstr ""
+
+#: includes/log/class-activity-log.php:304
+msgid "You are not allowed to change settings."
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:44
+msgid "Discover WordPress tools"
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:45
+msgid "Lists the WordPress tools available on this site (posts, pages, media, users, settings, plugins…). Call this first, then describe_tool for details and run_tool to use one."
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:51
+msgid "Optional words to filter tools, e.g. \"media\" or \"publish\"."
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:62
+msgid "Describe a WordPress tool"
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:63
+msgid "Returns the full description and input schema of one tool from discover_tools."
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:78
+msgid "Run a WordPress tool"
+msgstr ""
+
+#: includes/mcp/class-meta-tools.php:79
+msgid "Runs one tool from discover_tools with arguments matching its input schema (see describe_tool)."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:35
+msgid "Get to know my site"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:36
+msgid "A friendly overview of your site and ideas for what the AI can help with."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:47
+msgid "Write a blog post"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:48
+msgid "Drafts a new blog post in your site’s style, ready for you to review."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:50
+msgid "What the post should be about."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:51
+msgid "Who it is for (optional)."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:52
+msgid "Approximate number of words (optional, default 800)."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:73
+msgid "Improve a page"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:74
+msgid "Reviews a page and suggests improvements before changing anything."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:76
+msgid "Page title or ID."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:77
+msgid "What you want to improve, e.g. “clearer”, “more sales”, “shorter” (optional)."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:91
+msgid "SEO check-up"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:92
+msgid "Finds pages with weak or missing SEO and offers to fix them."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:112
+msgid "Fix missing image descriptions"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:113
+msgid "Adds alt text to images that have none, for accessibility and SEO."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:125
+msgid "Plan my content"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:126
+msgid "Suggests a content calendar based on what you already publish."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:128
+msgid "How many weeks to plan (optional, default 4)."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:140
+msgid "Review new comments"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:141
+msgid "Sorts comments waiting for approval and drafts replies."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:153
+msgid "Site health check"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:154
+msgid "A plain-language report on updates, versions and technical health."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:165
+msgid "Store report"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:166
+msgid "Sales, orders to handle and stock issues for your WooCommerce store."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:168
+msgid "Period in days (optional, default 7)."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:181
+msgid "Add a product"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:182
+msgid "Creates a draft product from a short description."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:184
+msgid "Product name, price and any details or image URL."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:198
+msgid "Summarize form submissions"
+msgstr ""
+
+#: includes/mcp/class-prompts.php:199
+msgid "Reads recent form entries and summarizes what people are asking for."
+msgstr ""
+
+#: includes/mcp/class-prompts.php:201
+msgid "Form name (optional, default: all forms with entries)."
+msgstr ""
+
+#: includes/security/class-policy.php:58
+msgid "Content editor"
+msgstr ""
+
+#: includes/security/class-policy.php:126
+msgid "Draft-only mode is on, so the status can only be \"draft\" or \"pending\". Ask the site owner to publish it from WordPress, or to allow publishing in Mcpai."
+msgstr ""
+
+#. translators: %s: post status
+#: includes/security/class-policy.php:144
+#, php-format
+msgid "Draft-only mode is on and this item is \"%s\", so it cannot be changed. Create a new draft instead, or ask the site owner for more access in Mcpai."
+msgstr ""
+
+#: includes/security/class-policy.php:206
+msgid "Too many requests. Please wait a minute and try again."
+msgstr ""
+
+#: mcpai.php:31
+msgid "Mcpai needs WordPress 6.9 or newer. Please update WordPress to connect your site to AI agents."
+msgstr ""
+
+#: src/admin/components.js:48
+msgid "Copy"
+msgstr ""
+
+#: src/admin/components.js:63
+msgid "Copied"
+msgstr ""
+
+#: src/admin/index.js:20
+msgid "Overview"
+msgstr ""
+
+#: src/admin/index.js:21
+#: src/admin/screens/connections.js:81
+#: src/admin/screens/overview.js:153
+msgid "Connect an app"
+msgstr ""
+
+#: src/admin/index.js:22
+#: src/admin/screens/connections.js:88
+msgid "Connections"
+msgstr ""
+
+#: src/admin/index.js:23
+msgid "Tools"
+msgstr ""
+
+#: src/admin/index.js:24
+#: src/admin/screens/activity.js:64
+msgid "Activity"
+msgstr ""
+
+#: src/admin/index.js:78
+msgid "Let AI apps like Claude, ChatGPT and Cursor work on"
+msgstr ""
+
+#: src/admin/index.js:92
+#: src/admin/screens/overview.js:128
+msgid "AI access on"
+msgstr ""
+
+#: src/admin/index.js:95
+#: src/admin/screens/overview.js:58
+msgid "Resume"
+msgstr ""
+
+#: src/admin/index.js:104
+msgid "Mcpai sections"
+msgstr ""
+
+#: src/admin/screens/activity.js:49
+msgid "The change was undone."
+msgstr ""
+
+#: src/admin/screens/activity.js:65
+msgid "Everything AI apps did on your site. Undo content changes with one click. Entries are kept for 90 days."
+msgstr ""
+
+#: src/admin/screens/activity.js:73
+#: src/admin/screens/tools.js:267
+msgid "Show"
+msgstr ""
+
+#: src/admin/screens/activity.js:78
+msgid "Changes only"
+msgstr ""
+
+#: src/admin/screens/activity.js:81
+msgid "All activity"
+msgstr ""
+
+#: src/admin/screens/activity.js:83
+msgid "Errors only"
+msgstr ""
+
+#: src/admin/screens/activity.js:108
+msgid "Nothing here yet"
+msgstr ""
+
+#: src/admin/screens/activity.js:110
+msgid "When an AI app reads or changes something on your site, it shows up here."
+msgstr ""
+
+#: src/admin/screens/activity.js:123
+#: src/admin/screens/activity.js:140
+msgid "When"
+msgstr ""
+
+#: src/admin/screens/activity.js:124
+#: src/admin/screens/activity.js:148
+msgid "App"
+msgstr ""
+
+#: src/admin/screens/activity.js:125
+#: src/admin/screens/activity.js:161
+msgid "Action"
+msgstr ""
+
+#: src/admin/screens/activity.js:126
+#: src/admin/screens/activity.js:192
+msgid "Item"
+msgstr ""
+
+#: src/admin/screens/activity.js:127
+#: src/admin/screens/activity.js:208
+msgid "Result"
+msgstr ""
+
+#: src/admin/screens/activity.js:130
+msgid "Actions"
+msgstr ""
+
+#. translators: %s: program name, e.g. curl
+#: src/admin/screens/activity.js:154
+#: src/admin/screens/overview.js:302
+#, js-format
+msgid "via %s"
+msgstr ""
+
+#: src/admin/screens/activity.js:215
+#: src/admin/screens/connect.js:623
+msgid "Done"
+msgstr ""
+
+#: src/admin/screens/activity.js:219
+#: src/admin/screens/overview.js:311
+msgid "Failed"
+msgstr ""
+
+#: src/admin/screens/activity.js:224
+#: src/admin/screens/overview.js:315
+msgid "Undone"
+msgstr ""
+
+#: src/admin/screens/activity.js:238
+msgid "Undo"
+msgstr ""
+
+#. translators: 1: tool name, 2: duration in ms
+#: src/admin/screens/activity.js:261
+#, js-format
+msgid "Tool %1$s · %2$d ms"
+msgstr ""
+
+#: src/admin/screens/activity.js:286
+msgid "Newer"
+msgstr ""
+
+#. translators: 1: page, 2: total pages
+#: src/admin/screens/activity.js:291
+#, js-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: src/admin/screens/activity.js:301
+msgid "Older"
+msgstr ""
+
+#: src/admin/screens/activity.js:308
+msgid "Undo this change?"
+msgstr ""
+
+#: src/admin/screens/activity.js:333
+msgid "Undo change"
+msgstr ""
+
+#: src/admin/screens/connect.js:31
+msgid "Chat apps"
+msgstr ""
+
+#: src/admin/screens/connect.js:32
+msgid "Code editors"
+msgstr ""
+
+#: src/admin/screens/connect.js:33
+msgid "Terminal agents"
+msgstr ""
+
+#: src/admin/screens/connect.js:34
+msgid "Something else"
+msgstr ""
+
+#: src/admin/screens/connect.js:41
+msgid "Can look at your posts, pages, media and settings. Cannot change anything."
+msgstr ""
+
+#: src/admin/screens/connect.js:45
+msgid "“Summarize my latest posts”"
+msgstr ""
+
+#: src/admin/screens/connect.js:49
+msgid "Write content"
+msgstr ""
+
+#: src/admin/screens/connect.js:50
+msgid "Can write and edit posts and pages, upload images, and manage categories and comments."
+msgstr ""
+
+#: src/admin/screens/connect.js:54
+msgid "“Draft a blog post about our spring sale”"
+msgstr ""
+
+#: src/admin/screens/connect.js:60
+msgid "Everything above plus settings, menus, plugins, themes and users. It can never create or edit administrators."
+msgstr ""
+
+#: src/admin/screens/connect.js:64
+msgid "“Install an SEO plugin and set the homepage”"
+msgstr ""
+
+#: src/admin/screens/connect.js:69
+msgid "What is my WordPress site about? Give me a quick overview."
+msgstr ""
+
+#: src/admin/screens/connect.js:70
+msgid "Write a 600-word blog post about why our customers love us and save it as a draft."
+msgstr ""
+
+#: src/admin/screens/connect.js:74
+msgid "Find my posts that have no featured image."
+msgstr ""
+
+#: src/admin/screens/connect.js:86
+msgid "Choose your AI app"
+msgstr ""
+
+#: src/admin/screens/connect.js:87
+msgid "Choose what it can do"
+msgstr ""
+
+#: src/admin/screens/connect.js:88
+msgid "Connect"
+msgstr ""
+
+#: src/admin/screens/connect.js:130
+msgid "Connected"
+msgstr ""
+
+#: src/admin/screens/connect.js:134
+msgid "Set up · not connected yet"
+msgstr ""
+
+#: src/admin/screens/connect.js:154
+msgid "Show me how to finish"
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:162
+#, js-format
+msgid "%s is set up but hasn’t connected to your site yet."
+msgstr ""
+
+#: src/admin/screens/connect.js:189
+msgid "Coming soon"
+msgstr ""
+
+#: src/admin/screens/connect.js:195
+msgid "Sign in"
+msgstr ""
+
+#: src/admin/screens/connect.js:201
+msgid "One-click"
+msgstr ""
+
+#. translators: %s: site name
+#: src/admin/screens/connect.js:262
+#, js-format
+msgid "my “%s” connector"
+msgstr ""
+
+#. translators: %s: server name
+#: src/admin/screens/connect.js:267
+#, js-format
+msgid "the “%s” tools"
+msgstr ""
+
+#. translators: %s: connector or tools name
+#: src/admin/screens/connect.js:272
+#, js-format
+msgid "Use %s to look at my WordPress site and give me a short overview: the site name, how many posts and pages it has, and which theme it uses."
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:317
+#, js-format
+msgid "Check that %s can see your site"
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:328
+#, js-format
+msgid "Send this first message in %s"
+msgstr ""
+
+#: src/admin/screens/connect.js:336
+msgid "Copy message"
+msgstr ""
+
+#: src/admin/screens/connect.js:341
+msgid "The first time, your AI asks for permission to use your site’s tools — choose “Allow”. Then come back here: the app will show as Connected."
+msgstr ""
+
+#: src/admin/screens/connect.js:345
+msgid "The first time, your AI asks for permission to use your site’s tools — choose “Allow”. The box below turns green as soon as it connects."
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:369
+#, js-format
+msgid "Finish connecting %s"
+msgstr ""
+
+#: src/admin/screens/connect.js:378
+msgid "This site runs on your computer and uses a development security certificate. Make sure the \"env\" section of your configuration also contains this line, then restart the app:"
+msgstr ""
+
+#: src/admin/screens/connect.js:390
+msgid "Still not working? Create a fresh connection and follow the steps again — the old one can be revoked under Connections."
+msgstr ""
+
+#: src/admin/screens/connect.js:397
+msgid "Close"
+msgstr ""
+
+#: src/admin/screens/connect.js:400
+msgid "Set it up again"
+msgstr ""
+
+#: src/admin/screens/connect.js:442
+msgid "Access level"
+msgstr ""
+
+#: src/admin/screens/connect.js:458
+msgid "Recommended"
+msgstr ""
+
+#: src/admin/screens/connect.js:477
+msgid "Drafts only (safest)"
+msgstr ""
+
+#: src/admin/screens/connect.js:480
+msgid "The AI can create and edit drafts, but cannot publish, delete, or change anything visitors already see. You review and publish."
+msgstr ""
+
+#: src/admin/screens/connect.js:484
+msgid "The AI can publish and delete directly. Deleted items go to the trash, and you can undo changes from the Activity screen."
+msgstr ""
+
+#: src/admin/screens/connect.js:499
+msgid "Connection name"
+msgstr ""
+
+#: src/admin/screens/connect.js:500
+msgid "Helps you recognise it later, e.g. “Claude on my laptop”."
+msgstr ""
+
+#. translators: %s: user display name
+#: src/admin/screens/connect.js:511
+#, js-format
+msgid "The AI will act as you (%s), so it can never do more than your own account can."
+msgstr ""
+
+#: src/admin/screens/connect.js:531
+#: src/admin/screens/connect.js:872
+msgid "Back"
+msgstr ""
+
+#: src/admin/screens/connect.js:539
+msgid "Create connection"
+msgstr ""
+
+#: src/admin/screens/connect.js:579
+msgid "Waiting for your AI app to connect…"
+msgstr ""
+
+#: src/admin/screens/connect.js:582
+msgid "Finish the steps above and send the first message. This page updates by itself."
+msgstr ""
+
+#: src/admin/screens/connect.js:598
+msgid "Connected! Your AI can now work on your site."
+msgstr ""
+
+#: src/admin/screens/connect.js:603
+msgid "Try asking it:"
+msgstr ""
+
+#: src/admin/screens/connect.js:613
+msgid "Tip: many apps also offer ready-made tasks from your site, such as “Write a blog post” or “SEO check-up” — look in the “+” or / menu."
+msgstr ""
+
+#: src/admin/screens/connect.js:620
+msgid "Connect another app"
+msgstr ""
+
+#: src/admin/screens/connect.js:652
+msgid "Command"
+msgstr ""
+
+#: src/admin/screens/connect.js:660
+msgid "Your connection key is shown only once. It is already included below — copy it now if you need it elsewhere. Treat it like a password."
+msgstr ""
+
+#: src/admin/screens/connect.js:667
+msgid "Connection key"
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:682
+#: src/admin/screens/connect.js:814
+#, js-format
+msgid "Add your site to %s"
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:691
+#, js-format
+msgid "Add to %s"
+msgstr ""
+
+#: src/admin/screens/connect.js:696
+msgid "Opens the app and asks you to confirm."
+msgstr ""
+
+#: src/admin/screens/connect.js:720
+msgid "Manual setup details"
+msgstr ""
+
+#: src/admin/screens/connect.js:722
+msgid "Server URL (Streamable HTTP)"
+msgstr ""
+
+#: src/admin/screens/connect.js:726
+msgid "Header"
+msgstr ""
+
+#: src/admin/screens/connect.js:730
+msgid "If your server strips the Authorization header, send the key as “X-MCPAI-Key” instead."
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:745
+#, js-format
+msgid "%s MCP documentation"
+msgstr ""
+
+#: src/admin/screens/connect.js:753
+msgid "Because this site runs on your computer, the configuration includes a line that lets the bridge accept its local security certificate. Live sites don’t need it."
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:801
+#, js-format
+msgid "This site runs on your computer, so %s (which runs in the cloud) cannot reach it. Publish the site or use a Studio preview or tunnel first — or connect an app on this computer instead, such as Claude Code, Claude Desktop or Cursor."
+msgstr ""
+
+#: src/admin/screens/connect.js:819
+msgid "Your connector URL"
+msgstr ""
+
+#: src/admin/screens/connect.js:830
+msgid "No key needed: you’ll sign in to WordPress and choose what the app may do. You can disconnect it any time."
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:851
+#, js-format
+msgid "%s’s official setup guide"
+msgstr ""
+
+#: src/admin/screens/connect.js:905
+msgid "Which AI app do you want to connect?"
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:908
+#, js-format
+msgid "What should %s be allowed to do?"
+msgstr ""
+
+#. translators: %s: app name
+#: src/admin/screens/connect.js:913
+#, js-format
+msgid "Connect %s"
+msgstr ""
+
+#. translators: %s: relative time
+#: src/admin/screens/connections.js:28
+#: src/admin/screens/overview.js:236
+#, js-format
+msgid "Active %s"
+msgstr ""
+
+#: src/admin/screens/connections.js:37
+#: src/admin/screens/overview.js:244
+msgid "Not connected yet"
+msgstr ""
+
+#: src/admin/screens/connections.js:39
+msgid "How to finish"
+msgstr ""
+
+#: src/admin/screens/connections.js:89
+msgid "AI apps that can access your site. Revoke any of them at any time — they are disconnected immediately."
+msgstr ""
+
+#: src/admin/screens/connections.js:109
+msgid "No AI apps connected yet"
+msgstr ""
+
+#: src/admin/screens/connections.js:111
+msgid "Connect Claude, ChatGPT, Cursor or another AI app in about a minute."
+msgstr ""
+
+#: src/admin/screens/connections.js:141
+msgid "Signed in with WordPress"
+msgstr ""
+
+#: src/admin/screens/connections.js:145
+msgid "Connected with a key"
+msgstr ""
+
+#. translators: %s: user name
+#: src/admin/screens/connections.js:152
+#, js-format
+msgid "acts as %s"
+msgstr ""
+
+#: src/admin/screens/connections.js:172
+msgid "Drafts only"
+msgstr ""
+
+#: src/admin/screens/connections.js:177
+msgid "Compact"
+msgstr ""
+
+#: src/admin/screens/connections.js:192
+msgid "Revoke"
+msgstr ""
+
+#: src/admin/screens/connections.js:202
+msgid "Revoke this connection?"
+msgstr ""
+
+#. translators: %s: connection name
+#: src/admin/screens/connections.js:209
+#, js-format
+msgid "“%s” will immediately lose access to your site. You can create a new connection later."
+msgstr ""
+
+#: src/admin/screens/connections.js:230
+msgid "Revoke access"
+msgstr ""
+
+#: src/admin/screens/overview.js:54
+msgid "AI access is paused. Connected apps can’t reach your site."
+msgstr ""
+
+#. translators: %s: connection name
+#: src/admin/screens/overview.js:68
+#, js-format
+msgid "%s is set up but hasn’t connected yet."
+msgstr ""
+
+#: src/admin/screens/overview.js:71
+msgid "Show me how"
+msgstr ""
+
+#: src/admin/screens/overview.js:85
+msgid "Fix it"
+msgstr ""
+
+#: src/admin/screens/overview.js:92
+msgid "Permanent deletion is allowed — AI apps can delete things that can’t be undone."
+msgstr ""
+
+#: src/admin/screens/overview.js:96
+msgid "Review"
+msgstr ""
+
+#: src/admin/screens/overview.js:102
+msgid "No AI apps are connected yet"
+msgstr ""
+
+#. translators: %d: number of connected apps
+#: src/admin/screens/overview.js:106
+#, js-format
+msgid "%d AI app is working on your site"
+msgid_plural "%d AI apps are working on your site"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/admin/screens/overview.js:127
+msgid "Paused"
+msgstr ""
+
+#. translators: %s: relative time
+#: src/admin/screens/overview.js:135
+#, js-format
+msgid "Last activity %s. Every change is logged and can be undone."
+msgstr ""
+
+#: src/admin/screens/overview.js:141
+msgid "Connect Claude, ChatGPT, Cursor or another AI app in about a minute. Every change it makes is logged and can be undone."
+msgstr ""
+
+#: src/admin/screens/overview.js:166
+msgid "Resume AI access"
+msgstr ""
+
+#: src/admin/screens/overview.js:167
+msgid "Pause AI access"
+msgstr ""
+
+#: src/admin/screens/overview.js:175
+msgid "Needs your attention"
+msgstr ""
+
+#: src/admin/screens/overview.js:202
+msgid "Connected apps"
+msgstr ""
+
+#: src/admin/screens/overview.js:207
+msgid "Manage"
+msgstr ""
+
+#: src/admin/screens/overview.js:214
+msgid "Nothing connected yet."
+msgstr ""
+
+#: src/admin/screens/overview.js:264
+msgid "Recent changes"
+msgstr ""
+
+#: src/admin/screens/overview.js:269
+msgid "View all"
+msgstr ""
+
+#: src/admin/screens/overview.js:276
+msgid "When an AI app changes something, it shows up here — with an Undo button."
+msgstr ""
+
+#: src/admin/screens/overview.js:328
+msgid "Ready-made tasks your AI can do"
+msgstr ""
+
+#: src/admin/screens/overview.js:334
+msgid "Find them in your AI app’s “+” or / menu — or just ask in your own words."
+msgstr ""
+
+#: src/admin/screens/overview.js:346
+#: src/admin/screens/tools.js:271
+msgid "All tools"
+msgstr ""
+
+#: src/admin/screens/settings.js:23
+msgid "OK"
+msgstr ""
+
+#: src/admin/screens/settings.js:24
+msgid "Note"
+msgstr ""
+
+#: src/admin/screens/settings.js:25
+msgid "Check"
+msgstr ""
+
+#: src/admin/screens/settings.js:26
+msgid "Problem"
+msgstr ""
+
+#: src/admin/screens/settings.js:50
+#: src/admin/screens/settings.js:75
+msgid "Connection URL"
+msgstr ""
+
+#: src/admin/screens/settings.js:52
+msgid "The connection URL is online and requires a key."
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: src/admin/screens/settings.js:58
+#, js-format
+msgid "The connection URL answered with an unexpected status (%d)."
+msgstr ""
+
+#: src/admin/screens/settings.js:66
+msgid "A security plugin, firewall or cache may be blocking /wp-json/. Allow requests to /wp-json/mcpai/."
+msgstr ""
+
+#: src/admin/screens/settings.js:76
+msgid "The connection URL could not be reached."
+msgstr ""
+
+#: src/admin/screens/settings.js:77
+msgid "Check that the REST API is not disabled by a security plugin or firewall."
+msgstr ""
+
+#: src/admin/screens/settings.js:95
+#: src/admin/screens/settings.js:104
+msgid "Key header"
+msgstr ""
+
+#: src/admin/screens/settings.js:96
+msgid "Your server passes the key header through to WordPress."
+msgstr ""
+
+#: src/admin/screens/settings.js:105
+msgid "Your server removes the \"Authorization\" header, so apps sending the key that way are rejected. Apps can send it as \"X-MCPAI-Key\" instead."
+msgstr ""
+
+#: src/admin/screens/settings.js:109
+msgid "Add this line to .htaccess above \"# BEGIN WordPress\": SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1"
+msgstr ""
+
+#: src/admin/screens/settings.js:146
+msgid "Connection check"
+msgstr ""
+
+#: src/admin/screens/settings.js:154
+msgid "Run again"
+msgstr ""
+
+#: src/admin/screens/settings.js:180
+msgid "How to fix:"
+msgstr ""
+
+#: src/admin/screens/settings.js:210
+msgid "Safety switches that apply to every connected AI app."
+msgstr ""
+
+#: src/admin/screens/settings.js:225
+msgid "Safety"
+msgstr ""
+
+#: src/admin/screens/settings.js:230
+msgid "Pause all AI access"
+msgstr ""
+
+#: src/admin/screens/settings.js:231
+msgid "Instantly blocks every connected app. Turn it off to resume — connections are kept."
+msgstr ""
+
+#: src/admin/screens/settings.js:245
+msgid "Allow permanent deletion"
+msgstr ""
+
+#: src/admin/screens/settings.js:249
+msgid "Off (recommended): deleted posts go to the trash and media cannot be deleted. On: AI apps with delete access can skip the trash and delete media — this cannot be undone."
+msgstr ""
+
+#: src/admin/screens/settings.js:262
+msgid "Permanent deletion is on. AI apps with delete access can remove things that cannot be undone."
+msgstr ""
+
+#: src/admin/screens/settings.js:274
+msgid "Advanced"
+msgstr ""
+
+#: src/admin/screens/settings.js:279
+msgid "Compact tool list for all apps"
+msgstr ""
+
+#: src/admin/screens/settings.js:283
+msgid "Shows AI apps 3 tools that look up the others, instead of the full list. Useful for apps or small models that struggle with many tools. Apps with a known tool limit, like Cursor, use this automatically when needed."
+msgstr ""
+
+#: src/admin/screens/settings.js:294
+msgid "Delete all Mcpai data when the plugin is deleted"
+msgstr ""
+
+#: src/admin/screens/settings.js:298
+msgid "Removes connections, activity history and settings when you delete the plugin from the Plugins screen. Deactivating the plugin never deletes anything."
+msgstr ""
+
+#: src/admin/screens/settings.js:312
+msgid "Connection details"
+msgstr ""
+
+#: src/admin/screens/settings.js:316
+msgid "MCP server URL (Streamable HTTP)"
+msgstr ""
+
+#: src/admin/screens/settings.js:323
+msgid "Apps authenticate with a connection key (Authorization: Bearer …), or with a WordPress Application Password."
+msgstr ""
+
+#: src/admin/screens/settings.js:333
+msgid "Integrations"
+msgstr ""
+
+#: src/admin/screens/settings.js:337
+msgid "Extra tools appear automatically when these plugins are active. Manage them under Tools."
+msgstr ""
+
+#: src/admin/screens/settings.js:348
+msgid "Active"
+msgstr ""
+
+#: src/admin/screens/settings.js:352
+msgid "Not active"
+msgstr ""
+
+#. translators: %s: access level
+#: src/admin/screens/tools.js:31
+#, js-format
+msgid "Access: %s"
+msgstr ""
+
+#: src/admin/screens/tools.js:37
+msgid "Makes changes"
+msgstr ""
+
+#: src/admin/screens/tools.js:42
+msgid "Can delete"
+msgstr ""
+
+#. translators: %s: plugin namespace
+#: src/admin/screens/tools.js:49
+#, js-format
+msgid "From: %s"
+msgstr ""
+
+#. translators: %s: tool name
+#. translators: %s: task name
+#: src/admin/screens/tools.js:63
+#: src/admin/screens/tools.js:158
+#, js-format
+msgid "Enable %s"
+msgstr ""
+
+#: src/admin/screens/tools.js:115
+msgid "Ready-made tasks"
+msgstr ""
+
+#: src/admin/screens/tools.js:117
+msgid "One-click tasks AI apps can offer, e.g. in Claude Desktop’s “+” menu or as / commands in Claude Code and VS Code. Each appears only when the connection has the tools it needs."
+msgstr ""
+
+#. translators: 1: enabled tasks, 2: total tasks
+#. translators: 1: enabled tools, 2: total tools
+#: src/admin/screens/tools.js:126
+#: src/admin/screens/tools.js:328
+#, js-format
+msgid "%1$d of %2$d on"
+msgstr ""
+
+#: src/admin/screens/tools.js:143
+msgid "Needs tools that are off or missing"
+msgstr ""
+
+#: src/admin/screens/tools.js:237
+msgid "Tools & permissions"
+msgstr ""
+
+#: src/admin/screens/tools.js:238
+msgid "Tools are the actions AI apps can take. Each connection only sees the tools its access level allows — switch a tool off here to hide it from every app."
+msgstr ""
+
+#: src/admin/screens/tools.js:256
+msgid "Search tools"
+msgstr ""
+
+#: src/admin/screens/tools.js:257
+msgid "Search tools, e.g. “media” or “publish”"
+msgstr ""
+
+#: src/admin/screens/tools.js:273
+msgid "Switched on"
+msgstr ""
+
+#: src/admin/screens/tools.js:277
+msgid "Switched off"
+msgstr ""
+
+#. translators: 1: enabled tools, 2: total tools
+#: src/admin/screens/tools.js:286
+#, js-format
+msgid "%1$d of %2$d tools on"
+msgstr ""
+
+#: src/admin/screens/tools.js:298
+msgid "No tools match your search."
+msgstr ""

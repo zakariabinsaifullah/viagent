@@ -1,0 +1,15 @@
+/.git
+/node_modules
+/vendor
+.distignore
+.gitignore
+eslint.config.cjs
+composer.json
+composer.lock
+package-lock.json
+phpcs.xml.dist
+CLAUDE.md
+*.zip
+/video
+/.github
+.DS_Store

@@ -1,0 +1,6 @@
+node_modules/
+vendor/
+*.zip
+video/out/
+/video/
+.DS_Store

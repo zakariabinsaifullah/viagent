@@ -1,0 +1,30 @@
+{
+	"name": "mcpai",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Connect your WordPress site to AI agents with MCP.",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"build": "wp-scripts build src/admin/index.js --output-path=build",
+		"start": "wp-scripts start src/admin/index.js --output-path=build",
+		"lint:js": "wp-scripts lint-js src",
+		"lint:css": "wp-scripts lint-style src/**/*.scss",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^36.0.0"
+	},
+	"dependencies": {
+		"@wordpress/icons": "^17.0.0"
+	},
+	"files": [
+		"build",
+		"includes",
+		"languages",
+		"src",
+		"mcpai.php",
+		"uninstall.php",
+		"readme.txt",
+		"package.json"
+	]
+}

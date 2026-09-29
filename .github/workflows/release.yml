@@ -1,0 +1,85 @@
+name: Publish GitHub Release
+
+on:
+    push:
+        tags:
+            - '*'
+
+jobs:
+    build-and-release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v7
+
+            # Node 24 ships npm 11, the same major that writes package-lock.json
+            # locally. Keeping the two aligned avoids npm-major differences in how
+            # the lockfile is read.
+            - name: Setup Node.js
+              uses: actions/setup-node@v7
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+
+            # A tag like v1.0.1 or 1.0.1 must match the plugin header and the
+            # readme's Stable tag, otherwise the zip would ship a version that
+            # WordPress reports differently from the release name.
+            - name: Verify version matches tag
+              run: |
+                  TAG="${GITHUB_REF_NAME#v}"
+                  HEADER=$(grep -m1 -E '^\s*\*\s*Version:' mcpai.php | sed -E 's/.*Version:\s*//' | tr -d '[:space:]')
+                  STABLE=$(grep -m1 -E '^Stable tag:' readme.txt | sed -E 's/Stable tag:\s*//' | tr -d '[:space:]')
+                  echo "Tag: $TAG | mcpai.php: $HEADER | readme.txt: $STABLE"
+                  if [ "$TAG" != "$HEADER" ] || [ "$TAG" != "$STABLE" ]; then
+                      echo "::error::Tag $GITHUB_REF_NAME does not match mcpai.php Version ($HEADER) and readme.txt Stable tag ($STABLE)."
+                      exit 1
+                  fi
+
+            # npm ci is the reproducible install and stays the default. A tag whose
+            # lockfile drifted from package.json would otherwise block the release
+            # outright, so fall back to npm install and say so loudly in the log.
+            - name: Install dependencies
+              run: |
+                  npm ci --no-audit --no-fund || {
+                      echo "::warning::npm ci failed - the lockfile is out of sync with package.json. Falling back to npm install; regenerate and commit package-lock.json."
+                      npm install --no-audit --no-fund
+                  }
+
+            - name: Build plugin
+              run: npm run build
+
+            # wp-scripts can exit 0 having written nothing; without this the run
+            # would happily publish a zip with no build/ directory in it.
+            - name: Verify build output
+              run: |
+                  if [ ! -f build/index.js ] || [ ! -f build/index.asset.php ]; then
+                      echo "::error::build/index.js or build/index.asset.php is missing - refusing to package a release without built assets."
+                      exit 1
+                  fi
+
+            - name: Prepare Release Artifact
+              run: |
+                  # 1. Create a build directory
+                  mkdir mcpai
+
+                  # 2. Copy files to build dir
+                  rsync -rc --exclude-from='.distignore' --exclude '/mcpai/' . mcpai/
+
+                  # 3. CLEANUP: Force remove any .DS_Store files that slipped through
+                  find mcpai -name ".DS_Store" -type f -delete
+
+                  # 4. Zip the clean directory
+                  zip -r mcpai.zip mcpai
+
+            - name: Create Release
+              uses: ncipollo/release-action@v1.21.0
+              with:
+                  artifacts: 'mcpai.zip'
+                  token: ${{ secrets.TOKEN }}
+                  allowUpdates: true
+                  makeLatest: true
+                  tag: ${{ github.ref_name }}
+                  body: 'Release ${{ github.ref_name }}'
