@@ -1,5 +1,5 @@
 === Mcpai ===
-Contributors: mcpai
+Contributors: binsaifullah
 Tags: mcp, ai, ai agent, chatgpt, claude
 Requires at least: 6.9
 Tested up to: 7.1
@@ -145,16 +145,6 @@ Mcpai does not send your site's content to AI providers or to its authors, and i
 * **Web addresses provided by your AI app** – when an AI app uploads an image or file from a link, Mcpai downloads that file from the address the app gave. Only a normal download request is sent to that address. Local and private network addresses are blocked.
 
 AI apps such as Claude, ChatGPT or Cursor connect to your site; your site does not connect to them. The content they read is handled under the privacy policy of the app you use.
-
-== Screenshots ==
-
-1. Overview – see connected apps, recent changes and anything that needs your attention.
-2. Connect wizard – choose from Claude, ChatGPT, Cursor, VS Code, Codex and more.
-3. Choose what the AI may do: Read only, Write content (drafts only) or Full control.
-4. Step-by-step setup for your app, with a copy-ready configuration and the first message to send.
-5. Approve a sign-in from Claude.ai or ChatGPT on your own WordPress site.
-6. Activity – everything your AI did, with one-click undo.
-7. Tools – search and switch individual tools and ready-made tasks on or off.
 
 == Changelog ==
 
