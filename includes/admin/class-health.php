@@ -1,18 +1,18 @@
 <?php
 /**
- * Connection health checks shown on the Mcpai screen. Each check explains
+ * Connection health checks shown on the Viagent screen. Each check explains
  * the problem in plain language and how to fix it.
  *
  * Reachability checks (endpoint and Authorization header) run in the browser
  * instead of as loopback requests, which hang on single-threaded dev servers
  * and are blocked by some hosts.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Admin;
+namespace Viagent\Admin;
 
-use MCPAI\Security\Policy;
+use Viagent\Security\Policy;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -93,9 +93,9 @@ class Health {
 		return self::result(
 			'paused',
 			'warning',
-			__( 'AI access is paused', 'mcpai' ),
-			__( 'All AI apps are blocked until you resume access.', 'mcpai' ),
-			__( 'Turn off "Pause all AI access" to reconnect.', 'mcpai' )
+			__( 'AI access is paused', 'viagent' ),
+			__( 'All AI apps are blocked until you resume access.', 'viagent' ),
+			__( 'Turn off "Pause all AI access" to reconnect.', 'viagent' )
 		);
 	}
 
@@ -106,14 +106,14 @@ class Health {
 	 */
 	private static function check_permalinks() {
 		if ( get_option( 'permalink_structure' ) ) {
-			return self::result( 'permalinks', 'good', __( 'Permalinks', 'mcpai' ), __( 'Pretty permalinks are on.', 'mcpai' ) );
+			return self::result( 'permalinks', 'good', __( 'Permalinks', 'viagent' ), __( 'Pretty permalinks are on.', 'viagent' ) );
 		}
 		return self::result(
 			'permalinks',
 			'info',
-			__( 'Permalinks', 'mcpai' ),
-			__( 'Plain permalinks are in use, so the connection URL contains "?rest_route=". It still works, but some apps prefer clean URLs.', 'mcpai' ),
-			__( 'Go to Settings → Permalinks and choose "Post name".', 'mcpai' )
+			__( 'Permalinks', 'viagent' ),
+			__( 'Plain permalinks are in use, so the connection URL contains "?rest_route=". It still works, but some apps prefer clean URLs.', 'viagent' ),
+			__( 'Go to Settings → Permalinks and choose "Post name".', 'viagent' )
 		);
 	}
 
@@ -124,14 +124,14 @@ class Health {
 	 */
 	private static function check_https() {
 		if ( wp_is_using_https() ) {
-			return self::result( 'https', 'good', __( 'HTTPS', 'mcpai' ), __( 'Your site uses a secure (HTTPS) address, so keys are encrypted in transit.', 'mcpai' ) );
+			return self::result( 'https', 'good', __( 'HTTPS', 'viagent' ), __( 'Your site uses a secure (HTTPS) address, so keys are encrypted in transit.', 'viagent' ) );
 		}
 		return self::result(
 			'https',
 			self::is_local() ? 'info' : 'critical',
-			__( 'HTTPS', 'mcpai' ),
-			__( 'Your site does not use HTTPS, so connection keys travel unencrypted. Web apps like Claude.ai and ChatGPT require HTTPS.', 'mcpai' ),
-			__( 'Ask your host to enable a free SSL certificate, then switch to https:// in Settings → General.', 'mcpai' )
+			__( 'HTTPS', 'viagent' ),
+			__( 'Your site does not use HTTPS, so connection keys travel unencrypted. Web apps like Claude.ai and ChatGPT require HTTPS.', 'viagent' ),
+			__( 'Ask your host to enable a free SSL certificate, then switch to https:// in Settings → General.', 'viagent' )
 		);
 	}
 
@@ -147,9 +147,9 @@ class Health {
 		return self::result(
 			'local',
 			'info',
-			__( 'Local site', 'mcpai' ),
-			__( 'This site runs on your computer. Apps on the same computer (Claude Code, Claude Desktop, Cursor, VS Code, Codex…) can connect. Web apps like Claude.ai and ChatGPT cannot reach it.', 'mcpai' ),
-			__( 'To use web apps, publish the site or share it through a tunnel or a WordPress Studio preview site.', 'mcpai' )
+			__( 'Local site', 'viagent' ),
+			__( 'This site runs on your computer. Apps on the same computer (Claude Code, Claude Desktop, Cursor, VS Code, Codex…) can connect. Web apps like Claude.ai and ChatGPT cannot reach it.', 'viagent' ),
+			__( 'To use web apps, publish the site or share it through a tunnel or a WordPress Studio preview site.', 'viagent' )
 		);
 	}
 }

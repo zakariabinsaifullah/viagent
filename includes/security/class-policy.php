@@ -3,13 +3,13 @@
  * Access levels and safety rules: draft-only mode, permanent deletes,
  * per-tool switches, rate limits and the kill switch.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Security;
+namespace Viagent\Security;
 
-use MCPAI\Auth\Authenticator;
-use MCPAI\Auth\Connection;
+use Viagent\Auth\Authenticator;
+use Viagent\Auth\Connection;
 use WP_Ability;
 use WP_Error;
 use WP_Post;
@@ -25,9 +25,9 @@ class Policy {
 	const CONTENT = 'content';
 	const ADMIN   = 'admin';
 
-	const PAUSED_OPTION           = 'mcpai_paused';
-	const PERMANENT_DELETE_OPTION = 'mcpai_allow_permanent_delete';
-	const TOOL_OVERRIDES_OPTION   = 'mcpai_tool_overrides';
+	const PAUSED_OPTION           = 'viagent_paused';
+	const PERMANENT_DELETE_OPTION = 'viagent_allow_permanent_delete';
+	const TOOL_OVERRIDES_OPTION   = 'viagent_tool_overrides';
 
 	/**
 	 * Post statuses that are not visible to site visitors.
@@ -54,9 +54,9 @@ class Policy {
 	 */
 	public static function level_labels() {
 		return array(
-			self::READ    => __( 'Read only', 'mcpai' ),
-			self::CONTENT => __( 'Content editor', 'mcpai' ),
-			self::ADMIN   => __( 'Full control', 'mcpai' ),
+			self::READ    => __( 'Read only', 'viagent' ),
+			self::CONTENT => __( 'Content editor', 'viagent' ),
+			self::ADMIN   => __( 'Full control', 'viagent' ),
 		);
 	}
 
@@ -122,8 +122,8 @@ class Policy {
 	public static function check_status( $status ) {
 		if ( self::is_draft_only() && ! in_array( $status, self::PRIVATE_STATUSES, true ) ) {
 			return new WP_Error(
-				'mcpai_draft_only',
-				__( 'Draft-only mode is on, so the status can only be "draft" or "pending". Ask the site owner to publish it from WordPress, or to allow publishing in Mcpai.', 'mcpai' )
+				'viagent_draft_only',
+				__( 'Draft-only mode is on, so the status can only be "draft" or "pending". Ask the site owner to publish it from WordPress, or to allow publishing in Viagent.', 'viagent' )
 			);
 		}
 		return true;
@@ -138,10 +138,10 @@ class Policy {
 	public static function check_post_editable( WP_Post $post ) {
 		if ( self::is_draft_only() && ! in_array( $post->post_status, self::PRIVATE_STATUSES, true ) ) {
 			return new WP_Error(
-				'mcpai_draft_only',
+				'viagent_draft_only',
 				sprintf(
 					/* translators: %s: post status */
-					__( 'Draft-only mode is on and this item is "%s", so it cannot be changed. Create a new draft instead, or ask the site owner for more access in Mcpai.', 'mcpai' ),
+					__( 'Draft-only mode is on and this item is "%s", so it cannot be changed. Create a new draft instead, or ask the site owner for more access in Viagent.', 'viagent' ),
 					$post->post_status
 				)
 			);
@@ -160,13 +160,13 @@ class Policy {
 		if ( isset( $overrides[ $ability->get_name() ] ) ) {
 			return (bool) $overrides[ $ability->get_name() ];
 		}
-		$mcpai = (array) $ability->get_meta_item( 'mcpai', array() );
-		return $mcpai['default_enabled'] ?? true;
+		$viagent = (array) $ability->get_meta_item( 'viagent', array() );
+		return $viagent['default_enabled'] ?? true;
 	}
 
 	/**
 	 * Whether a tool may be used in draft-only mode. Read-only tools always can;
-	 * write tools must opt in with `meta.mcpai.draft_safe` and guard themselves.
+	 * write tools must opt in with `meta.viagent.draft_safe` and guard themselves.
 	 *
 	 * @param WP_Ability $ability Ability.
 	 * @return bool
@@ -176,8 +176,8 @@ class Policy {
 		if ( ! empty( $annotations['readonly'] ) ) {
 			return true;
 		}
-		$mcpai = (array) $ability->get_meta_item( 'mcpai', array() );
-		return ! empty( $mcpai['draft_safe'] );
+		$viagent = (array) $ability->get_meta_item( 'viagent', array() );
+		return ! empty( $viagent['draft_safe'] );
 	}
 
 	/**
@@ -193,17 +193,17 @@ class Policy {
 		 * @param int        $limit      Calls per minute. 0 disables the limit.
 		 * @param Connection $connection Connection.
 		 */
-		$limit = (int) apply_filters( 'mcpai_rate_limit', 120, $connection );
+		$limit = (int) apply_filters( 'viagent_rate_limit', 120, $connection );
 		if ( $limit <= 0 ) {
 			return true;
 		}
 
-		$key   = 'mcpai_rl_' . md5( $connection->method . ':' . $connection->credential_id . ':' . $connection->user_id . ':' . gmdate( 'YmdHi' ) );
+		$key   = 'viagent_rl_' . md5( $connection->method . ':' . $connection->credential_id . ':' . $connection->user_id . ':' . gmdate( 'YmdHi' ) );
 		$count = (int) get_transient( $key ) + 1;
 		set_transient( $key, $count, 2 * MINUTE_IN_SECONDS );
 
 		if ( $count > $limit ) {
-			return new WP_Error( 'mcpai_rate_limited', __( 'Too many requests. Please wait a minute and try again.', 'mcpai' ) );
+			return new WP_Error( 'viagent_rate_limited', __( 'Too many requests. Please wait a minute and try again.', 'viagent' ) );
 		}
 		return true;
 	}

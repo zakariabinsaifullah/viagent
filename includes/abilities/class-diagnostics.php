@@ -2,12 +2,12 @@
 /**
  * Diagnostics abilities: site health overview and the PHP error log.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Security\Policy;
+use Viagent\Security\Policy;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -26,24 +26,24 @@ class Diagnostics {
 		Abilities::add(
 			'get-site-health',
 			array(
-				'category'    => 'mcpai-diagnostics',
-				'label'       => __( 'Get site health', 'mcpai' ),
-				'description' => __( 'Technical overview for troubleshooting: WordPress/PHP versions, pending updates, debug settings, memory, HTTPS and cron.', 'mcpai' ),
+				'category'    => 'viagent-diagnostics',
+				'label'       => __( 'Get site health', 'viagent' ),
+				'description' => __( 'Technical overview for troubleshooting: WordPress/PHP versions, pending updates, debug settings, memory, HTTPS and cron.', 'viagent' ),
 				'execute'     => array( self::class, 'get_site_health' ),
 				'permission'  => 'manage_options',
 				'meta'        => Abilities::read_meta( Policy::ADMIN ),
 			)
 		);
 
-		$log_meta                             = Abilities::read_meta( Policy::ADMIN );
-		$log_meta['mcpai']['default_enabled'] = false;
+		$log_meta                               = Abilities::read_meta( Policy::ADMIN );
+		$log_meta['viagent']['default_enabled'] = false;
 
 		Abilities::add(
 			'get-error-log',
 			array(
-				'category'    => 'mcpai-diagnostics',
-				'label'       => __( 'Get PHP error log', 'mcpai' ),
-				'description' => __( 'Returns the last lines of the PHP / WordPress debug log to help find errors.', 'mcpai' ),
+				'category'    => 'viagent-diagnostics',
+				'label'       => __( 'Get PHP error log', 'viagent' ),
+				'description' => __( 'Returns the last lines of the PHP / WordPress debug log to help find errors.', 'viagent' ),
 				'input'       => array(
 					'lines' => array(
 						'type'    => 'integer',
@@ -65,9 +65,6 @@ class Diagnostics {
 	 * @return array
 	 */
 	public static function get_site_health() {
-		require_once ABSPATH . 'wp-admin/includes/update.php';
-		require_once ABSPATH . 'wp-admin/includes/plugin.php';
-
 		$core    = get_site_transient( 'update_core' );
 		$plugins = get_site_transient( 'update_plugins' );
 		$themes  = get_site_transient( 'update_themes' );
@@ -124,13 +121,13 @@ class Diagnostics {
 	public static function get_error_log( $input ) {
 		$path = self::log_path();
 		if ( '' === $path || ! is_readable( $path ) ) {
-			return new WP_Error( 'mcpai_no_log', __( 'No readable error log. The site owner can turn on WP_DEBUG_LOG to start logging.', 'mcpai' ) );
+			return new WP_Error( 'viagent_no_log', __( 'No readable error log. The site owner can turn on WP_DEBUG_LOG to start logging.', 'viagent' ) );
 		}
 
 		$size   = filesize( $path );
 		$handle = fopen( $path, 'rb' ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! $handle ) {
-			return new WP_Error( 'mcpai_no_log', __( 'The error log could not be opened.', 'mcpai' ) );
+			return new WP_Error( 'viagent_no_log', __( 'The error log could not be opened.', 'viagent' ) );
 		}
 		fseek( $handle, max( 0, $size - self::MAX_LOG_BYTES ) );
 		$tail = (string) stream_get_contents( $handle );

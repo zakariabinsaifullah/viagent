@@ -3,10 +3,10 @@
  * Compact mode: three meta-tools that give access to every tool, for AI apps
  * that limit how many tools a server may expose (e.g. Cursor).
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\MCP;
+namespace Viagent\MCP;
 
 use WP_Ability;
 use WP_Error;
@@ -41,14 +41,14 @@ class Meta_Tools {
 		return array(
 			array(
 				'name'        => self::DISCOVER,
-				'title'       => __( 'Discover WordPress tools', 'mcpai' ),
-				'description' => __( 'Lists the WordPress tools available on this site (posts, pages, media, users, settings, plugins…). Call this first, then describe_tool for details and run_tool to use one.', 'mcpai' ),
+				'title'       => __( 'Discover WordPress tools', 'viagent' ),
+				'description' => __( 'Lists the WordPress tools available on this site (posts, pages, media, users, settings, plugins…). Call this first, then describe_tool for details and run_tool to use one.', 'viagent' ),
 				'inputSchema' => array(
 					'type'       => 'object',
 					'properties' => array(
 						'search' => array(
 							'type'        => 'string',
-							'description' => __( 'Optional words to filter tools, e.g. "media" or "publish".', 'mcpai' ),
+							'description' => __( 'Optional words to filter tools, e.g. "media" or "publish".', 'viagent' ),
 						),
 					),
 				),
@@ -59,8 +59,8 @@ class Meta_Tools {
 			),
 			array(
 				'name'        => self::DESCRIBE,
-				'title'       => __( 'Describe a WordPress tool', 'mcpai' ),
-				'description' => __( 'Returns the full description and input schema of one tool from discover_tools.', 'mcpai' ),
+				'title'       => __( 'Describe a WordPress tool', 'viagent' ),
+				'description' => __( 'Returns the full description and input schema of one tool from discover_tools.', 'viagent' ),
 				'inputSchema' => array(
 					'type'       => 'object',
 					'properties' => array(
@@ -75,15 +75,15 @@ class Meta_Tools {
 			),
 			array(
 				'name'        => self::RUN,
-				'title'       => __( 'Run a WordPress tool', 'mcpai' ),
-				'description' => __( 'Runs one tool from discover_tools with arguments matching its input schema (see describe_tool).', 'mcpai' ),
+				'title'       => __( 'Run a WordPress tool', 'viagent' ),
+				'description' => __( 'Runs one tool from discover_tools with arguments matching its input schema (see describe_tool).', 'viagent' ),
 				'inputSchema' => array(
 					'type'       => 'object',
 					'properties' => array(
 						'name'      => array( 'type' => 'string' ),
 						'arguments' => array(
 							'type'        => 'object',
-							'description' => __( 'Arguments for the tool.', 'mcpai' ),
+							'description' => __( 'Arguments for the tool.', 'viagent' ),
 						),
 					),
 					'required'   => array( 'name' ),
@@ -136,7 +136,7 @@ class Meta_Tools {
 	 */
 	public static function describe( array $tools, $name ) {
 		if ( ! isset( $tools[ $name ] ) ) {
-			return new WP_Error( 'mcpai_unknown_tool', sprintf( 'Unknown tool "%s". Use discover_tools to see available tools.', $name ) );
+			return new WP_Error( 'viagent_unknown_tool', sprintf( 'Unknown tool "%s". Use discover_tools to see available tools.', $name ) );
 		}
 		return Tool_Registry::definition( $name, $tools[ $name ] );
 	}

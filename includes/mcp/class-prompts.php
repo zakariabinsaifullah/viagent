@@ -4,12 +4,12 @@
  * e.g. in Claude Desktop's "+" menu or as slash commands in Claude Code and
  * VS Code. A prompt is only offered when the connection has the tools it needs.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\MCP;
+namespace Viagent\MCP;
 
-use MCPAI\Auth\Connection;
+use Viagent\Auth\Connection;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Prompts {
 
-	const OVERRIDES_OPTION = 'mcpai_prompt_overrides';
+	const OVERRIDES_OPTION = 'viagent_prompt_overrides';
 
 	/**
 	 * All prompt definitions.
@@ -32,8 +32,8 @@ class Prompts {
 	public static function definitions() {
 		$prompts = array(
 			'site_overview'        => array(
-				'title'       => __( 'Get to know my site', 'mcpai' ),
-				'description' => __( 'A friendly overview of your site and ideas for what the AI can help with.', 'mcpai' ),
+				'title'       => __( 'Get to know my site', 'viagent' ),
+				'description' => __( 'A friendly overview of your site and ideas for what the AI can help with.', 'viagent' ),
 				'arguments'   => array(),
 				'requires'    => array( 'get_site_info' ),
 				'build'       => static function () {
@@ -44,12 +44,12 @@ class Prompts {
 				},
 			),
 			'write_blog_post'      => array(
-				'title'       => __( 'Write a blog post', 'mcpai' ),
-				'description' => __( 'Drafts a new blog post in your site’s style, ready for you to review.', 'mcpai' ),
+				'title'       => __( 'Write a blog post', 'viagent' ),
+				'description' => __( 'Drafts a new blog post in your site’s style, ready for you to review.', 'viagent' ),
 				'arguments'   => array(
-					'topic'    => array( __( 'What the post should be about.', 'mcpai' ), true ),
-					'audience' => array( __( 'Who it is for (optional).', 'mcpai' ), false ),
-					'length'   => array( __( 'Approximate number of words (optional, default 800).', 'mcpai' ), false ),
+					'topic'    => array( __( 'What the post should be about.', 'viagent' ), true ),
+					'audience' => array( __( 'Who it is for (optional).', 'viagent' ), false ),
+					'length'   => array( __( 'Approximate number of words (optional, default 800).', 'viagent' ), false ),
 				),
 				'requires'    => array( 'create_post', 'list_posts' ),
 				'build'       => static function ( $args, $tools ) {
@@ -70,11 +70,11 @@ class Prompts {
 				},
 			),
 			'improve_page'         => array(
-				'title'       => __( 'Improve a page', 'mcpai' ),
-				'description' => __( 'Reviews a page and suggests improvements before changing anything.', 'mcpai' ),
+				'title'       => __( 'Improve a page', 'viagent' ),
+				'description' => __( 'Reviews a page and suggests improvements before changing anything.', 'viagent' ),
 				'arguments'   => array(
-					'page' => array( __( 'Page title or ID.', 'mcpai' ), true ),
-					'goal' => array( __( 'What you want to improve, e.g. “clearer”, “more sales”, “shorter” (optional).', 'mcpai' ), false ),
+					'page' => array( __( 'Page title or ID.', 'viagent' ), true ),
+					'goal' => array( __( 'What you want to improve, e.g. “clearer”, “more sales”, “shorter” (optional).', 'viagent' ), false ),
 				),
 				'requires'    => array( 'get_post', 'update_post', 'search_content' ),
 				'build'       => static function ( $args ) {
@@ -84,12 +84,12 @@ class Prompts {
 						. "1. Find it with search_content (or get_post if an ID was given) and read it with get_post.\n"
 						. "2. Suggest 3–5 specific improvements and show a short before/after example for the most important one.\n"
 						. "3. Ask me before changing anything. After I confirm, update it with update_post, keeping the existing block structure and images.\n"
-						. '4. Tell me what you changed. Remind me that I can undo it under Mcpai → Activity.';
+						. '4. Tell me what you changed. Remind me that I can undo it under Viagent → Activity.';
 				},
 			),
 			'seo_audit'            => array(
-				'title'       => __( 'SEO check-up', 'mcpai' ),
-				'description' => __( 'Finds pages with weak or missing SEO and offers to fix them.', 'mcpai' ),
+				'title'       => __( 'SEO check-up', 'viagent' ),
+				'description' => __( 'Finds pages with weak or missing SEO and offers to fix them.', 'viagent' ),
 				'arguments'   => array(),
 				'requires'    => array( 'list_posts', 'get_post' ),
 				'build'       => static function ( $args, $tools ) {
@@ -109,8 +109,8 @@ class Prompts {
 				},
 			),
 			'fix_missing_alt_text' => array(
-				'title'       => __( 'Fix missing image descriptions', 'mcpai' ),
-				'description' => __( 'Adds alt text to images that have none, for accessibility and SEO.', 'mcpai' ),
+				'title'       => __( 'Fix missing image descriptions', 'viagent' ),
+				'description' => __( 'Adds alt text to images that have none, for accessibility and SEO.', 'viagent' ),
 				'arguments'   => array(),
 				'requires'    => array( 'list_media', 'update_media' ),
 				'build'       => static function () {
@@ -122,10 +122,10 @@ class Prompts {
 				},
 			),
 			'content_ideas'        => array(
-				'title'       => __( 'Plan my content', 'mcpai' ),
-				'description' => __( 'Suggests a content calendar based on what you already publish.', 'mcpai' ),
+				'title'       => __( 'Plan my content', 'viagent' ),
+				'description' => __( 'Suggests a content calendar based on what you already publish.', 'viagent' ),
 				'arguments'   => array(
-					'weeks' => array( __( 'How many weeks to plan (optional, default 4).', 'mcpai' ), false ),
+					'weeks' => array( __( 'How many weeks to plan (optional, default 4).', 'viagent' ), false ),
 				),
 				'requires'    => array( 'list_posts' ),
 				'build'       => static function ( $args ) {
@@ -137,8 +137,8 @@ class Prompts {
 				},
 			),
 			'moderate_comments'    => array(
-				'title'       => __( 'Review new comments', 'mcpai' ),
-				'description' => __( 'Sorts comments waiting for approval and drafts replies.', 'mcpai' ),
+				'title'       => __( 'Review new comments', 'viagent' ),
+				'description' => __( 'Sorts comments waiting for approval and drafts replies.', 'viagent' ),
 				'arguments'   => array(),
 				'requires'    => array( 'list_comments', 'moderate_comment' ),
 				'build'       => static function () {
@@ -150,8 +150,8 @@ class Prompts {
 				},
 			),
 			'site_health_check'    => array(
-				'title'       => __( 'Site health check', 'mcpai' ),
-				'description' => __( 'A plain-language report on updates, versions and technical health.', 'mcpai' ),
+				'title'       => __( 'Site health check', 'viagent' ),
+				'description' => __( 'A plain-language report on updates, versions and technical health.', 'viagent' ),
 				'arguments'   => array(),
 				'requires'    => array( 'get_site_health', 'list_plugins' ),
 				'build'       => static function () {
@@ -162,10 +162,10 @@ class Prompts {
 				},
 			),
 			'store_report'         => array(
-				'title'       => __( 'Store report', 'mcpai' ),
-				'description' => __( 'Sales, orders to handle and stock issues for your WooCommerce store.', 'mcpai' ),
+				'title'       => __( 'Store report', 'viagent' ),
+				'description' => __( 'Sales, orders to handle and stock issues for your WooCommerce store.', 'viagent' ),
 				'arguments'   => array(
-					'days' => array( __( 'Period in days (optional, default 7).', 'mcpai' ), false ),
+					'days' => array( __( 'Period in days (optional, default 7).', 'viagent' ), false ),
 				),
 				'requires'    => array( 'wc_store_overview', 'list_orders', 'list_products' ),
 				'build'       => static function ( $args ) {
@@ -178,10 +178,10 @@ class Prompts {
 				},
 			),
 			'add_product'          => array(
-				'title'       => __( 'Add a product', 'mcpai' ),
-				'description' => __( 'Creates a draft product from a short description.', 'mcpai' ),
+				'title'       => __( 'Add a product', 'viagent' ),
+				'description' => __( 'Creates a draft product from a short description.', 'viagent' ),
 				'arguments'   => array(
-					'details' => array( __( 'Product name, price and any details or image URL.', 'mcpai' ), true ),
+					'details' => array( __( 'Product name, price and any details or image URL.', 'viagent' ), true ),
 				),
 				'requires'    => array( 'create_product' ),
 				'build'       => static function ( $args, $tools ) {
@@ -195,10 +195,10 @@ class Prompts {
 				},
 			),
 			'form_submissions'     => array(
-				'title'       => __( 'Summarize form submissions', 'mcpai' ),
-				'description' => __( 'Reads recent form entries and summarizes what people are asking for.', 'mcpai' ),
+				'title'       => __( 'Summarize form submissions', 'viagent' ),
+				'description' => __( 'Reads recent form entries and summarizes what people are asking for.', 'viagent' ),
 				'arguments'   => array(
-					'form' => array( __( 'Form name (optional, default: all forms with entries).', 'mcpai' ), false ),
+					'form' => array( __( 'Form name (optional, default: all forms with entries).', 'viagent' ), false ),
 				),
 				'requires'    => array( 'list_forms', 'list_form_entries' ),
 				'build'       => static function ( $args ) {
@@ -217,7 +217,7 @@ class Prompts {
 		 *
 		 * @param array $prompts Prompt definitions keyed by name.
 		 */
-		return apply_filters( 'mcpai_prompts', $prompts );
+		return apply_filters( 'viagent_prompts', $prompts );
 	}
 
 	/**
@@ -286,7 +286,7 @@ class Prompts {
 	public static function get_result( Connection $connection, $name, array $args ) {
 		$prompts = self::for_connection( $connection );
 		if ( ! isset( $prompts[ $name ] ) ) {
-			return new WP_Error( 'mcpai_unknown_prompt', sprintf( 'Unknown prompt: %s', $name ) );
+			return new WP_Error( 'viagent_unknown_prompt', sprintf( 'Unknown prompt: %s', $name ) );
 		}
 		$prompt = $prompts[ $name ];
 
@@ -294,7 +294,7 @@ class Prompts {
 		foreach ( $prompt['arguments'] as $arg => $spec ) {
 			$value = isset( $args[ $arg ] ) && is_scalar( $args[ $arg ] ) ? trim( sanitize_textarea_field( (string) $args[ $arg ] ) ) : '';
 			if ( $spec[1] && '' === $value ) {
-				return new WP_Error( 'mcpai_missing_argument', sprintf( 'Missing required argument: %s', $arg ) );
+				return new WP_Error( 'viagent_missing_argument', sprintf( 'Missing required argument: %s', $arg ) );
 			}
 			$clean[ $arg ] = $value;
 		}

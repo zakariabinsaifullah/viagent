@@ -1,15 +1,15 @@
 <?php
 /**
- * WP-CLI commands for managing Mcpai connections.
+ * WP-CLI commands for managing Viagent connections.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\CLI;
+namespace Viagent\CLI;
 
-use MCPAI\Auth\API_Keys;
-use MCPAI\Log\Activity_Log;
-use MCPAI\MCP\Transport;
+use Viagent\Auth\API_Keys;
+use Viagent\Log\Activity_Log;
+use Viagent\MCP\Transport;
 use WP_CLI;
 
 defined( 'ABSPATH' ) || exit;
@@ -45,7 +45,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp mcpai key-create --as=admin --level=content --name="Claude Code"
+	 *     wp viagent key-create --as=admin --level=content --name="Claude Code"
 	 *
 	 * @subcommand key-create
 	 *
@@ -172,7 +172,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp mcpai activity-revert 42 --user=admin
+	 *     wp viagent activity-revert 42 --user=admin
 	 *
 	 * @subcommand activity-revert
 	 *

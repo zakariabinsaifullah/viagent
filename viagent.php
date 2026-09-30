@@ -1,24 +1,24 @@
 <?php
 /**
- * Plugin Name:       Mcpai
+ * Plugin Name:       Viagent
  * Description:       Connect your WordPress site to AI agents like Claude, ChatGPT, Cursor, Codex and more using the Model Context Protocol (MCP) — in a few clicks.
  * Version:           1.0.0
  * Requires at least: 6.9
  * Requires PHP:      7.4
- * Author:            Mcpai
+ * Author:            Viagent
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       mcpai
+ * Text Domain:       viagent
  *
- * @package MCPAI
+ * @package Viagent
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'MCPAI_VERSION', '1.0.0' );
-define( 'MCPAI_FILE', __FILE__ );
-define( 'MCPAI_DIR', plugin_dir_path( __FILE__ ) );
-define( 'MCPAI_URL', plugin_dir_url( __FILE__ ) );
+define( 'VIAGENT_VERSION', '1.0.0' );
+define( 'VIAGENT_FILE', __FILE__ );
+define( 'VIAGENT_DIR', plugin_dir_path( __FILE__ ) );
+define( 'VIAGENT_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Bail out early with an admin notice when requirements are not met.
@@ -28,16 +28,16 @@ if ( ! function_exists( 'wp_register_ability' ) ) {
 		'admin_notices',
 		static function () {
 			echo '<div class="notice notice-error"><p>';
-			esc_html_e( 'Mcpai needs WordPress 6.9 or newer. Please update WordPress to connect your site to AI agents.', 'mcpai' );
+			esc_html_e( 'Viagent needs WordPress 6.9 or newer. Please update WordPress to connect your site to AI agents.', 'viagent' );
 			echo '</p></div>';
 		}
 	);
 	return;
 }
 
-require_once MCPAI_DIR . 'includes/class-plugin.php';
+require_once VIAGENT_DIR . 'includes/class-plugin.php';
 
-register_activation_hook( __FILE__, array( 'MCPAI\\Installer', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'MCPAI\\Installer', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'Viagent\\Installer', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Viagent\\Installer', 'deactivate' ) );
 
-MCPAI\Plugin::instance();
+Viagent\Plugin::instance();

@@ -2,10 +2,10 @@
 /**
  * The authenticated connection for the current MCP request.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Auth;
+namespace Viagent\Auth;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -82,7 +82,7 @@ class Connection {
 		$this->user_id       = (int) $args['user_id'];
 		$this->access_level  = (string) $args['access_level'];
 		$this->draft_only    = (bool) $args['draft_only'];
-		$this->compact       = ! empty( $args['compact'] ) || (bool) get_option( 'mcpai_compact_mode', false );
+		$this->compact       = ! empty( $args['compact'] ) || (bool) get_option( 'viagent_compact_mode', false );
 		$this->credential_id = (int) ( $args['credential_id'] ?? 0 );
 		$this->name          = (string) ( $args['name'] ?? '' );
 	}

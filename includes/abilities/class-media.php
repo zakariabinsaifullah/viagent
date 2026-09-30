@@ -2,13 +2,13 @@
 /**
  * Media abilities: list, upload, edit and delete files in the media library.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WP_Error;
 use WP_Post;
 
@@ -29,14 +29,14 @@ class Media {
 			'title'       => array( 'type' => 'string' ),
 			'alt_text'    => array(
 				'type'        => 'string',
-				'description' => __( 'Describes the image for screen readers and SEO.', 'mcpai' ),
+				'description' => __( 'Describes the image for screen readers and SEO.', 'viagent' ),
 			),
 			'caption'     => array( 'type' => 'string' ),
 			'description' => array( 'type' => 'string' ),
 			'attach_to'   => array(
 				'type'        => 'integer',
 				'minimum'     => 0,
-				'description' => __( 'Optional post ID to attach the file to.', 'mcpai' ),
+				'description' => __( 'Optional post ID to attach the file to.', 'viagent' ),
 			),
 		);
 		$id      = array(
@@ -47,15 +47,15 @@ class Media {
 		Abilities::add(
 			'list-media',
 			array(
-				'category'    => 'mcpai-media',
-				'label'       => __( 'List media', 'mcpai' ),
-				'description' => __( 'Lists files in the media library, newest first, with URLs, sizes and alt text.', 'mcpai' ),
+				'category'    => 'viagent-media',
+				'label'       => __( 'List media', 'viagent' ),
+				'description' => __( 'Lists files in the media library, newest first, with URLs, sizes and alt text.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'search'    => array( 'type' => 'string' ),
 						'mime_type' => array(
 							'type'        => 'string',
-							'description' => __( 'e.g. "image", "image/png", "application/pdf", "video".', 'mcpai' ),
+							'description' => __( 'e.g. "image", "image/png", "application/pdf", "video".', 'viagent' ),
 						),
 					),
 					Abilities::paging()
@@ -69,9 +69,9 @@ class Media {
 		Abilities::add(
 			'upload-media-from-url',
 			array(
-				'category'    => 'mcpai-media',
-				'label'       => __( 'Upload media from URL', 'mcpai' ),
-				'description' => __( 'Downloads a file from a public http(s) URL into the media library and returns its ID and URL. Use the ID as featured_image_id or in image blocks.', 'mcpai' ),
+				'category'    => 'viagent-media',
+				'label'       => __( 'Upload media from URL', 'viagent' ),
+				'description' => __( 'Downloads a file from a public http(s) URL into the media library and returns its ID and URL. Use the ID as featured_image_id or in image blocks.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'url'      => array(
@@ -80,7 +80,7 @@ class Media {
 						),
 						'filename' => array(
 							'type'        => 'string',
-							'description' => __( 'Optional file name including extension.', 'mcpai' ),
+							'description' => __( 'Optional file name including extension.', 'viagent' ),
 						),
 					),
 					$details
@@ -95,18 +95,18 @@ class Media {
 		Abilities::add(
 			'upload-media-base64',
 			array(
-				'category'    => 'mcpai-media',
-				'label'       => __( 'Upload media (base64)', 'mcpai' ),
-				'description' => __( 'Uploads a base64-encoded file (max 6 MB) to the media library. Prefer upload_media_from_url when the file is online.', 'mcpai' ),
+				'category'    => 'viagent-media',
+				'label'       => __( 'Upload media (base64)', 'viagent' ),
+				'description' => __( 'Uploads a base64-encoded file (max 6 MB) to the media library. Prefer upload_media_from_url when the file is online.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'filename' => array(
 							'type'        => 'string',
-							'description' => __( 'File name including extension, e.g. "hero.png".', 'mcpai' ),
+							'description' => __( 'File name including extension, e.g. "hero.png".', 'viagent' ),
 						),
 						'data'     => array(
 							'type'        => 'string',
-							'description' => __( 'Base64 file contents (a data: URL prefix is allowed).', 'mcpai' ),
+							'description' => __( 'Base64 file contents (a data: URL prefix is allowed).', 'viagent' ),
 						),
 					),
 					$details
@@ -121,9 +121,9 @@ class Media {
 		Abilities::add(
 			'update-media',
 			array(
-				'category'    => 'mcpai-media',
-				'label'       => __( 'Update media details', 'mcpai' ),
-				'description' => __( 'Updates the title, alt text, caption or description of a media library item.', 'mcpai' ),
+				'category'    => 'viagent-media',
+				'label'       => __( 'Update media details', 'viagent' ),
+				'description' => __( 'Updates the title, alt text, caption or description of a media library item.', 'viagent' ),
 				'input'       => array_merge( array( 'id' => $id ), array_diff_key( $details, array( 'attach_to' => true ) ) ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'update_media' ),
@@ -143,9 +143,9 @@ class Media {
 		Abilities::add(
 			'set-featured-image',
 			array(
-				'category'    => 'mcpai-media',
-				'label'       => __( 'Set featured image', 'mcpai' ),
-				'description' => __( 'Sets (or with image_id 0, removes) the featured image of a post or page.', 'mcpai' ),
+				'category'    => 'viagent-media',
+				'label'       => __( 'Set featured image', 'viagent' ),
+				'description' => __( 'Sets (or with image_id 0, removes) the featured image of a post or page.', 'viagent' ),
 				'input'       => array(
 					'post_id'  => $id,
 					'image_id' => array(
@@ -171,9 +171,9 @@ class Media {
 		Abilities::add(
 			'delete-media',
 			array(
-				'category'    => 'mcpai-media',
-				'label'       => __( 'Delete media', 'mcpai' ),
-				'description' => __( 'Permanently deletes a file from the media library (media has no trash). Only works if the site owner allows permanent deletion.', 'mcpai' ),
+				'category'    => 'viagent-media',
+				'label'       => __( 'Delete media', 'viagent' ),
+				'description' => __( 'Permanently deletes a file from the media library (media has no trash). Only works if the site owner allows permanent deletion.', 'viagent' ),
 				'input'       => array( 'id' => $id ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'delete_media' ),
@@ -217,7 +217,7 @@ class Media {
 	private static function find( $id ) {
 		$attachment = get_post( $id );
 		if ( ! $attachment || 'attachment' !== $attachment->post_type ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No media item found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No media item found with that ID.', 'viagent' ) );
 		}
 		return $attachment;
 	}
@@ -260,7 +260,7 @@ class Media {
 	public static function upload_from_url( $input ) {
 		$url = esc_url_raw( $input['url'], array( 'http', 'https' ) );
 		if ( ! $url ) {
-			return new WP_Error( 'mcpai_invalid_url', __( 'Only public http(s) URLs can be downloaded.', 'mcpai' ) );
+			return new WP_Error( 'viagent_invalid_url', __( 'Only public http(s) URLs can be downloaded.', 'viagent' ) );
 		}
 
 		self::load_admin_includes();
@@ -288,17 +288,17 @@ class Media {
 		$data = preg_replace( '/^data:[^;]+;base64,/', '', $input['data'] );
 		$bin  = base64_decode( (string) $data, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode -- decoding an upload.
 		if ( false === $bin || '' === $bin ) {
-			return new WP_Error( 'mcpai_invalid_base64', __( 'data is not valid base64.', 'mcpai' ) );
+			return new WP_Error( 'viagent_invalid_base64', __( 'data is not valid base64.', 'viagent' ) );
 		}
 		if ( strlen( $bin ) > self::MAX_BASE64_BYTES ) {
-			return new WP_Error( 'mcpai_too_large', __( 'File is larger than 6 MB. Upload it from a URL instead.', 'mcpai' ) );
+			return new WP_Error( 'viagent_too_large', __( 'File is larger than 6 MB. Upload it from a URL instead.', 'viagent' ) );
 		}
 
 		self::load_admin_includes();
 
 		$tmp = wp_tempnam( $input['filename'] );
 		if ( ! $tmp || false === file_put_contents( $tmp, $bin ) ) { // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents
-			return new WP_Error( 'mcpai_write_failed', __( 'Could not write the temporary file.', 'mcpai' ) );
+			return new WP_Error( 'viagent_write_failed', __( 'Could not write the temporary file.', 'viagent' ) );
 		}
 
 		return self::sideload( $tmp, $input['filename'], $input );
@@ -318,7 +318,7 @@ class Media {
 		$check    = wp_check_filetype_and_ext( $tmp, $filename );
 		if ( ! $check['ext'] || ! $check['type'] ) {
 			wp_delete_file( $tmp );
-			return new WP_Error( 'mcpai_invalid_type', __( 'This file type is not allowed. Use an image, PDF, audio, video or another allowed type, with a matching file extension.', 'mcpai' ) );
+			return new WP_Error( 'viagent_invalid_type', __( 'This file type is not allowed. Use an image, PDF, audio, video or another allowed type, with a matching file extension.', 'viagent' ) );
 		}
 
 		$post_data = array();
@@ -415,7 +415,7 @@ class Media {
 		if ( 0 === $image_id ) {
 			delete_post_thumbnail( $post );
 		} elseif ( ! wp_attachment_is_image( $image_id ) ) {
-			return new WP_Error( 'mcpai_invalid_image', __( 'image_id is not an image in the media library.', 'mcpai' ) );
+			return new WP_Error( 'viagent_invalid_image', __( 'image_id is not an image in the media library.', 'viagent' ) );
 		} else {
 			set_post_thumbnail( $post, $image_id );
 		}
@@ -448,12 +448,12 @@ class Media {
 			return $attachment;
 		}
 		if ( ! Policy::allows_permanent_delete() ) {
-			return new WP_Error( 'mcpai_permanent_delete_disabled', __( 'Deleting media is permanent and is turned off on this site. Ask the site owner to allow permanent deletion in Mcpai.', 'mcpai' ) );
+			return new WP_Error( 'viagent_permanent_delete_disabled', __( 'Deleting media is permanent and is turned off on this site. Ask the site owner to allow permanent deletion in Viagent.', 'viagent' ) );
 		}
 
 		Activity_Log::set_object( 'attachment', $attachment->ID );
 		if ( ! wp_delete_attachment( $attachment->ID, true ) ) {
-			return new WP_Error( 'mcpai_delete_failed', __( 'Could not delete the media item.', 'mcpai' ) );
+			return new WP_Error( 'viagent_delete_failed', __( 'Could not delete the media item.', 'viagent' ) );
 		}
 		return array(
 			'id'      => $attachment->ID,

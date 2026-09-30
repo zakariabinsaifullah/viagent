@@ -1,4 +1,4 @@
-// Mcpai admin styles.
+// Viagent admin styles.
 
 $gray-100: #f6f7f7;
 $gray-200: #e0e0e0;
@@ -7,7 +7,7 @@ $gray-900: #1e1e1e;
 $radius: 8px;
 $accent: var(--wp-admin-theme-color, #3858e9);
 
-.mcpai-wrap {
+.viagent-wrap {
 	margin: 0 20px 0 0;
 
 	@media (max-width: 782px) {
@@ -15,7 +15,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-app {
+.viagent-app {
 	max-width: 1120px;
 	margin: 0 auto;
 	padding: 24px 0 48px;
@@ -33,13 +33,13 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-muted {
+.viagent-muted {
 	color: $gray-600;
 	font-size: 13px;
 }
 
 // Header.
-.mcpai-header {
+.viagent-header {
 	display: flex;
 	align-items: center;
 	gap: 14px;
@@ -54,7 +54,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		padding: 0;
 	}
 
-	.mcpai-status {
+	.viagent-status {
 		margin-left: auto;
 	}
 
@@ -65,7 +65,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-status {
+.viagent-status {
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
@@ -94,7 +94,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Navigation.
-.mcpai-nav {
+.viagent-nav {
 	display: flex;
 	gap: 4px;
 	border-bottom: 1px solid $gray-200;
@@ -128,7 +128,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Screen header.
-.mcpai-screen-header {
+.viagent-screen-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -157,7 +157,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Badges.
-.mcpai-badge {
+.viagent-badge {
 	display: inline-flex;
 	align-items: center;
 	padding: 2px 8px;
@@ -191,7 +191,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // App monogram.
-.mcpai-mark {
+.viagent-mark {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -216,7 +216,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Wizard.
-.mcpai-steps {
+.viagent-steps {
 	display: flex;
 	gap: 8px;
 	list-style: none;
@@ -244,8 +244,8 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 			color: $gray-900;
 		}
 
-		&.is-current .mcpai-steps__number,
-		&.is-done .mcpai-steps__number {
+		&.is-current .viagent-steps__number,
+		&.is-done .viagent-steps__number {
 			background: $accent;
 			color: #fff;
 			border-color: transparent;
@@ -264,7 +264,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-connect__body {
+.viagent-connect__body {
 	padding: 32px !important;
 
 	@media (max-width: 600px) {
@@ -272,7 +272,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-connect__title {
+.viagent-connect__title {
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -284,7 +284,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-group-title {
+.viagent-group-title {
 	font-size: 12px !important;
 	text-transform: uppercase;
 	letter-spacing: 0.06em;
@@ -292,11 +292,11 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	margin: 24px 0 10px !important;
 }
 
-.mcpai-client-groups section:first-child .mcpai-group-title {
+.viagent-client-groups section:first-child .viagent-group-title {
 	margin-top: 0 !important;
 }
 
-.mcpai-client-grid {
+.viagent-client-grid {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
 	gap: 14px;
@@ -314,7 +314,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-client {
+.viagent-client {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -337,7 +337,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		outline: none;
 		transform: translateY(-2px);
 
-		.mcpai-client__arrow {
+		.viagent-client__arrow {
 			opacity: 1;
 			transform: translateX(0);
 		}
@@ -348,7 +348,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		background: $gray-100;
 		box-shadow: none;
 
-		.mcpai-mark {
+		.viagent-mark {
 			filter: grayscale(0.6);
 			opacity: 0.6;
 		}
@@ -362,7 +362,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		border-color: #f0d68a;
 	}
 
-	.mcpai-mark {
+	.viagent-mark {
 		width: 44px;
 		height: 44px;
 		border-radius: 12px;
@@ -441,12 +441,12 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-waiting-notice {
+.viagent-waiting-notice {
 	margin-bottom: 20px !important;
 }
 
 // Numbered sections in the connect steps.
-.mcpai-section {
+.viagent-section {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
@@ -500,7 +500,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-first-prompt {
+.viagent-first-prompt {
 	display: flex;
 	align-items: center;
 	gap: 16px;
@@ -523,7 +523,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-inline-code {
+.viagent-inline-code {
 	display: inline-block;
 	margin-top: 6px;
 	padding: 2px 6px;
@@ -531,11 +531,11 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	border-radius: 4px;
 }
 
-.mcpai-help-modal {
+.viagent-help-modal {
 	max-width: 640px;
 }
 
-.mcpai-access {
+.viagent-access {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
@@ -547,7 +547,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-access-card {
+.viagent-access-card {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
@@ -592,7 +592,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-actions {
+.viagent-actions {
 	display: flex;
 	justify-content: flex-end;
 	gap: 8px;
@@ -600,7 +600,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Connect step 3.
-.mcpai-connect-steps {
+.viagent-connect-steps {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -610,14 +610,14 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-deeplink {
+.viagent-deeplink {
 	display: flex;
 	align-items: center;
 	gap: 12px;
 	flex-wrap: wrap;
 }
 
-.mcpai-instructions {
+.viagent-instructions {
 	margin: 0 0 0 20px;
 
 	li {
@@ -627,7 +627,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-code {
+.viagent-code {
 	border-radius: $radius;
 	overflow: hidden;
 	background: #1e1e1e;
@@ -659,7 +659,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-field {
+.viagent-field {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
@@ -688,13 +688,13 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		font-size: 13px;
 	}
 
-	&.is-secret .mcpai-field__value {
+	&.is-secret .viagent-field__value {
 		background: #fcf9e8;
 		border-color: #f0c33c;
 	}
 }
 
-.mcpai-details {
+.viagent-details {
 	border: 1px solid $gray-200;
 	border-radius: $radius;
 	padding: 12px 16px;
@@ -709,7 +709,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-waiting {
+.viagent-waiting {
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -727,7 +727,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-success {
+.viagent-success {
 	padding: 24px;
 	border-radius: $radius;
 	background: #edfaef;
@@ -751,12 +751,12 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		margin-bottom: 8px;
 	}
 
-	.mcpai-actions {
+	.viagent-actions {
 		justify-content: center;
 	}
 }
 
-.mcpai-prompts {
+.viagent-prompts {
 	list-style: none;
 	margin: 12px auto;
 	padding: 0;
@@ -776,7 +776,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Lists and tables.
-.mcpai-empty {
+.viagent-empty {
 	padding: 40px;
 	text-align: center;
 
@@ -790,7 +790,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-list__row {
+.viagent-list__row {
 	display: flex;
 	align-items: center;
 	gap: 14px;
@@ -805,7 +805,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-list__main {
+.viagent-list__main {
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
@@ -813,18 +813,18 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	min-width: 180px;
 }
 
-.mcpai-list__badges {
+.viagent-list__badges {
 	display: flex;
 	gap: 6px;
 }
 
-.mcpai-list__meta {
+.viagent-list__meta {
 	color: $gray-600;
 	font-size: 13px;
 	min-width: 120px;
 }
 
-.mcpai-tool-groups {
+.viagent-tool-groups {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -834,11 +834,11 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-tool-list {
+.viagent-tool-list {
 	padding: 0 !important;
 }
 
-.mcpai-tool {
+.viagent-tool {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -875,11 +875,11 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-table-card {
+.viagent-table-card {
 	overflow-x: auto;
 }
 
-.mcpai-table {
+.viagent-table {
 	width: 100%;
 	border-collapse: collapse;
 
@@ -899,7 +899,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		font-weight: 500;
 	}
 
-	td .mcpai-badge + .mcpai-badge {
+	td .viagent-badge + .viagent-badge {
 		margin-left: 4px;
 	}
 
@@ -921,7 +921,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-link-button {
+.viagent-link-button {
 	background: none;
 	border: 0;
 	padding: 0;
@@ -931,12 +931,12 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	text-decoration: underline;
 }
 
-.mcpai-error-text {
+.viagent-error-text {
 	color: #8a2424 !important;
 	margin-bottom: 8px !important;
 }
 
-.mcpai-pagination {
+.viagent-pagination {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -945,7 +945,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Settings.
-.mcpai-settings {
+.viagent-settings {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -957,7 +957,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-health {
+.viagent-health {
 	margin: 0;
 	list-style: none;
 
@@ -988,22 +988,22 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		height: fit-content;
 	}
 
-	.is-good .mcpai-health__status {
+	.is-good .viagent-health__status {
 		background: #edfaef;
 		color: #00632b;
 	}
 
-	.is-info .mcpai-health__status {
+	.is-info .viagent-health__status {
 		background: #f0f6fc;
 		color: #0a4b78;
 	}
 
-	.is-warning .mcpai-health__status {
+	.is-warning .viagent-health__status {
 		background: #fcf9e8;
 		color: #8a6100;
 	}
 
-	.is-critical .mcpai-health__status {
+	.is-critical .viagent-health__status {
 		background: #fcf0f1;
 		color: #8a2424;
 	}
@@ -1014,7 +1014,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-integrations {
+.viagent-integrations {
 	margin: 12px 0 0;
 	list-style: none;
 
@@ -1037,7 +1037,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 // Design pass: brand, overview, connections, tools, activity, settings.
 // ---------------------------------------------------------------------------
 
-.mcpai-header__logo {
+.viagent-header__logo {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -1050,11 +1050,11 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	box-shadow: 0 6px 16px -8px rgba(56, 88, 233, 0.6);
 }
 
-.mcpai-header__title {
+.viagent-header__title {
 	min-width: 0;
 }
 
-.mcpai-nav__count {
+.viagent-nav__count {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -1070,7 +1070,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	vertical-align: 1px;
 }
 
-.mcpai-dot {
+.viagent-dot {
 	display: inline-block;
 	flex-shrink: 0;
 	width: 8px;
@@ -1094,18 +1094,18 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-mark.is-long {
+.viagent-mark.is-long {
 	font-size: 11px;
 	letter-spacing: -0.02em;
 }
 
-.mcpai-app .components-card {
+.viagent-app .components-card {
 	border-radius: 12px;
 	overflow: hidden;
 }
 
 // Overview.
-.mcpai-overview {
+.viagent-overview {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -1129,7 +1129,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-hero {
+.viagent-hero {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -1219,7 +1219,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-attention {
+.viagent-attention {
 	border-left: 3px solid #dba617;
 
 	&__list {
@@ -1244,7 +1244,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-mini-list {
+.viagent-mini-list {
 	display: flex;
 	flex-direction: column;
 	padding: 4px 24px 8px !important;
@@ -1281,13 +1281,13 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-task-grid {
+.viagent-task-grid {
 	display: grid !important;
 	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 	gap: 12px;
 }
 
-.mcpai-task {
+.viagent-task {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
@@ -1308,7 +1308,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Connections.
-.mcpai-conn {
+.viagent-conn {
 	display: grid;
 	grid-template-columns: auto minmax(0, 1fr) auto 190px auto;
 	grid-template-areas: "mark main badges status actions";
@@ -1320,7 +1320,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		border-bottom: 1px solid $gray-100;
 	}
 
-	> .mcpai-mark {
+	> .viagent-mark {
 		grid-area: mark;
 	}
 
@@ -1374,7 +1374,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-empty__icon {
+.viagent-empty__icon {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -1388,7 +1388,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Tools.
-.mcpai-toolbar {
+.viagent-toolbar {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
@@ -1411,7 +1411,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-group__header {
+.viagent-group__header {
 	display: flex;
 	align-items: center;
 	gap: 16px;
@@ -1438,7 +1438,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 	}
 }
 
-.mcpai-group__text {
+.viagent-group__text {
 	display: flex;
 	flex-direction: column;
 	gap: 3px;
@@ -1450,12 +1450,12 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 		font-weight: 600;
 	}
 
-	.mcpai-muted {
+	.viagent-muted {
 		font-size: 13px;
 	}
 }
 
-.mcpai-group__chevron {
+.viagent-group__chevron {
 	flex-shrink: 0;
 	width: 10px;
 	height: 10px;
@@ -1471,7 +1471,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Activity.
-.mcpai-link-button {
+.viagent-link-button {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
@@ -1490,7 +1490,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 @media (max-width: 782px) {
-	.mcpai-table {
+	.viagent-table {
 		thead {
 			display: none;
 		}
@@ -1521,7 +1521,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 			}
 		}
 
-		.mcpai-table__actions {
+		.viagent-table__actions {
 			justify-content: flex-end;
 			padding-top: 8px;
 
@@ -1530,7 +1530,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 			}
 		}
 
-		.mcpai-table__details td {
+		.viagent-table__details td {
 			display: block;
 			text-align: left;
 
@@ -1542,7 +1542,7 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 // Settings.
-.mcpai-danger-toggle {
+.viagent-danger-toggle {
 	padding: 12px 14px;
 	margin: 0 -14px;
 	border-radius: 8px;
@@ -1566,20 +1566,20 @@ $accent: var(--wp-admin-theme-color, #3858e9);
 }
 
 @media (max-width: 600px) {
-	.mcpai-header {
+	.viagent-header {
 		flex-wrap: wrap;
 
-		.mcpai-status {
+		.viagent-status {
 			margin-left: 0;
 		}
 	}
 
-	.mcpai-screen-header {
+	.viagent-screen-header {
 		flex-direction: column;
 	}
 }
 
-.mcpai-via {
+.viagent-via {
 	display: block;
 	color: $gray-600;
 	font-size: 12px;

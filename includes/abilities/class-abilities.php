@@ -1,13 +1,13 @@
 <?php
 /**
- * Registers Mcpai ability categories and abilities, plus shared helpers.
+ * Registers Viagent ability categories and abilities, plus shared helpers.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Security\Policy;
+use Viagent\Security\Policy;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,17 +21,17 @@ class Abilities {
 	 */
 	public static function register_categories() {
 		$categories = array(
-			'mcpai-site'        => array( __( 'Site', 'mcpai' ), __( 'Site information and search.', 'mcpai' ) ),
-			'mcpai-content'     => array( __( 'Content', 'mcpai' ), __( 'Posts, pages and custom post types.', 'mcpai' ) ),
-			'mcpai-blocks'      => array( __( 'Blocks & patterns', 'mcpai' ), __( 'Block types and patterns for building layouts.', 'mcpai' ) ),
-			'mcpai-taxonomies'  => array( __( 'Categories & tags', 'mcpai' ), __( 'Categories, tags and custom taxonomies.', 'mcpai' ) ),
-			'mcpai-media'       => array( __( 'Media', 'mcpai' ), __( 'Images, documents and other uploads.', 'mcpai' ) ),
-			'mcpai-comments'    => array( __( 'Comments', 'mcpai' ), __( 'Reading, replying to and moderating comments.', 'mcpai' ) ),
-			'mcpai-users'       => array( __( 'Users', 'mcpai' ), __( 'User accounts and profiles.', 'mcpai' ) ),
-			'mcpai-menus'       => array( __( 'Menus', 'mcpai' ), __( 'Navigation menus.', 'mcpai' ) ),
-			'mcpai-settings'    => array( __( 'Settings', 'mcpai' ), __( 'General, reading and discussion settings.', 'mcpai' ) ),
-			'mcpai-extensions'  => array( __( 'Plugins & themes', 'mcpai' ), __( 'Installing and activating plugins and themes.', 'mcpai' ) ),
-			'mcpai-diagnostics' => array( __( 'Diagnostics', 'mcpai' ), __( 'Site health and error logs.', 'mcpai' ) ),
+			'viagent-site'        => array( __( 'Site', 'viagent' ), __( 'Site information and search.', 'viagent' ) ),
+			'viagent-content'     => array( __( 'Content', 'viagent' ), __( 'Posts, pages and custom post types.', 'viagent' ) ),
+			'viagent-blocks'      => array( __( 'Blocks & patterns', 'viagent' ), __( 'Block types and patterns for building layouts.', 'viagent' ) ),
+			'viagent-taxonomies'  => array( __( 'Categories & tags', 'viagent' ), __( 'Categories, tags and custom taxonomies.', 'viagent' ) ),
+			'viagent-media'       => array( __( 'Media', 'viagent' ), __( 'Images, documents and other uploads.', 'viagent' ) ),
+			'viagent-comments'    => array( __( 'Comments', 'viagent' ), __( 'Reading, replying to and moderating comments.', 'viagent' ) ),
+			'viagent-users'       => array( __( 'Users', 'viagent' ), __( 'User accounts and profiles (read only).', 'viagent' ) ),
+			'viagent-menus'       => array( __( 'Menus', 'viagent' ), __( 'Navigation menus.', 'viagent' ) ),
+			'viagent-settings'    => array( __( 'Settings', 'viagent' ), __( 'General, reading and discussion settings.', 'viagent' ) ),
+			'viagent-extensions'  => array( __( 'Plugins & themes', 'viagent' ), __( 'Installed plugins and themes (read only).', 'viagent' ) ),
+			'viagent-diagnostics' => array( __( 'Diagnostics', 'viagent' ), __( 'Site health and error logs.', 'viagent' ) ),
 		);
 
 		foreach ( $categories as $slug => $data ) {
@@ -66,7 +66,7 @@ class Abilities {
 	/**
 	 * Compact ability registration.
 	 *
-	 * @param string $name Ability name without the "mcpai/" prefix.
+	 * @param string $name Ability name without the "viagent/" prefix.
 	 * @param array  $args {
 	 *     Ability settings.
 	 *
@@ -88,7 +88,7 @@ class Abilities {
 				return current_user_can( $capability );
 			};
 			// Lets the registry hide the tool from users who lack the capability.
-			$args['meta']['mcpai']['capability'] = $capability;
+			$args['meta']['viagent']['capability'] = $capability;
 		}
 
 		$schema = array();
@@ -104,7 +104,7 @@ class Abilities {
 		}
 
 		wp_register_ability(
-			'mcpai/' . $name,
+			'viagent/' . $name,
 			array(
 				'label'               => $args['label'],
 				'description'         => $args['description'],
@@ -130,7 +130,7 @@ class Abilities {
 				'destructive' => false,
 				'idempotent'  => true,
 			),
-			'mcpai'       => array( 'level' => $level ),
+			'viagent'     => array( 'level' => $level ),
 		);
 	}
 
@@ -155,7 +155,7 @@ class Abilities {
 				'destructive' => ! empty( $flags['destructive'] ),
 				'idempotent'  => ! empty( $flags['idempotent'] ),
 			),
-			'mcpai'       => array(
+			'viagent'     => array(
 				'level'           => $level,
 				'draft_safe'      => ! empty( $flags['draft_safe'] ),
 				'default_enabled' => $flags['default_enabled'] ?? true,

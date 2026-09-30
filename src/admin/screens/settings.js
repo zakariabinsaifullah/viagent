@@ -17,13 +17,13 @@ import { update } from '@wordpress/icons';
 import { api } from '../api';
 import { Badge, CopyField, ScreenHeader } from '../components';
 
-const settings = window.mcpaiSettings;
+const settings = window.viagentSettings;
 
 const STATUS_LABELS = {
-	good: __( 'OK', 'mcpai' ),
-	info: __( 'Note', 'mcpai' ),
-	warning: __( 'Check', 'mcpai' ),
-	critical: __( 'Problem', 'mcpai' ),
+	good: __( 'OK', 'viagent' ),
+	info: __( 'Note', 'viagent' ),
+	warning: __( 'Check', 'viagent' ),
+	critical: __( 'Problem', 'viagent' ),
 };
 
 /**
@@ -47,36 +47,39 @@ async function browserChecks() {
 		results.push( {
 			id: 'endpoint',
 			status: ok ? 'good' : 'critical',
-			label: __( 'Connection URL', 'mcpai' ),
+			label: __( 'Connection URL', 'viagent' ),
 			message: ok
 				? __(
 						'The connection URL is online and requires a key.',
-						'mcpai'
+						'viagent'
 					)
 				: sprintf(
 						/* translators: %d: HTTP status code */
 						__(
 							'The connection URL answered with an unexpected status (%d).',
-							'mcpai'
+							'viagent'
 						),
 						response.status
 					),
 			fix: ok
 				? ''
 				: __(
-						'A security plugin, firewall or cache may be blocking /wp-json/. Allow requests to /wp-json/mcpai/.',
-						'mcpai'
+						'A security plugin, firewall or cache may be blocking /wp-json/. Allow requests to /wp-json/viagent/.',
+						'viagent'
 					),
 		} );
 	} catch {
 		results.push( {
 			id: 'endpoint',
 			status: 'critical',
-			label: __( 'Connection URL', 'mcpai' ),
-			message: __( 'The connection URL could not be reached.', 'mcpai' ),
+			label: __( 'Connection URL', 'viagent' ),
+			message: __(
+				'The connection URL could not be reached.',
+				'viagent'
+			),
 			fix: __(
 				'Check that the REST API is not disabled by a security plugin or firewall.',
-				'mcpai'
+				'viagent'
 			),
 		} );
 		return results;
@@ -84,7 +87,7 @@ async function browserChecks() {
 
 	try {
 		const response = await request( settings.probeUrl, {
-			headers: { Authorization: 'Bearer mcpai-probe' },
+			headers: { Authorization: 'Bearer viagent-probe' },
 		} );
 		const body = await response.json();
 		results.push(
@@ -92,23 +95,23 @@ async function browserChecks() {
 				? {
 						id: 'auth_header',
 						status: 'good',
-						label: __( 'Key header', 'mcpai' ),
+						label: __( 'Key header', 'viagent' ),
 						message: __(
 							'Your server passes the key header through to WordPress.',
-							'mcpai'
+							'viagent'
 						),
 					}
 				: {
 						id: 'auth_header',
 						status: 'warning',
-						label: __( 'Key header', 'mcpai' ),
+						label: __( 'Key header', 'viagent' ),
 						message: __(
-							'Your server removes the "Authorization" header, so apps sending the key that way are rejected. Apps can send it as "X-MCPAI-Key" instead.',
-							'mcpai'
+							'Your server removes the "Authorization" header, so apps sending the key that way are rejected. Apps can send it as "X-VIAGENT-Key" instead.',
+							'viagent'
 						),
 						fix: __(
 							'Add this line to .htaccess above "# BEGIN WordPress": SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1',
-							'mcpai'
+							'viagent'
 						),
 					}
 		);
@@ -143,7 +146,7 @@ function HealthChecks() {
 	return (
 		<Card>
 			<CardHeader>
-				<h3>{ __( 'Connection check', 'mcpai' ) }</h3>
+				<h3>{ __( 'Connection check', 'viagent' ) }</h3>
 				<Button
 					variant="secondary"
 					size="compact"
@@ -151,7 +154,7 @@ function HealthChecks() {
 					onClick={ run }
 					disabled={ ! health }
 				>
-					{ __( 'Run again', 'mcpai' ) }
+					{ __( 'Run again', 'viagent' ) }
 				</Button>
 			</CardHeader>
 			<CardBody>
@@ -162,22 +165,25 @@ function HealthChecks() {
 				) }
 				{ ! health && ! error && <Spinner /> }
 				{ health && (
-					<ul className="mcpai-health">
+					<ul className="viagent-health">
 						{ health.checks.map( ( check ) => (
 							<li
 								key={ check.id }
 								className={ `is-${ check.status }` }
 							>
-								<span className="mcpai-health__status">
+								<span className="viagent-health__status">
 									{ STATUS_LABELS[ check.status ] }
 								</span>
 								<div>
 									<strong>{ check.label }</strong>
 									<p>{ check.message }</p>
 									{ check.fix && (
-										<p className="mcpai-health__fix">
+										<p className="viagent-health__fix">
 											<strong>
-												{ __( 'How to fix:', 'mcpai' ) }
+												{ __(
+													'How to fix:',
+													'viagent'
+												) }
 											</strong>{ ' ' }
 											{ check.fix }
 										</p>
@@ -206,10 +212,10 @@ export default function Settings( { state, onStateChange } ) {
 	return (
 		<>
 			<ScreenHeader
-				title={ __( 'Settings', 'mcpai' ) }
+				title={ __( 'Settings', 'viagent' ) }
 				description={ __(
 					'Safety switches that apply to every connected AI app.',
-					'mcpai'
+					'viagent'
 				) }
 			/>
 
@@ -219,24 +225,24 @@ export default function Settings( { state, onStateChange } ) {
 				</Notice>
 			) }
 
-			<div className="mcpai-settings">
+			<div className="viagent-settings">
 				<Card>
 					<CardHeader>
-						<h3>{ __( 'Safety', 'mcpai' ) }</h3>
+						<h3>{ __( 'Safety', 'viagent' ) }</h3>
 					</CardHeader>
-					<CardBody className="mcpai-settings__toggles">
+					<CardBody className="viagent-settings__toggles">
 						<ToggleControl
 							__nextHasNoMarginBottom
-							label={ __( 'Pause all AI access', 'mcpai' ) }
+							label={ __( 'Pause all AI access', 'viagent' ) }
 							help={ __(
 								'Instantly blocks every connected app. Turn it off to resume — connections are kept.',
-								'mcpai'
+								'viagent'
 							) }
 							checked={ Boolean( state?.paused ) }
 							onChange={ ( paused ) => save( { paused } ) }
 						/>
 						<div
-							className={ `mcpai-danger-toggle ${
+							className={ `viagent-danger-toggle ${
 								state?.allow_permanent_delete ? 'is-on' : ''
 							}` }
 						>
@@ -244,11 +250,11 @@ export default function Settings( { state, onStateChange } ) {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Allow permanent deletion',
-									'mcpai'
+									'viagent'
 								) }
 								help={ __(
 									'Off (recommended): deleted posts go to the trash and media cannot be deleted. On: AI apps with delete access can skip the trash and delete media — this cannot be undone.',
-									'mcpai'
+									'viagent'
 								) }
 								checked={ Boolean(
 									state?.allow_permanent_delete
@@ -258,10 +264,10 @@ export default function Settings( { state, onStateChange } ) {
 								}
 							/>
 							{ state?.allow_permanent_delete && (
-								<p className="mcpai-danger-toggle__warning">
+								<p className="viagent-danger-toggle__warning">
 									{ __(
 										'Permanent deletion is on. AI apps with delete access can remove things that cannot be undone.',
-										'mcpai'
+										'viagent'
 									) }
 								</p>
 							) }
@@ -271,18 +277,18 @@ export default function Settings( { state, onStateChange } ) {
 
 				<Card>
 					<CardHeader>
-						<h3>{ __( 'Advanced', 'mcpai' ) }</h3>
+						<h3>{ __( 'Advanced', 'viagent' ) }</h3>
 					</CardHeader>
-					<CardBody className="mcpai-settings__toggles">
+					<CardBody className="viagent-settings__toggles">
 						<ToggleControl
 							__nextHasNoMarginBottom
 							label={ __(
 								'Compact tool list for all apps',
-								'mcpai'
+								'viagent'
 							) }
 							help={ __(
 								'Shows AI apps 3 tools that look up the others, instead of the full list. Useful for apps or small models that struggle with many tools. Apps with a known tool limit, like Cursor, use this automatically when needed.',
-								'mcpai'
+								'viagent'
 							) }
 							checked={ Boolean( state?.compact_mode ) }
 							onChange={ ( value ) =>
@@ -292,12 +298,12 @@ export default function Settings( { state, onStateChange } ) {
 						<ToggleControl
 							__nextHasNoMarginBottom
 							label={ __(
-								'Delete all Mcpai data when the plugin is deleted',
-								'mcpai'
+								'Delete all Viagent data when the plugin is deleted',
+								'viagent'
 							) }
 							help={ __(
 								'Removes connections, activity history and settings when you delete the plugin from the Plugins screen. Deactivating the plugin never deletes anything.',
-								'mcpai'
+								'viagent'
 							) }
 							checked={ Boolean( state?.delete_data ) }
 							onChange={ ( value ) =>
@@ -309,20 +315,20 @@ export default function Settings( { state, onStateChange } ) {
 
 				<Card>
 					<CardHeader>
-						<h3>{ __( 'Connection details', 'mcpai' ) }</h3>
+						<h3>{ __( 'Connection details', 'viagent' ) }</h3>
 					</CardHeader>
 					<CardBody>
 						<CopyField
 							label={ __(
 								'MCP server URL (Streamable HTTP)',
-								'mcpai'
+								'viagent'
 							) }
 							value={ settings.endpoint }
 						/>
-						<p className="mcpai-muted">
+						<p className="viagent-muted">
 							{ __(
 								'Apps authenticate with a connection key (Authorization: Bearer …), or with a WordPress Application Password.',
-								'mcpai'
+								'viagent'
 							) }
 						</p>
 					</CardBody>
@@ -330,26 +336,26 @@ export default function Settings( { state, onStateChange } ) {
 
 				<Card>
 					<CardHeader>
-						<h3>{ __( 'Integrations', 'mcpai' ) }</h3>
+						<h3>{ __( 'Integrations', 'viagent' ) }</h3>
 					</CardHeader>
 					<CardBody>
-						<p className="mcpai-muted">
+						<p className="viagent-muted">
 							{ __(
 								'Extra tools appear automatically when these plugins are active. Manage them under Tools.',
-								'mcpai'
+								'viagent'
 							) }
 						</p>
-						<ul className="mcpai-integrations">
+						<ul className="viagent-integrations">
 							{ ( state?.integrations || [] ).map( ( item ) => (
 								<li key={ item.slug }>
 									<span>{ item.name }</span>
 									{ item.active ? (
 										<Badge tone="success">
-											{ __( 'Active', 'mcpai' ) }
+											{ __( 'Active', 'viagent' ) }
 										</Badge>
 									) : (
 										<Badge>
-											{ __( 'Not active', 'mcpai' ) }
+											{ __( 'Not active', 'viagent' ) }
 										</Badge>
 									) }
 								</li>

@@ -2,13 +2,13 @@
 /**
  * Maps WordPress abilities to MCP tools.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\MCP;
+namespace Viagent\MCP;
 
-use MCPAI\Auth\Connection;
-use MCPAI\Security\Policy;
+use Viagent\Auth\Connection;
+use Viagent\Security\Policy;
 use WP_Ability;
 use WP_Error;
 
@@ -19,11 +19,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class Tool_Registry {
 
-	const OWN_NAMESPACE = 'mcpai/';
+	const OWN_NAMESPACE = 'viagent/';
 
 	/**
 	 * Converts an ability name to an MCP tool name.
-	 * "mcpai/list-posts" → "list_posts"; "acme/do-thing" → "acme__do_thing".
+	 * "viagent/list-posts" → "list_posts"; "acme/do-thing" → "acme__do_thing".
 	 *
 	 * @param string $ability_name Ability name.
 	 * @return string
@@ -37,15 +37,15 @@ class Tool_Registry {
 
 	/**
 	 * Access level an ability requires. Read-only abilities default to "read",
-	 * everything else to "admin" unless the ability declares `meta.mcpai.level`.
+	 * everything else to "admin" unless the ability declares `meta.viagent.level`.
 	 *
 	 * @param WP_Ability $ability Ability.
 	 * @return string
 	 */
 	public static function required_level( WP_Ability $ability ) {
-		$mcpai = $ability->get_meta_item( 'mcpai', array() );
-		if ( is_array( $mcpai ) && ! empty( $mcpai['level'] ) && Policy::is_valid_level( $mcpai['level'] ) ) {
-			return $mcpai['level'];
+		$viagent = $ability->get_meta_item( 'viagent', array() );
+		if ( is_array( $viagent ) && ! empty( $viagent['level'] ) && Policy::is_valid_level( $viagent['level'] ) ) {
+			return $viagent['level'];
 		}
 		$annotations = $ability->get_meta_item( 'annotations', array() );
 		return empty( $annotations['readonly'] ) ? Policy::ADMIN : Policy::READ;
@@ -71,8 +71,8 @@ class Tool_Registry {
 				continue;
 			}
 			// Hide tools the connected user could never run (e.g. network tools for a site admin).
-			$mcpai = (array) $ability->get_meta_item( 'mcpai', array() );
-			if ( ! empty( $mcpai['capability'] ) && ! current_user_can( $mcpai['capability'] ) ) {
+			$viagent = (array) $ability->get_meta_item( 'viagent', array() );
+			if ( ! empty( $viagent['capability'] ) && ! current_user_can( $viagent['capability'] ) ) {
 				continue;
 			}
 			$tools[ self::tool_name( $ability->get_name() ) ] = $ability;
@@ -84,11 +84,11 @@ class Tool_Registry {
 		 * @param array<string,WP_Ability> $tools      Tools keyed by MCP tool name.
 		 * @param Connection               $connection Connection.
 		 */
-		return apply_filters( 'mcpai_tools', $tools, $connection );
+		return apply_filters( 'viagent_tools', $tools, $connection );
 	}
 
 	/**
-	 * Whether an ability comes from Mcpai itself.
+	 * Whether an ability comes from Viagent itself.
 	 *
 	 * @param WP_Ability $ability Ability.
 	 * @return bool
@@ -98,7 +98,7 @@ class Tool_Registry {
 	}
 
 	/**
-	 * Whether an ability is exposed over MCP. Mcpai's own abilities always are
+	 * Whether an ability is exposed over MCP. Viagent's own abilities always are
 	 * (subject to their switches); abilities from other plugins only after the
 	 * site owner switches them on under Tools.
 	 *
@@ -119,7 +119,7 @@ class Tool_Registry {
 		 * @param bool       $exposed Whether the ability is exposed.
 		 * @param WP_Ability $ability Ability.
 		 */
-		return (bool) apply_filters( 'mcpai_ability_exposed', $exposed, $ability );
+		return (bool) apply_filters( 'viagent_ability_exposed', $exposed, $ability );
 	}
 
 	/**

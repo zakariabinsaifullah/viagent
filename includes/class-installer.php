@@ -4,10 +4,10 @@
  *
  * Schema stays SQLite-safe (no ENUM / FULLTEXT) so it works on WordPress Studio.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI;
+namespace Viagent;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 class Installer {
 
 	const DB_VERSION        = '7';
-	const DB_VERSION_OPTION = 'mcpai_db_version';
+	const DB_VERSION_OPTION = 'viagent_db_version';
 
 	/**
 	 * Table short names.
@@ -48,7 +48,7 @@ class Installer {
 	}
 
 	/**
-	 * Creates tables for a new site in a network where Mcpai is network-activated.
+	 * Creates tables for a new site in a network where Viagent is network-activated.
 	 *
 	 * @param \WP_Site $site New site.
 	 */
@@ -56,7 +56,7 @@ class Installer {
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		if ( is_plugin_active_for_network( plugin_basename( MCPAI_FILE ) ) ) {
+		if ( is_plugin_active_for_network( plugin_basename( VIAGENT_FILE ) ) ) {
 			switch_to_blog( $site->blog_id );
 			self::install();
 			restore_current_blog();
@@ -64,7 +64,7 @@ class Installer {
 	}
 
 	/**
-	 * Drops Mcpai tables when a site is deleted from the network.
+	 * Drops Viagent tables when a site is deleted from the network.
 	 *
 	 * @param string[] $tables  Tables WordPress will drop.
 	 * @param int      $site_id Site ID.
@@ -74,7 +74,7 @@ class Installer {
 		global $wpdb;
 		$prefix = $wpdb->get_blog_prefix( $site_id );
 		foreach ( self::TABLES as $table ) {
-			$tables[] = $prefix . 'mcpai_' . $table;
+			$tables[] = $prefix . 'viagent_' . $table;
 		}
 		return $tables;
 	}
@@ -103,7 +103,7 @@ class Installer {
 	 */
 	public static function table( $name ) {
 		global $wpdb;
-		return $wpdb->prefix . 'mcpai_' . $name;
+		return $wpdb->prefix . 'viagent_' . $name;
 	}
 
 	/**

@@ -2,14 +2,14 @@
 /**
  * MCP JSON-RPC method dispatcher.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\MCP;
+namespace Viagent\MCP;
 
-use MCPAI\Auth\Connection;
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Auth\Connection;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -115,9 +115,9 @@ class Server {
 				'prompts' => array( 'listChanged' => false ),
 			),
 			'serverInfo'      => array(
-				'name'    => 'mcpai',
+				'name'    => 'viagent',
 				'title'   => get_bloginfo( 'name' ) . ' (WordPress)',
-				'version' => MCPAI_VERSION,
+				'version' => VIAGENT_VERSION,
 			),
 			'instructions'    => $this->instructions(),
 		);
@@ -137,7 +137,7 @@ class Server {
 			'Call get_site_info first to learn about the site, its post types and theme.',
 			'Write post content as WordPress block markup (<!-- wp:paragraph --> etc.) so it stays editable in the block editor.',
 			'Deleting moves items to the trash; tell the user what you changed and include links.',
-			'Every change is logged, and the site owner can undo it from WordPress → Mcpai → Activity.',
+			'Every change is logged, and the site owner can undo it from WordPress → Viagent → Activity.',
 		);
 		if ( $this->connection->compact ) {
 			$lines[2] = 'Tools are grouped: call discover_tools to list them, describe_tool for a tool\'s inputs, and run_tool to use it. Start with run_tool name "get_site_info".';
@@ -147,7 +147,7 @@ class Server {
 		 *
 		 * @param string[] $lines Instruction lines.
 		 */
-		$lines = apply_filters( 'mcpai_instructions', $lines );
+		$lines = apply_filters( 'viagent_instructions', $lines );
 		if ( $this->connection->draft_only ) {
 			$lines[] = 'Draft-only mode is ON: create and edit drafts only; you cannot publish, schedule or delete. Ask the user to publish from WordPress.';
 		}
@@ -217,7 +217,7 @@ class Server {
 			try {
 				$result = Tool_Registry::call( $tools[ $name ], $arguments );
 			} catch ( \Throwable $e ) {
-				$result = new WP_Error( 'mcpai_exception', $e->getMessage() );
+				$result = new WP_Error( 'viagent_exception', $e->getMessage() );
 			}
 			Activity_Log::record( $this->connection, $name, $arguments, $result, (int) round( ( microtime( true ) - $started ) * 1000 ) );
 		}
@@ -270,7 +270,7 @@ class Server {
 	private static function error_text( WP_Error $error ) {
 		if ( 'ability_invalid_permissions' === $error->get_error_code() ) {
 			return sprintf(
-				'Error: The connected user "%s" is not allowed to do this. If it is needed, ask the site owner to grant more access in WordPress → Mcpai. (forbidden)',
+				'Error: The connected user "%s" is not allowed to do this. If it is needed, ask the site owner to grant more access in WordPress → Viagent. (forbidden)',
 				wp_get_current_user()->user_login
 			);
 		}

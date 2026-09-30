@@ -3,10 +3,10 @@
  * Optional integrations with popular plugins. Each one registers its tools only
  * when its plugin is active.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Integrations;
+namespace Viagent\Integrations;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -18,46 +18,64 @@ class Integrations {
 	/**
 	 * Known integrations.
 	 *
-	 * @return array<string,array{name:string,class:string,active:callable}>
+	 * @return array<string,array{class:string,active:callable}>
 	 */
 	private static function known() {
 		return array(
 			'woocommerce' => array(
-				'name'   => 'WooCommerce',
 				'class'  => WooCommerce::class,
 				'active' => static function () {
 					return class_exists( 'WooCommerce' ) && function_exists( 'wc_get_product' );
 				},
 			),
 			'seo'         => array(
-				'name'   => __( 'SEO (Yoast SEO or Rank Math)', 'mcpai' ),
 				'class'  => SEO::class,
 				'active' => static function () {
 					return null !== SEO::provider();
 				},
 			),
 			'forms'       => array(
-				'name'   => __( 'Forms (Contact Form 7, WPForms, Gravity Forms)', 'mcpai' ),
 				'class'  => Forms::class,
 				'active' => static function () {
 					return ! empty( Forms::providers() );
 				},
 			),
 			'network'     => array(
-				'name'   => __( 'Multisite network', 'mcpai' ),
 				'class'  => Network::class,
 				'active' => static function () {
 					return is_multisite();
 				},
 			),
 			'acf'         => array(
-				'name'   => __( 'Advanced Custom Fields', 'mcpai' ),
 				'class'  => ACF::class,
 				'active' => static function () {
 					return function_exists( 'acf_get_field_groups' ) && function_exists( 'update_field' );
 				},
 			),
 		);
+	}
+
+	/**
+	 * Human-readable integration name. Kept out of known() so translations are
+	 * only loaded when the admin screens need them, never before init.
+	 *
+	 * @param string $slug Integration slug.
+	 * @return string
+	 */
+	private static function label( $slug ) {
+		switch ( $slug ) {
+			case 'woocommerce':
+				return 'WooCommerce';
+			case 'seo':
+				return __( 'SEO (Yoast SEO or Rank Math)', 'viagent' );
+			case 'forms':
+				return __( 'Forms (Contact Form 7, WPForms, Gravity Forms)', 'viagent' );
+			case 'network':
+				return __( 'Multisite network', 'viagent' );
+			case 'acf':
+				return __( 'Advanced Custom Fields', 'viagent' );
+		}
+		return $slug;
 	}
 
 	/**
@@ -85,7 +103,7 @@ class Integrations {
 		foreach ( self::known() as $slug => $integration ) {
 			$status[] = array(
 				'slug'   => $slug,
-				'name'   => $integration['name'],
+				'name'   => self::label( $slug ),
 				'active' => (bool) call_user_func( $integration['active'] ),
 			);
 		}

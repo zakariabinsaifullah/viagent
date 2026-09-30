@@ -6,15 +6,15 @@
  * undo). Orders, coupons and customers contain business and personal data,
  * so they need Full control.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Integrations;
+namespace Viagent\Integrations;
 
-use MCPAI\Abilities\Abilities;
-use MCPAI\Abilities\Taxonomies;
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Abilities\Abilities;
+use Viagent\Abilities\Taxonomies;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WC_Order;
 use WC_Product;
 use WP_Error;
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class WooCommerce {
 
-	const CATEGORY = 'mcpai-woocommerce';
+	const CATEGORY = 'viagent-woocommerce';
 
 	/**
 	 * Product fields that can be set on create and update.
@@ -37,11 +37,11 @@ class WooCommerce {
 	 * Registers hooks.
 	 */
 	public static function init() {
-		add_filter( 'mcpai_post_types', array( self::class, 'hide_store_post_types' ) );
-		add_filter( 'mcpai_apply_undo', array( self::class, 'apply_undo' ), 10, 2 );
-		add_filter( 'mcpai_undo_label', array( self::class, 'undo_label' ), 10, 2 );
-		add_filter( 'mcpai_tool_summaries', array( self::class, 'summaries' ) );
-		add_filter( 'mcpai_instructions', array( self::class, 'instructions' ) );
+		add_filter( 'viagent_post_types', array( self::class, 'hide_store_post_types' ) );
+		add_filter( 'viagent_apply_undo', array( self::class, 'apply_undo' ), 10, 2 );
+		add_filter( 'viagent_undo_label', array( self::class, 'undo_label' ), 10, 2 );
+		add_filter( 'viagent_tool_summaries', array( self::class, 'summaries' ) );
+		add_filter( 'viagent_instructions', array( self::class, 'instructions' ) );
 	}
 
 	/**
@@ -51,8 +51,8 @@ class WooCommerce {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'WooCommerce', 'mcpai' ),
-				'description' => __( 'Products, orders, coupons and customers.', 'mcpai' ),
+				'label'       => __( 'WooCommerce', 'viagent' ),
+				'description' => __( 'Products, orders, coupons and customers.', 'viagent' ),
 			)
 		);
 	}
@@ -97,8 +97,8 @@ class WooCommerce {
 			'wc-store-overview',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Store overview', 'mcpai' ),
-				'description' => __( 'WooCommerce store summary: currency, product and order counts by status, revenue in the last 30 days and low-stock products.', 'mcpai' ),
+				'label'       => __( 'Store overview', 'viagent' ),
+				'description' => __( 'WooCommerce store summary: currency, product and order counts by status, revenue in the last 30 days and low-stock products.', 'viagent' ),
 				'execute'     => array( self::class, 'overview' ),
 				'permission'  => 'view_woocommerce_reports',
 				'meta'        => Abilities::read_meta( Policy::ADMIN ),
@@ -109,8 +109,8 @@ class WooCommerce {
 			'list-products',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List products', 'mcpai' ),
-				'description' => __( 'Lists store products with price, stock and status. Filter by search words, status, category slug, SKU or stock status.', 'mcpai' ),
+				'label'       => __( 'List products', 'viagent' ),
+				'description' => __( 'Lists store products with price, stock and status. Filter by search words, status, category slug, SKU or stock status.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'search'       => array( 'type' => 'string' ),
@@ -121,7 +121,7 @@ class WooCommerce {
 						),
 						'category'     => array(
 							'type'        => 'string',
-							'description' => __( 'Product category slug.', 'mcpai' ),
+							'description' => __( 'Product category slug.', 'viagent' ),
 						),
 						'sku'          => array( 'type' => 'string' ),
 						'stock_status' => array(
@@ -141,8 +141,8 @@ class WooCommerce {
 			'get-product',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Get product', 'mcpai' ),
-				'description' => __( 'Gets one product with descriptions, prices, stock, images, categories, attributes and variations.', 'mcpai' ),
+				'label'       => __( 'Get product', 'viagent' ),
+				'description' => __( 'Gets one product with descriptions, prices, stock, images, categories, attributes and variations.', 'viagent' ),
 				'input'       => array( 'id' => $id ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'get_product' ),
@@ -155,8 +155,8 @@ class WooCommerce {
 			'create-product',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Create product', 'mcpai' ),
-				'description' => __( 'Creates a simple or external product. Status defaults to "draft". Categories and tags can be names (created if missing). Use upload_media_from_url first to get image IDs.', 'mcpai' ),
+				'label'       => __( 'Create product', 'viagent' ),
+				'description' => __( 'Creates a simple or external product. Status defaults to "draft". Categories and tags can be names (created if missing). Use upload_media_from_url first to get image IDs.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'type' => array(
@@ -178,8 +178,8 @@ class WooCommerce {
 			'update-product',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Update product', 'mcpai' ),
-				'description' => __( 'Updates a product. Only the fields you pass change. To remove a sale price, pass an empty string. The previous values are kept so the change can be undone.', 'mcpai' ),
+				'label'       => __( 'Update product', 'viagent' ),
+				'description' => __( 'Updates a product. Only the fields you pass change. To remove a sale price, pass an empty string. The previous values are kept so the change can be undone.', 'viagent' ),
 				'input'       => array_merge( array( 'id' => $id ), $fields ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'update_product' ),
@@ -194,8 +194,8 @@ class WooCommerce {
 			'delete-product',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Delete product', 'mcpai' ),
-				'description' => __( 'Moves a product to the trash (it can be restored with restore_post).', 'mcpai' ),
+				'label'       => __( 'Delete product', 'viagent' ),
+				'description' => __( 'Moves a product to the trash (it can be restored with restore_post).', 'viagent' ),
 				'input'       => array( 'id' => $id ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'delete_product' ),
@@ -217,8 +217,8 @@ class WooCommerce {
 			'list-orders',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List orders', 'mcpai' ),
-				'description' => __( 'Lists orders, newest first. Filter by status, customer email or date.', 'mcpai' ),
+				'label'       => __( 'List orders', 'viagent' ),
+				'description' => __( 'Lists orders, newest first. Filter by status, customer email or date.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'status'         => array(
@@ -228,7 +228,7 @@ class WooCommerce {
 						'customer_email' => array( 'type' => 'string' ),
 						'after'          => array(
 							'type'        => 'string',
-							'description' => __( 'Only orders created after this date (YYYY-MM-DD).', 'mcpai' ),
+							'description' => __( 'Only orders created after this date (YYYY-MM-DD).', 'viagent' ),
 						),
 					),
 					Abilities::paging()
@@ -243,8 +243,8 @@ class WooCommerce {
 			'get-order',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Get order', 'mcpai' ),
-				'description' => __( 'Gets one order with items, totals, customer, addresses and notes.', 'mcpai' ),
+				'label'       => __( 'Get order', 'viagent' ),
+				'description' => __( 'Gets one order with items, totals, customer, addresses and notes.', 'viagent' ),
 				'input'       => array( 'id' => $id ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'get_order' ),
@@ -257,8 +257,8 @@ class WooCommerce {
 			'update-order-status',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Update order status', 'mcpai' ),
-				'description' => __( 'Changes an order\'s status, e.g. to "completed". WooCommerce may email the customer about the change.', 'mcpai' ),
+				'label'       => __( 'Update order status', 'viagent' ),
+				'description' => __( 'Changes an order\'s status, e.g. to "completed". WooCommerce may email the customer about the change.', 'viagent' ),
 				'input'       => array(
 					'id'     => $id,
 					'status' => array(
@@ -267,7 +267,7 @@ class WooCommerce {
 					),
 					'note'   => array(
 						'type'        => 'string',
-						'description' => __( 'Optional private note explaining the change.', 'mcpai' ),
+						'description' => __( 'Optional private note explaining the change.', 'viagent' ),
 					),
 				),
 				'required'    => array( 'id', 'status' ),
@@ -281,8 +281,8 @@ class WooCommerce {
 			'add-order-note',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Add order note', 'mcpai' ),
-				'description' => __( 'Adds a note to an order. Private by default; set customer_note to true to email it to the customer.', 'mcpai' ),
+				'label'       => __( 'Add order note', 'viagent' ),
+				'description' => __( 'Adds a note to an order. Private by default; set customer_note to true to email it to the customer.', 'viagent' ),
 				'input'       => array(
 					'id'            => $id,
 					'note'          => array(
@@ -305,8 +305,8 @@ class WooCommerce {
 			'list-coupons',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List coupons', 'mcpai' ),
-				'description' => __( 'Lists discount coupons with amount, usage and expiry.', 'mcpai' ),
+				'label'       => __( 'List coupons', 'viagent' ),
+				'description' => __( 'Lists discount coupons with amount, usage and expiry.', 'viagent' ),
 				'input'       => Abilities::paging(),
 				'execute'     => array( self::class, 'list_coupons' ),
 				'permission'  => 'edit_shop_coupons',
@@ -318,8 +318,8 @@ class WooCommerce {
 			'create-coupon',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Create coupon', 'mcpai' ),
-				'description' => __( 'Creates a discount coupon that customers can use right away.', 'mcpai' ),
+				'label'       => __( 'Create coupon', 'viagent' ),
+				'description' => __( 'Creates a discount coupon that customers can use right away.', 'viagent' ),
 				'input'       => array(
 					'code'           => array(
 						'type'      => 'string',
@@ -332,12 +332,12 @@ class WooCommerce {
 					),
 					'amount'         => array(
 						'type'        => 'string',
-						'description' => __( 'Discount amount, e.g. "10" for 10% or 10 in the store currency.', 'mcpai' ),
+						'description' => __( 'Discount amount, e.g. "10" for 10% or 10 in the store currency.', 'viagent' ),
 					),
 					'description'    => array( 'type' => 'string' ),
 					'expires'        => array(
 						'type'        => 'string',
-						'description' => __( 'Expiry date (YYYY-MM-DD).', 'mcpai' ),
+						'description' => __( 'Expiry date (YYYY-MM-DD).', 'viagent' ),
 					),
 					'usage_limit'    => array(
 						'type'    => 'integer',
@@ -358,8 +358,8 @@ class WooCommerce {
 			'list-customers',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List customers', 'mcpai' ),
-				'description' => __( 'Lists customer accounts with order count and total spent.', 'mcpai' ),
+				'label'       => __( 'List customers', 'viagent' ),
+				'description' => __( 'Lists customer accounts with order count and total spent.', 'viagent' ),
 				'input'       => array_merge( array( 'search' => array( 'type' => 'string' ) ), Abilities::paging() ),
 				'execute'     => array( self::class, 'list_customers' ),
 				'permission'  => 'list_users',
@@ -376,7 +376,7 @@ class WooCommerce {
 	private static function product_schema() {
 		$money = array(
 			'type'        => 'string',
-			'description' => __( 'Decimal string, e.g. "19.99".', 'mcpai' ),
+			'description' => __( 'Decimal string, e.g. "19.99".', 'viagent' ),
 		);
 		return array(
 			'name'              => array( 'type' => 'string' ),
@@ -400,7 +400,7 @@ class WooCommerce {
 			'categories'        => array(
 				'type'        => 'array',
 				'items'       => array( 'type' => array( 'string', 'integer' ) ),
-				'description' => __( 'Category names or IDs; replaces existing ones.', 'mcpai' ),
+				'description' => __( 'Category names or IDs; replaces existing ones.', 'viagent' ),
 			),
 			'tags'              => array(
 				'type'  => 'array',
@@ -409,7 +409,7 @@ class WooCommerce {
 			'image_id'          => array(
 				'type'        => 'integer',
 				'minimum'     => 0,
-				'description' => __( 'Main image (media library ID).', 'mcpai' ),
+				'description' => __( 'Main image (media library ID).', 'viagent' ),
 			),
 			'gallery_image_ids' => array(
 				'type'  => 'array',
@@ -417,7 +417,7 @@ class WooCommerce {
 			),
 			'product_url'       => array(
 				'type'        => 'string',
-				'description' => __( 'External products only: where to buy.', 'mcpai' ),
+				'description' => __( 'External products only: where to buy.', 'viagent' ),
 			),
 			'button_text'       => array( 'type' => 'string' ),
 		);
@@ -521,7 +521,7 @@ class WooCommerce {
 	private static function find_product( $id ) {
 		$product = wc_get_product( $id );
 		if ( ! $product || 'variation' === $product->get_type() ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No product found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No product found with that ID.', 'viagent' ) );
 		}
 		return $product;
 	}
@@ -625,7 +625,7 @@ class WooCommerce {
 				return $allowed;
 			}
 			if ( in_array( $input['status'], array( 'publish', 'private' ), true ) && ! current_user_can( 'publish_products' ) ) {
-				return new WP_Error( 'mcpai_cannot_publish', __( 'You are not allowed to publish products. Save it as "pending" instead.', 'mcpai' ) );
+				return new WP_Error( 'viagent_cannot_publish', __( 'You are not allowed to publish products. Save it as "pending" instead.', 'viagent' ) );
 			}
 		}
 
@@ -636,14 +636,14 @@ class WooCommerce {
 		if ( isset( $props['sku'] ) && '' !== $props['sku'] ) {
 			$existing = wc_get_product_id_by_sku( $props['sku'] );
 			if ( $existing && $existing !== $product->get_id() ) {
-				return new WP_Error( 'mcpai_duplicate_sku', __( 'Another product already uses that SKU.', 'mcpai' ) );
+				return new WP_Error( 'viagent_duplicate_sku', __( 'Another product already uses that SKU.', 'viagent' ) );
 			}
 		}
 
 		try {
 			$product->set_props( $props );
 		} catch ( \WC_Data_Exception $e ) {
-			return new WP_Error( 'mcpai_invalid_product', $e->getMessage() );
+			return new WP_Error( 'viagent_invalid_product', $e->getMessage() );
 		}
 		return true;
 	}
@@ -688,7 +688,7 @@ class WooCommerce {
 
 		$id = $product->save();
 		if ( ! $id ) {
-			return new WP_Error( 'mcpai_save_failed', __( 'The product could not be saved.', 'mcpai' ) );
+			return new WP_Error( 'viagent_save_failed', __( 'The product could not be saved.', 'viagent' ) );
 		}
 
 		Activity_Log::set_object( 'post', $id );
@@ -775,7 +775,7 @@ class WooCommerce {
 			return $product;
 		}
 		if ( 'trash' === $product->get_status() ) {
-			return new WP_Error( 'mcpai_already_trashed', __( 'This product is already in the trash.', 'mcpai' ) );
+			return new WP_Error( 'viagent_already_trashed', __( 'This product is already in the trash.', 'viagent' ) );
 		}
 
 		$product->delete( false );
@@ -824,7 +824,7 @@ class WooCommerce {
 	private static function find_order( $id ) {
 		$order = wc_get_order( $id );
 		if ( ! $order instanceof WC_Order ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No order found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No order found with that ID.', 'viagent' ) );
 		}
 		return $order;
 	}
@@ -1000,7 +1000,7 @@ class WooCommerce {
 	public static function create_coupon( $input ) {
 		$code = wc_format_coupon_code( $input['code'] );
 		if ( wc_get_coupon_id_by_code( $code ) ) {
-			return new WP_Error( 'mcpai_duplicate_coupon', __( 'A coupon with that code already exists.', 'mcpai' ) );
+			return new WP_Error( 'viagent_duplicate_coupon', __( 'A coupon with that code already exists.', 'viagent' ) );
 		}
 
 		$coupon = new \WC_Coupon();
@@ -1024,7 +1024,7 @@ class WooCommerce {
 				)
 			);
 		} catch ( \WC_Data_Exception $e ) {
-			return new WP_Error( 'mcpai_invalid_coupon', $e->getMessage() );
+			return new WP_Error( 'viagent_invalid_coupon', $e->getMessage() );
 		}
 
 		$id = $coupon->save();
@@ -1095,7 +1095,7 @@ class WooCommerce {
 		if ( 'wc_restore_product' === $undo['action'] ) {
 			$product = wc_get_product( (int) $undo['post_id'] );
 			if ( ! $product || ! current_user_can( 'edit_product', $product->get_id() ) ) {
-				return new WP_Error( 'mcpai_not_found', __( 'The product no longer exists or you cannot edit it.', 'mcpai' ) );
+				return new WP_Error( 'viagent_not_found', __( 'The product no longer exists or you cannot edit it.', 'viagent' ) );
 			}
 			$product->set_props( (array) $undo['props'] );
 			$product->save();
@@ -1108,9 +1108,9 @@ class WooCommerce {
 		if ( 'wc_restore_order_status' === $undo['action'] ) {
 			$order = wc_get_order( (int) $undo['order_id'] );
 			if ( ! $order || ! current_user_can( 'edit_shop_orders' ) ) {
-				return new WP_Error( 'mcpai_not_found', __( 'The order no longer exists or you cannot edit it.', 'mcpai' ) );
+				return new WP_Error( 'viagent_not_found', __( 'The order no longer exists or you cannot edit it.', 'viagent' ) );
 			}
-			$order->update_status( $undo['status'], __( 'Status restored from Mcpai activity.', 'mcpai' ) . ' ', true );
+			$order->update_status( $undo['status'], __( 'Status restored from Viagent activity.', 'viagent' ) . ' ', true );
 			return true;
 		}
 
@@ -1127,10 +1127,10 @@ class WooCommerce {
 	public static function undo_label( $label, $undo ) {
 		switch ( $undo['action'] ?? '' ) {
 			case 'wc_restore_product':
-				return __( 'The product’s previous prices, stock and details will be restored.', 'mcpai' );
+				return __( 'The product’s previous prices, stock and details will be restored.', 'viagent' );
 			case 'wc_restore_order_status':
 				/* translators: %s: order status */
-				return sprintf( __( 'The order will go back to “%s”. The customer may get an email.', 'mcpai' ), wc_get_order_status_name( $undo['status'] ) );
+				return sprintf( __( 'The order will go back to “%s”. The customer may get an email.', 'viagent' ), wc_get_order_status_name( $undo['status'] ) );
 		}
 		return $label;
 	}
@@ -1145,19 +1145,19 @@ class WooCommerce {
 		return array_merge(
 			$summaries,
 			array(
-				'wc_store_overview'   => __( 'See sales, orders and stock at a glance.', 'mcpai' ),
-				'list_products'       => __( 'Browse store products with prices and stock.', 'mcpai' ),
-				'get_product'         => __( 'Read one product in full.', 'mcpai' ),
-				'create_product'      => __( 'Add new products.', 'mcpai' ),
-				'update_product'      => __( 'Change product prices, stock and details.', 'mcpai' ),
-				'delete_product'      => __( 'Move products to the trash.', 'mcpai' ),
-				'list_orders'         => __( 'Browse orders.', 'mcpai' ),
-				'get_order'           => __( 'Read one order with its items and customer.', 'mcpai' ),
-				'update_order_status' => __( 'Mark orders as completed, on hold, cancelled…', 'mcpai' ),
-				'add_order_note'      => __( 'Add notes to orders, optionally emailed to the customer.', 'mcpai' ),
-				'list_coupons'        => __( 'Browse discount coupons.', 'mcpai' ),
-				'create_coupon'       => __( 'Create discount coupons.', 'mcpai' ),
-				'list_customers'      => __( 'See customers and what they have spent.', 'mcpai' ),
+				'wc_store_overview'   => __( 'See sales, orders and stock at a glance.', 'viagent' ),
+				'list_products'       => __( 'Browse store products with prices and stock.', 'viagent' ),
+				'get_product'         => __( 'Read one product in full.', 'viagent' ),
+				'create_product'      => __( 'Add new products.', 'viagent' ),
+				'update_product'      => __( 'Change product prices, stock and details.', 'viagent' ),
+				'delete_product'      => __( 'Move products to the trash.', 'viagent' ),
+				'list_orders'         => __( 'Browse orders.', 'viagent' ),
+				'get_order'           => __( 'Read one order with its items and customer.', 'viagent' ),
+				'update_order_status' => __( 'Mark orders as completed, on hold, cancelled…', 'viagent' ),
+				'add_order_note'      => __( 'Add notes to orders, optionally emailed to the customer.', 'viagent' ),
+				'list_coupons'        => __( 'Browse discount coupons.', 'viagent' ),
+				'create_coupon'       => __( 'Create discount coupons.', 'viagent' ),
+				'list_customers'      => __( 'See customers and what they have spent.', 'viagent' ),
 			)
 		);
 	}

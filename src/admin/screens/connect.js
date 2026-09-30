@@ -25,53 +25,56 @@ import {
 } from '../components';
 import { deeplink, fillTemplate } from '../snippets';
 
-const settings = window.mcpaiSettings;
+const settings = window.viagentSettings;
 
 const GROUPS = [
-	{ id: 'app', label: __( 'Chat apps', 'mcpai' ) },
-	{ id: 'editor', label: __( 'Code editors', 'mcpai' ) },
-	{ id: 'cli', label: __( 'Terminal agents', 'mcpai' ) },
-	{ id: 'other', label: __( 'Something else', 'mcpai' ) },
+	{ id: 'app', label: __( 'Chat apps', 'viagent' ) },
+	{ id: 'editor', label: __( 'Code editors', 'viagent' ) },
+	{ id: 'cli', label: __( 'Terminal agents', 'viagent' ) },
+	{ id: 'other', label: __( 'Something else', 'viagent' ) },
 ];
 
 const ACCESS = [
 	{
 		id: 'read',
-		title: __( 'Read only', 'mcpai' ),
+		title: __( 'Read only', 'viagent' ),
 		description: __(
 			'Can look at your posts, pages, media and settings. Cannot change anything.',
-			'mcpai'
+			'viagent'
 		),
-		example: __( '“Summarize my latest posts”', 'mcpai' ),
+		example: __( '“Summarize my latest posts”', 'viagent' ),
 	},
 	{
 		id: 'content',
-		title: __( 'Write content', 'mcpai' ),
+		title: __( 'Write content', 'viagent' ),
 		description: __(
 			'Can write and edit posts and pages, upload images, and manage categories and comments.',
-			'mcpai'
+			'viagent'
 		),
-		example: __( '“Draft a blog post about our spring sale”', 'mcpai' ),
+		example: __( '“Draft a blog post about our spring sale”', 'viagent' ),
 		recommended: true,
 	},
 	{
 		id: 'admin',
-		title: __( 'Full control', 'mcpai' ),
+		title: __( 'Full control', 'viagent' ),
 		description: __(
-			'Everything above plus settings, menus, plugins, themes and users. It can never create or edit administrators.',
-			'mcpai'
+			'Everything above plus site settings and menus, and a read-only view of plugins, themes and users.',
+			'viagent'
 		),
-		example: __( '“Install an SEO plugin and set the homepage”', 'mcpai' ),
+		example: __( '“Set my Contact page as the homepage”', 'viagent' ),
 	},
 ];
 
 const EXAMPLE_PROMPTS = [
-	__( 'What is my WordPress site about? Give me a quick overview.', 'mcpai' ),
+	__(
+		'What is my WordPress site about? Give me a quick overview.',
+		'viagent'
+	),
 	__(
 		'Write a 600-word blog post about why our customers love us and save it as a draft.',
-		'mcpai'
+		'viagent'
 	),
-	__( 'Find my posts that have no featured image.', 'mcpai' ),
+	__( 'Find my posts that have no featured image.', 'viagent' ),
 ];
 
 function stepClass( index, step ) {
@@ -83,15 +86,15 @@ function stepClass( index, step ) {
 
 function Steps( { step } ) {
 	const labels = [
-		__( 'Choose your AI app', 'mcpai' ),
-		__( 'Choose what it can do', 'mcpai' ),
-		__( 'Connect', 'mcpai' ),
+		__( 'Choose your AI app', 'viagent' ),
+		__( 'Choose what it can do', 'viagent' ),
+		__( 'Connect', 'viagent' ),
 	];
 	return (
-		<ol className="mcpai-steps">
+		<ol className="viagent-steps">
 			{ labels.map( ( label, index ) => (
 				<li key={ label } className={ stepClass( index, step ) }>
-					<span className="mcpai-steps__number">{ index + 1 }</span>
+					<span className="viagent-steps__number">{ index + 1 }</span>
 					{ label }
 				</li>
 			) ) }
@@ -126,12 +129,12 @@ function ClientStatus( { status } ) {
 		return null;
 	}
 	return status.status === 'connected' ? (
-		<span className="mcpai-client__status is-connected">
-			{ __( 'Connected', 'mcpai' ) }
+		<span className="viagent-client__status is-connected">
+			{ __( 'Connected', 'viagent' ) }
 		</span>
 	) : (
-		<span className="mcpai-client__status is-waiting">
-			{ __( 'Set up · not connected yet', 'mcpai' ) }
+		<span className="viagent-client__status is-waiting">
+			{ __( 'Set up · not connected yet', 'viagent' ) }
 		</span>
 	);
 }
@@ -142,16 +145,16 @@ function ChooseClient( { onSelect, statuses, onHelp } ) {
 	);
 
 	return (
-		<div className="mcpai-client-groups">
+		<div className="viagent-client-groups">
 			{ waiting.map( ( client ) => (
 				<Notice
 					key={ client.slug }
 					status="warning"
 					isDismissible={ false }
-					className="mcpai-waiting-notice"
+					className="viagent-waiting-notice"
 					actions={ [
 						{
-							label: __( 'Show me how to finish', 'mcpai' ),
+							label: __( 'Show me how to finish', 'viagent' ),
 							onClick: () => onHelp( client ),
 							variant: 'primary',
 						},
@@ -161,7 +164,7 @@ function ChooseClient( { onSelect, statuses, onHelp } ) {
 						/* translators: %s: app name */
 						__(
 							'%s is set up but hasn’t connected to your site yet.',
-							'mcpai'
+							'viagent'
 						),
 						client.name
 					) }
@@ -177,8 +180,8 @@ function ChooseClient( { onSelect, statuses, onHelp } ) {
 				}
 				return (
 					<section key={ group.id }>
-						<h3 className="mcpai-group-title">{ group.label }</h3>
-						<div className="mcpai-client-grid">
+						<h3 className="viagent-group-title">{ group.label }</h3>
+						<div className="viagent-client-grid">
 							{ clients.map( ( client ) => {
 								const soon =
 									client.auth === 'oauth' && ! settings.oauth;
@@ -186,19 +189,19 @@ function ChooseClient( { onSelect, statuses, onHelp } ) {
 								if ( soon ) {
 									badge = (
 										<Badge>
-											{ __( 'Coming soon', 'mcpai' ) }
+											{ __( 'Coming soon', 'viagent' ) }
 										</Badge>
 									);
 								} else if ( client.auth === 'oauth' ) {
 									badge = (
 										<Badge tone="success">
-											{ __( 'Sign in', 'mcpai' ) }
+											{ __( 'Sign in', 'viagent' ) }
 										</Badge>
 									);
 								} else if ( client.deeplink ) {
 									badge = (
 										<Badge tone="success">
-											{ __( 'One-click', 'mcpai' ) }
+											{ __( 'One-click', 'viagent' ) }
 										</Badge>
 									);
 								}
@@ -206,7 +209,7 @@ function ChooseClient( { onSelect, statuses, onHelp } ) {
 									<button
 										key={ client.slug }
 										type="button"
-										className={ `mcpai-client ${
+										className={ `viagent-client ${
 											statuses[ client.slug ]
 												? `has-${ statuses[ client.slug ].status }`
 												: ''
@@ -214,24 +217,24 @@ function ChooseClient( { onSelect, statuses, onHelp } ) {
 										disabled={ soon }
 										onClick={ () => onSelect( client ) }
 									>
-										<span className="mcpai-client__top">
+										<span className="viagent-client__top">
 											<ClientMark client={ client } />
 											{ badge }
 										</span>
-										<strong className="mcpai-client__name">
+										<strong className="viagent-client__name">
 											{ client.name }
 										</strong>
-										<span className="mcpai-client__tagline">
+										<span className="viagent-client__tagline">
 											{ client.tagline }
 										</span>
-										<span className="mcpai-client__footer">
+										<span className="viagent-client__footer">
 											<ClientStatus
 												status={
 													statuses[ client.slug ]
 												}
 											/>
 											<span
-												className="mcpai-client__arrow"
+												className="viagent-client__arrow"
 												aria-hidden="true"
 											>
 												→
@@ -259,19 +262,19 @@ function firstPrompt( client ) {
 		client.auth === 'oauth'
 			? sprintf(
 					/* translators: %s: site name */
-					__( 'my “%s” connector', 'mcpai' ),
+					__( 'my “%s” connector', 'viagent' ),
 					settings.siteName
 				)
 			: sprintf(
 					/* translators: %s: server name */
-					__( 'the “%s” tools', 'mcpai' ),
+					__( 'the “%s” tools', 'viagent' ),
 					settings.serverName
 				);
 	return sprintf(
 		/* translators: %s: connector or tools name */
 		__(
 			'Use %s to look at my WordPress site and give me a short overview: the site name, how many posts and pages it has, and which theme it uses.',
-			'mcpai'
+			'viagent'
 		),
 		source
 	);
@@ -287,12 +290,12 @@ function firstPrompt( client ) {
  */
 function Section( { number, title, children } ) {
 	return (
-		<section className="mcpai-section">
-			<h3 className="mcpai-section__title">
-				<span className="mcpai-section__number">{ number }</span>
+		<section className="viagent-section">
+			<h3 className="viagent-section__title">
+				<span className="viagent-section__number">{ number }</span>
 				{ title }
 			</h3>
-			<div className="mcpai-section__body">{ children }</div>
+			<div className="viagent-section__body">{ children }</div>
 		</section>
 	);
 }
@@ -314,7 +317,7 @@ function FinishSteps( { client, start, inModal = false } ) {
 					number={ start }
 					title={ sprintf(
 						/* translators: %s: app name */
-						__( 'Check that %s can see your site', 'mcpai' ),
+						__( 'Check that %s can see your site', 'viagent' ),
 						client.name
 					) }
 				>
@@ -325,26 +328,26 @@ function FinishSteps( { client, start, inModal = false } ) {
 				number={ client.verify ? start + 1 : start }
 				title={ sprintf(
 					/* translators: %s: app name */
-					__( 'Send this first message in %s', 'mcpai' ),
+					__( 'Send this first message in %s', 'viagent' ),
 					client.name
 				) }
 			>
-				<div className="mcpai-first-prompt">
+				<div className="viagent-first-prompt">
 					<p>{ prompt }</p>
 					<CopyButton
 						text={ prompt }
-						label={ __( 'Copy message', 'mcpai' ) }
+						label={ __( 'Copy message', 'viagent' ) }
 					/>
 				</div>
-				<p className="mcpai-muted">
+				<p className="viagent-muted">
 					{ inModal
 						? __(
 								'The first time, your AI asks for permission to use your site’s tools — choose “Allow”. Then come back here: the app will show as Connected.',
-								'mcpai'
+								'viagent'
 							)
 						: __(
 								'The first time, your AI asks for permission to use your site’s tools — choose “Allow”. The box below turns green as soon as it connects.',
-								'mcpai'
+								'viagent'
 							) }
 				</p>
 			</Section>
@@ -366,38 +369,38 @@ function HelpModal( { client, onClose, onRedo } ) {
 		<Modal
 			title={ sprintf(
 				/* translators: %s: app name */
-				__( 'Finish connecting %s', 'mcpai' ),
+				__( 'Finish connecting %s', 'viagent' ),
 				client.name
 			) }
 			onRequestClose={ onClose }
-			className="mcpai-help-modal"
+			className="viagent-help-modal"
 		>
-			<div className="mcpai-connect-steps">
+			<div className="viagent-connect-steps">
 				{ settings.isLocal && bridge && (
 					<Notice status="warning" isDismissible={ false }>
 						{ __(
 							'This site runs on your computer and uses a development security certificate. Make sure the "env" section of your configuration also contains this line, then restart the app:',
-							'mcpai'
+							'viagent'
 						) }
-						<code className="mcpai-inline-code">
+						<code className="viagent-inline-code">
 							&quot;NODE_TLS_REJECT_UNAUTHORIZED&quot;:
 							&quot;0&quot;
 						</code>
 					</Notice>
 				) }
 				<FinishSteps client={ client } start={ 1 } inModal />
-				<p className="mcpai-muted">
+				<p className="viagent-muted">
 					{ __(
 						'Still not working? Create a fresh connection and follow the steps again — the old one can be revoked under Connections.',
-						'mcpai'
+						'viagent'
 					) }
 				</p>
-				<div className="mcpai-actions">
+				<div className="viagent-actions">
 					<Button variant="tertiary" onClick={ onClose }>
-						{ __( 'Close', 'mcpai' ) }
+						{ __( 'Close', 'viagent' ) }
 					</Button>
 					<Button variant="secondary" onClick={ onRedo }>
-						{ __( 'Set it up again', 'mcpai' ) }
+						{ __( 'Set it up again', 'viagent' ) }
 					</Button>
 				</div>
 			</div>
@@ -435,34 +438,34 @@ function ChooseAccess( { client, onBack, onCreated } ) {
 	};
 
 	return (
-		<div className="mcpai-access">
+		<div className="viagent-access">
 			<div
-				className="mcpai-access__cards"
+				className="viagent-access__cards"
 				role="group"
-				aria-label={ __( 'Access level', 'mcpai' ) }
+				aria-label={ __( 'Access level', 'viagent' ) }
 			>
 				{ ACCESS.map( ( option ) => (
 					<button
 						key={ option.id }
 						type="button"
 						aria-pressed={ level === option.id }
-						className={ `mcpai-access-card ${
+						className={ `viagent-access-card ${
 							level === option.id ? 'is-selected' : ''
 						}` }
 						onClick={ () => selectLevel( option.id ) }
 					>
-						<span className="mcpai-access-card__title">
+						<span className="viagent-access-card__title">
 							{ option.title }
 							{ option.recommended && (
 								<Badge tone="success">
-									{ __( 'Recommended', 'mcpai' ) }
+									{ __( 'Recommended', 'viagent' ) }
 								</Badge>
 							) }
 						</span>
-						<span className="mcpai-access-card__description">
+						<span className="viagent-access-card__description">
 							{ option.description }
 						</span>
-						<span className="mcpai-access-card__example">
+						<span className="viagent-access-card__example">
 							{ option.example }
 						</span>
 					</button>
@@ -470,20 +473,20 @@ function ChooseAccess( { client, onBack, onCreated } ) {
 			</div>
 
 			{ level !== 'read' && (
-				<Card className="mcpai-access__options">
+				<Card className="viagent-access__options">
 					<CardBody>
 						<ToggleControl
 							__nextHasNoMarginBottom
-							label={ __( 'Drafts only (safest)', 'mcpai' ) }
+							label={ __( 'Drafts only (safest)', 'viagent' ) }
 							help={
 								draftOnly
 									? __(
 											'The AI can create and edit drafts, but cannot publish, delete, or change anything visitors already see. You review and publish.',
-											'mcpai'
+											'viagent'
 										)
 									: __(
 											'The AI can publish and delete directly. Deleted items go to the trash, and you can undo changes from the Activity screen.',
-											'mcpai'
+											'viagent'
 										)
 							}
 							checked={ draftOnly }
@@ -496,21 +499,21 @@ function ChooseAccess( { client, onBack, onCreated } ) {
 			<TextControl
 				__next40pxDefaultSize
 				__nextHasNoMarginBottom
-				label={ __( 'Connection name', 'mcpai' ) }
+				label={ __( 'Connection name', 'viagent' ) }
 				help={ __(
 					'Helps you recognise it later, e.g. “Claude on my laptop”.',
-					'mcpai'
+					'viagent'
 				) }
 				value={ name }
 				onChange={ setName }
 			/>
 
-			<p className="mcpai-muted">
+			<p className="viagent-muted">
 				{ sprintf(
 					/* translators: %s: user display name */
 					__(
 						'The AI will act as you (%s), so it can never do more than your own account can.',
-						'mcpai'
+						'viagent'
 					),
 					settings.user
 				) }
@@ -522,13 +525,13 @@ function ChooseAccess( { client, onBack, onCreated } ) {
 				</Notice>
 			) }
 
-			<div className="mcpai-actions">
+			<div className="viagent-actions">
 				<Button
 					variant="tertiary"
 					icon={ arrowLeft }
 					onClick={ onBack }
 				>
-					{ __( 'Back', 'mcpai' ) }
+					{ __( 'Back', 'viagent' ) }
 				</Button>
 				<Button
 					variant="primary"
@@ -536,7 +539,7 @@ function ChooseAccess( { client, onBack, onCreated } ) {
 					disabled={ busy }
 					onClick={ create }
 				>
-					{ __( 'Create connection', 'mcpai' ) }
+					{ __( 'Create connection', 'viagent' ) }
 				</Button>
 			</div>
 		</div>
@@ -572,16 +575,19 @@ function WaitForConnection( { isConnected, onDone, onAnother } ) {
 
 	if ( ! connected ) {
 		return (
-			<div className="mcpai-waiting">
+			<div className="viagent-waiting">
 				<Spinner />
 				<div>
 					<strong>
-						{ __( 'Waiting for your AI app to connect…', 'mcpai' ) }
+						{ __(
+							'Waiting for your AI app to connect…',
+							'viagent'
+						) }
 					</strong>
 					<p>
 						{ __(
 							'Finish the steps above and send the first message. This page updates by itself.',
-							'mcpai'
+							'viagent'
 						) }
 					</p>
 				</div>
@@ -590,18 +596,18 @@ function WaitForConnection( { isConnected, onDone, onAnother } ) {
 	}
 
 	return (
-		<div className="mcpai-success">
-			<span className="mcpai-success__icon" aria-hidden="true">
+		<div className="viagent-success">
+			<span className="viagent-success__icon" aria-hidden="true">
 				✓
 			</span>
 			<h3>
 				{ __(
 					'Connected! Your AI can now work on your site.',
-					'mcpai'
+					'viagent'
 				) }
 			</h3>
-			<p>{ __( 'Try asking it:', 'mcpai' ) }</p>
-			<ul className="mcpai-prompts">
+			<p>{ __( 'Try asking it:', 'viagent' ) }</p>
+			<ul className="viagent-prompts">
 				{ EXAMPLE_PROMPTS.map( ( prompt ) => (
 					<li key={ prompt }>
 						<span>{ prompt }</span>
@@ -609,18 +615,18 @@ function WaitForConnection( { isConnected, onDone, onAnother } ) {
 					</li>
 				) ) }
 			</ul>
-			<p className="mcpai-muted">
+			<p className="viagent-muted">
 				{ __(
 					'Tip: many apps also offer ready-made tasks from your site, such as “Write a blog post” or “SEO check-up” — look in the “+” or / menu.',
-					'mcpai'
+					'viagent'
 				) }
 			</p>
-			<div className="mcpai-actions">
+			<div className="viagent-actions">
 				<Button variant="secondary" onClick={ onAnother }>
-					{ __( 'Connect another app', 'mcpai' ) }
+					{ __( 'Connect another app', 'viagent' ) }
 				</Button>
 				<Button variant="primary" onClick={ onDone }>
-					{ __( 'Done', 'mcpai' ) }
+					{ __( 'Done', 'viagent' ) }
 				</Button>
 			</div>
 		</div>
@@ -649,22 +655,22 @@ function ConnectSteps( { client, connection, onDone, onAnother } ) {
 	const snippet = fillTemplate( client.template, values );
 	const link = client.deeplink ? deeplink( client.deeplink, values ) : null;
 	const formatLabel = {
-		command: __( 'Command', 'mcpai' ),
+		command: __( 'Command', 'viagent' ),
 		json: 'JSON',
 		toml: 'TOML',
 	}[ client.format ];
 
 	return (
-		<div className="mcpai-connect-steps">
+		<div className="viagent-connect-steps">
 			<Notice status="warning" isDismissible={ false }>
 				{ __(
 					'Your connection key is shown only once. It is already included below — copy it now if you need it elsewhere. Treat it like a password.',
-					'mcpai'
+					'viagent'
 				) }
 			</Notice>
 
 			<CopyField
-				label={ __( 'Connection key', 'mcpai' ) }
+				label={ __( 'Connection key', 'viagent' ) }
 				value={ connection.key }
 				secret
 			/>
@@ -679,29 +685,29 @@ function ConnectSteps( { client, connection, onDone, onAnother } ) {
 				number={ 1 }
 				title={ sprintf(
 					/* translators: %s: app name */
-					__( 'Add your site to %s', 'mcpai' ),
+					__( 'Add your site to %s', 'viagent' ),
 					client.name
 				) }
 			>
 				{ link && (
-					<div className="mcpai-deeplink">
+					<div className="viagent-deeplink">
 						<Button variant="primary" href={ link } icon={ check }>
 							{ sprintf(
 								/* translators: %s: app name */
-								__( 'Add to %s', 'mcpai' ),
+								__( 'Add to %s', 'viagent' ),
 								client.name
 							) }
 						</Button>
-						<span className="mcpai-muted">
+						<span className="viagent-muted">
 							{ __(
 								'Opens the app and asks you to confirm.',
-								'mcpai'
+								'viagent'
 							) }
 						</span>
 					</div>
 				) }
 
-				<ol className="mcpai-instructions">
+				<ol className="viagent-instructions">
 					{ client.steps.map( ( step ) => (
 						<li key={ step }>{ step }</li>
 					) ) }
@@ -716,20 +722,25 @@ function ConnectSteps( { client, connection, onDone, onAnother } ) {
 					}
 				/>
 
-				<details className="mcpai-details">
-					<summary>{ __( 'Manual setup details', 'mcpai' ) }</summary>
+				<details className="viagent-details">
+					<summary>
+						{ __( 'Manual setup details', 'viagent' ) }
+					</summary>
 					<CopyField
-						label={ __( 'Server URL (Streamable HTTP)', 'mcpai' ) }
+						label={ __(
+							'Server URL (Streamable HTTP)',
+							'viagent'
+						) }
 						value={ settings.endpoint }
 					/>
 					<CopyField
-						label={ __( 'Header', 'mcpai' ) }
+						label={ __( 'Header', 'viagent' ) }
 						value={ `Authorization: Bearer ${ connection.key }` }
 					/>
-					<p className="mcpai-muted">
+					<p className="viagent-muted">
 						{ __(
-							'If your server strips the Authorization header, send the key as “X-MCPAI-Key” instead.',
-							'mcpai'
+							'If your server strips the Authorization header, send the key as “X-VIAGENT-Key” instead.',
+							'viagent'
 						) }
 					</p>
 					{ client.docs && (
@@ -742,17 +753,17 @@ function ConnectSteps( { client, connection, onDone, onAnother } ) {
 						>
 							{ sprintf(
 								/* translators: %s: app name */
-								__( '%s MCP documentation', 'mcpai' ),
+								__( '%s MCP documentation', 'viagent' ),
 								client.name
 							) }
 						</Button>
 					) }
 				</details>
 				{ settings.isLocal && bridge && (
-					<p className="mcpai-muted">
+					<p className="viagent-muted">
 						{ __(
 							'Because this site runs on your computer, the configuration includes a line that lets the bridge accept its local security certificate. Live sites don’t need it.',
-							'mcpai'
+							'viagent'
 						) }
 					</p>
 				) }
@@ -793,14 +804,14 @@ function OAuthSteps( { client, onBack, onDone, onAnother } ) {
 	);
 
 	return (
-		<div className="mcpai-connect-steps">
+		<div className="viagent-connect-steps">
 			{ settings.isLocal && (
 				<Notice status="warning" isDismissible={ false }>
 					{ sprintf(
 						/* translators: %s: app name */
 						__(
 							'This site runs on your computer, so %s (which runs in the cloud) cannot reach it. Publish the site or use a Studio preview or tunnel first — or connect an app on this computer instead, such as Claude Code, Claude Desktop or Cursor.',
-							'mcpai'
+							'viagent'
 						),
 						client.name
 					) }
@@ -811,25 +822,25 @@ function OAuthSteps( { client, onBack, onDone, onAnother } ) {
 				number={ 1 }
 				title={ sprintf(
 					/* translators: %s: app name */
-					__( 'Add your site to %s', 'mcpai' ),
+					__( 'Add your site to %s', 'viagent' ),
 					client.name
 				) }
 			>
 				<CopyField
-					label={ __( 'Your connector URL', 'mcpai' ) }
+					label={ __( 'Your connector URL', 'viagent' ) }
 					value={ settings.endpoint }
 				/>
 
-				<ol className="mcpai-instructions">
+				<ol className="viagent-instructions">
 					{ client.steps.map( ( step ) => (
 						<li key={ step }>{ step }</li>
 					) ) }
 				</ol>
 
-				<p className="mcpai-muted">
+				<p className="viagent-muted">
 					{ __(
 						'No key needed: you’ll sign in to WordPress and choose what the app may do. You can disconnect it any time.',
-						'mcpai'
+						'viagent'
 					) }
 				</p>
 
@@ -848,7 +859,7 @@ function OAuthSteps( { client, onBack, onDone, onAnother } ) {
 					>
 						{ sprintf(
 							/* translators: %s: app name */
-							__( '%s’s official setup guide', 'mcpai' ),
+							__( '%s’s official setup guide', 'viagent' ),
 							client.name
 						) }
 					</Button>
@@ -863,13 +874,13 @@ function OAuthSteps( { client, onBack, onDone, onAnother } ) {
 				onAnother={ onAnother }
 			/>
 
-			<div className="mcpai-actions">
+			<div className="viagent-actions">
 				<Button
 					variant="tertiary"
 					icon={ arrowLeft }
 					onClick={ onBack }
 				>
-					{ __( 'Back', 'mcpai' ) }
+					{ __( 'Back', 'viagent' ) }
 				</Button>
 			</div>
 		</div>
@@ -902,25 +913,25 @@ export default function Connect( { navigate } ) {
 	};
 
 	const titles = {
-		1: __( 'Which AI app do you want to connect?', 'mcpai' ),
+		1: __( 'Which AI app do you want to connect?', 'viagent' ),
 		2: sprintf(
 			/* translators: %s: app name */
-			__( 'What should %s be allowed to do?', 'mcpai' ),
+			__( 'What should %s be allowed to do?', 'viagent' ),
 			client?.name
 		),
 		3: sprintf(
 			/* translators: %s: app name */
-			__( 'Connect %s', 'mcpai' ),
+			__( 'Connect %s', 'viagent' ),
 			client?.name
 		),
 	};
 
 	return (
-		<div className="mcpai-connect">
+		<div className="viagent-connect">
 			<Steps step={ step } />
 			<Card>
-				<CardBody className="mcpai-connect__body">
-					<div className="mcpai-connect__title">
+				<CardBody className="viagent-connect__body">
+					<div className="viagent-connect__title">
 						{ client && <ClientMark client={ client } /> }
 						<h2>{ titles[ step ] }</h2>
 					</div>

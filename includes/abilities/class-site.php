@@ -2,12 +2,12 @@
 /**
  * Site abilities: site overview and cross-type search.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Auth\Authenticator;
+use Viagent\Auth\Authenticator;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -21,11 +21,11 @@ class Site {
 	 */
 	public static function register() {
 		wp_register_ability(
-			'mcpai/get-site-info',
+			'viagent/get-site-info',
 			array(
-				'label'               => __( 'Get site info', 'mcpai' ),
-				'description'         => __( 'Overview of the WordPress site: name, URLs, language, timezone, active theme, available post types and who you are connected as. Call this first.', 'mcpai' ),
-				'category'            => 'mcpai-site',
+				'label'               => __( 'Get site info', 'viagent' ),
+				'description'         => __( 'Overview of the WordPress site: name, URLs, language, timezone, active theme, available post types and who you are connected as. Call this first.', 'viagent' ),
+				'category'            => 'viagent-site',
 				'input_schema'        => array(),
 				'execute_callback'    => array( self::class, 'get_site_info' ),
 				'permission_callback' => static function () {
@@ -36,18 +36,18 @@ class Site {
 		);
 
 		wp_register_ability(
-			'mcpai/search-content',
+			'viagent/search-content',
 			array(
-				'label'               => __( 'Search content', 'mcpai' ),
-				'description'         => __( 'Full-text search across posts, pages and other public content types. Returns matching items with ID, type, title and link.', 'mcpai' ),
-				'category'            => 'mcpai-site',
+				'label'               => __( 'Search content', 'viagent' ),
+				'description'         => __( 'Full-text search across posts, pages and other public content types. Returns matching items with ID, type, title and link.', 'viagent' ),
+				'category'            => 'viagent-site',
 				'input_schema'        => array(
 					'type'                 => 'object',
 					'properties'           => array(
 						'query'    => array(
 							'type'        => 'string',
 							'minLength'   => 1,
-							'description' => __( 'Words to search for.', 'mcpai' ),
+							'description' => __( 'Words to search for.', 'viagent' ),
 						),
 						'per_page' => array(
 							'type'    => 'integer',
@@ -79,14 +79,18 @@ class Site {
 		$connection = Authenticator::current();
 
 		$post_types = array();
-		foreach ( Content::post_types() as $type ) {
-			$counts       = wp_count_posts( $type->name );
-			$post_types[] = array(
+		foreach ( Content::readable_post_types() as $type ) {
+			$counts = wp_count_posts( $type->name );
+			$item   = array(
 				'name'      => $type->name,
 				'label'     => $type->label,
 				'published' => (int) ( $counts->publish ?? 0 ),
-				'drafts'    => (int) ( $counts->draft ?? 0 ),
 			);
+			// Draft counts are editorial data: only for users who can edit this type.
+			if ( current_user_can( $type->cap->edit_posts ) ) {
+				$item['drafts'] = (int) ( $counts->draft ?? 0 );
+			}
+			$post_types[] = $item;
 		}
 
 		return array(
@@ -121,7 +125,7 @@ class Site {
 		$query = new \WP_Query(
 			array(
 				's'                   => $input['query'],
-				'post_type'           => wp_list_pluck( Content::post_types(), 'name' ),
+				'post_type'           => array_keys( Content::readable_post_types() ),
 				'post_status'         => Content::readable_statuses(),
 				'posts_per_page'      => (int) ( $input['per_page'] ?? 20 ),
 				'ignore_sticky_posts' => true,

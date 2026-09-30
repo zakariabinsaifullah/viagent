@@ -4,13 +4,13 @@
  * Gravity Forms: list forms with embed codes, read their fields, and read
  * submitted entries. Entries contain personal data, so they need Full control.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Integrations;
+namespace Viagent\Integrations;
 
-use MCPAI\Abilities\Abilities;
-use MCPAI\Security\Policy;
+use Viagent\Abilities\Abilities;
+use Viagent\Security\Policy;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Forms {
 
-	const CATEGORY = 'mcpai-forms';
+	const CATEGORY = 'viagent-forms';
 
 	/**
 	 * Active form plugins, keyed by provider slug.
@@ -45,8 +45,8 @@ class Forms {
 	 * Registers hooks.
 	 */
 	public static function init() {
-		add_filter( 'mcpai_tool_summaries', array( self::class, 'summaries' ) );
-		add_filter( 'mcpai_instructions', array( self::class, 'instructions' ) );
+		add_filter( 'viagent_tool_summaries', array( self::class, 'summaries' ) );
+		add_filter( 'viagent_instructions', array( self::class, 'instructions' ) );
 	}
 
 	/**
@@ -56,9 +56,9 @@ class Forms {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'Forms', 'mcpai' ),
+				'label'       => __( 'Forms', 'viagent' ),
 				/* translators: %s: form plugin names */
-				'description' => sprintf( __( 'Forms and entries from %s.', 'mcpai' ), implode( ', ', self::providers() ) ),
+				'description' => sprintf( __( 'Forms and entries from %s.', 'viagent' ), implode( ', ', self::providers() ) ),
 			)
 		);
 	}
@@ -81,7 +81,7 @@ class Forms {
 		$provider = array(
 			'type'        => 'string',
 			'enum'        => array_keys( self::providers() ),
-			'description' => __( 'Form plugin, as returned by list_forms.', 'mcpai' ),
+			'description' => __( 'Form plugin, as returned by list_forms.', 'viagent' ),
 		);
 		$id       = array(
 			'type'    => 'integer',
@@ -92,8 +92,8 @@ class Forms {
 			'list-forms',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List forms', 'mcpai' ),
-				'description' => __( 'Lists all forms from the active form plugins with their field count, number of stored entries and the shortcode to embed them in a page.', 'mcpai' ),
+				'label'       => __( 'List forms', 'viagent' ),
+				'description' => __( 'Lists all forms from the active form plugins with their field count, number of stored entries and the shortcode to embed them in a page.', 'viagent' ),
 				'execute'     => array( self::class, 'list_forms' ),
 				'permission'  => 'edit_posts',
 				'meta'        => Abilities::read_meta(),
@@ -104,8 +104,8 @@ class Forms {
 			'get-form',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Get form', 'mcpai' ),
-				'description' => __( 'Gets a form\'s fields (label, type, required, choices) and embed code.', 'mcpai' ),
+				'label'       => __( 'Get form', 'viagent' ),
+				'description' => __( 'Gets a form\'s fields (label, type, required, choices) and embed code.', 'viagent' ),
 				'input'       => array(
 					'provider' => $provider,
 					'form_id'  => $id,
@@ -121,15 +121,15 @@ class Forms {
 			'list-form-entries',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List form entries', 'mcpai' ),
-				'description' => __( 'Lists submissions of a form, newest first, with every field value. Contact Form 7 needs the Flamingo plugin to store entries; WPForms Lite does not store entries.', 'mcpai' ),
+				'label'       => __( 'List form entries', 'viagent' ),
+				'description' => __( 'Lists submissions of a form, newest first, with every field value. Contact Form 7 needs the Flamingo plugin to store entries; WPForms Lite does not store entries.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'provider' => $provider,
 						'form_id'  => $id,
 						'search'   => array(
 							'type'        => 'string',
-							'description' => __( 'Only entries containing this text.', 'mcpai' ),
+							'description' => __( 'Only entries containing this text.', 'viagent' ),
 						),
 					),
 					Abilities::paging()
@@ -261,7 +261,7 @@ class Forms {
 	private static function cf7_form( $id ) {
 		$form = \WPCF7_ContactForm::get_instance( $id );
 		if ( ! $form ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No Contact Form 7 form found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No Contact Form 7 form found with that ID.', 'viagent' ) );
 		}
 		return array(
 			'id'     => $form->id(),
@@ -308,10 +308,10 @@ class Forms {
 	 */
 	private static function cf7_entries( $form_id, $search, $per_page, $offset ) {
 		if ( ! \WPCF7_ContactForm::get_instance( $form_id ) ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No Contact Form 7 form found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No Contact Form 7 form found with that ID.', 'viagent' ) );
 		}
 		if ( ! class_exists( 'Flamingo_Inbound_Message' ) ) {
-			return new WP_Error( 'mcpai_no_entries', __( 'Contact Form 7 does not store submissions by itself. Install the free Flamingo plugin to keep them.', 'mcpai' ) );
+			return new WP_Error( 'viagent_no_entries', __( 'Contact Form 7 does not store submissions by itself. Install the free Flamingo plugin to keep them.', 'viagent' ) );
 		}
 		$channel = self::cf7_channel( $form_id );
 		if ( ! $channel ) {
@@ -442,7 +442,7 @@ class Forms {
 	private static function wpforms_form( $id ) {
 		$post = get_post( $id );
 		if ( ! $post || 'wpforms' !== $post->post_type ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No WPForms form found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No WPForms form found with that ID.', 'viagent' ) );
 		}
 		return array(
 			'id'     => $post->ID,
@@ -464,7 +464,7 @@ class Forms {
 	private static function wpforms_entries( $form_id, $search, $per_page, $offset ) {
 		$handler = self::wpforms_entry_handler();
 		if ( ! $handler ) {
-			return new WP_Error( 'mcpai_no_entries', __( 'WPForms Lite does not store form entries — they are only emailed. Entries are available with WPForms Pro.', 'mcpai' ) );
+			return new WP_Error( 'viagent_no_entries', __( 'WPForms Lite does not store form entries — they are only emailed. Entries are available with WPForms Pro.', 'viagent' ) );
 		}
 
 		$items = array();
@@ -548,7 +548,7 @@ class Forms {
 	private static function gravityforms_form( $id ) {
 		$form = \GFAPI::get_form( $id );
 		if ( ! $form ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No Gravity Forms form found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No Gravity Forms form found with that ID.', 'viagent' ) );
 		}
 		return array(
 			'id'     => (int) $form['id'],
@@ -570,7 +570,7 @@ class Forms {
 	private static function gravityforms_entries( $form_id, $search, $per_page, $offset ) {
 		$form = \GFAPI::get_form( $form_id );
 		if ( ! $form ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No Gravity Forms form found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No Gravity Forms form found with that ID.', 'viagent' ) );
 		}
 
 		$criteria = array( 'status' => 'active' );
@@ -641,9 +641,9 @@ class Forms {
 		return array_merge(
 			$summaries,
 			array(
-				'list_forms'        => __( 'See your forms and how to add them to a page.', 'mcpai' ),
-				'get_form'          => __( 'See the fields of a form.', 'mcpai' ),
-				'list_form_entries' => __( 'Read what people submitted through your forms.', 'mcpai' ),
+				'list_forms'        => __( 'See your forms and how to add them to a page.', 'viagent' ),
+				'get_form'          => __( 'See the fields of a form.', 'viagent' ),
+				'list_form_entries' => __( 'Read what people submitted through your forms.', 'viagent' ),
 			)
 		);
 	}

@@ -2,13 +2,13 @@
 /**
  * Taxonomy abilities: categories, tags and custom taxonomies.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WP_Error;
 use WP_Post;
 use WP_Term;
@@ -27,7 +27,7 @@ class Taxonomies {
 		$taxonomy = array(
 			'type'        => 'string',
 			'default'     => 'category',
-			'description' => __( 'Taxonomy name, e.g. "category" or "post_tag". See list_taxonomies.', 'mcpai' ),
+			'description' => __( 'Taxonomy name, e.g. "category" or "post_tag". See list_taxonomies.', 'viagent' ),
 		);
 		$term_id  = array(
 			'type'    => 'integer',
@@ -37,9 +37,9 @@ class Taxonomies {
 		Abilities::add(
 			'list-taxonomies',
 			array(
-				'category'    => 'mcpai-taxonomies',
-				'label'       => __( 'List taxonomies', 'mcpai' ),
-				'description' => __( 'Lists taxonomies (categories, tags and custom ones) with the post types they apply to.', 'mcpai' ),
+				'category'    => 'viagent-taxonomies',
+				'label'       => __( 'List taxonomies', 'viagent' ),
+				'description' => __( 'Lists taxonomies (categories, tags and custom ones) with the post types they apply to.', 'viagent' ),
 				'execute'     => array( self::class, 'list_taxonomies' ),
 				'permission'  => 'read',
 				'meta'        => Abilities::read_meta(),
@@ -49,9 +49,9 @@ class Taxonomies {
 		Abilities::add(
 			'list-terms',
 			array(
-				'category'    => 'mcpai-taxonomies',
-				'label'       => __( 'List terms', 'mcpai' ),
-				'description' => __( 'Lists terms (e.g. categories or tags) of a taxonomy, including empty ones, with post counts.', 'mcpai' ),
+				'category'    => 'viagent-taxonomies',
+				'label'       => __( 'List terms', 'viagent' ),
+				'description' => __( 'Lists terms (e.g. categories or tags) of a taxonomy, including empty ones, with post counts.', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'taxonomy' => $taxonomy,
@@ -82,9 +82,9 @@ class Taxonomies {
 		Abilities::add(
 			'create-term',
 			array(
-				'category'    => 'mcpai-taxonomies',
-				'label'       => __( 'Create term', 'mcpai' ),
-				'description' => __( 'Creates a category, tag or custom taxonomy term.', 'mcpai' ),
+				'category'    => 'viagent-taxonomies',
+				'label'       => __( 'Create term', 'viagent' ),
+				'description' => __( 'Creates a category, tag or custom taxonomy term.', 'viagent' ),
 				'input'       => array_merge( array( 'taxonomy' => $taxonomy ), $term_fields ),
 				'required'    => array( 'name' ),
 				'execute'     => array( self::class, 'create_term' ),
@@ -99,9 +99,9 @@ class Taxonomies {
 		Abilities::add(
 			'update-term',
 			array(
-				'category'    => 'mcpai-taxonomies',
-				'label'       => __( 'Update term', 'mcpai' ),
-				'description' => __( 'Renames or edits a term (name, slug, description, parent).', 'mcpai' ),
+				'category'    => 'viagent-taxonomies',
+				'label'       => __( 'Update term', 'viagent' ),
+				'description' => __( 'Renames or edits a term (name, slug, description, parent).', 'viagent' ),
 				'input'       => array_merge( array( 'id' => $term_id ), $term_fields ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'update_term' ),
@@ -115,9 +115,9 @@ class Taxonomies {
 		Abilities::add(
 			'delete-term',
 			array(
-				'category'    => 'mcpai-taxonomies',
-				'label'       => __( 'Delete term', 'mcpai' ),
-				'description' => __( 'Permanently deletes a term. Posts keep existing but lose this term. The default category cannot be deleted.', 'mcpai' ),
+				'category'    => 'viagent-taxonomies',
+				'label'       => __( 'Delete term', 'viagent' ),
+				'description' => __( 'Permanently deletes a term. Posts keep existing but lose this term. The default category cannot be deleted.', 'viagent' ),
 				'input'       => array( 'id' => $term_id ),
 				'required'    => array( 'id' ),
 				'execute'     => array( self::class, 'delete_term' ),
@@ -131,9 +131,9 @@ class Taxonomies {
 		Abilities::add(
 			'assign-terms',
 			array(
-				'category'    => 'mcpai-taxonomies',
-				'label'       => __( 'Assign terms to post', 'mcpai' ),
-				'description' => __( 'Sets or adds terms on a post. Terms can be names, slugs or IDs; missing names are created.', 'mcpai' ),
+				'category'    => 'viagent-taxonomies',
+				'label'       => __( 'Assign terms to post', 'viagent' ),
+				'description' => __( 'Sets or adds terms on a post. Terms can be names, slugs or IDs; missing names are created.', 'viagent' ),
 				'input'       => array(
 					'post_id'  => $term_id,
 					'taxonomy' => $taxonomy,
@@ -144,7 +144,7 @@ class Taxonomies {
 					'append'   => array(
 						'type'        => 'boolean',
 						'default'     => false,
-						'description' => __( 'Add to existing terms instead of replacing them.', 'mcpai' ),
+						'description' => __( 'Add to existing terms instead of replacing them.', 'viagent' ),
 					),
 				),
 				'required'    => array( 'post_id', 'terms' ),
@@ -165,7 +165,14 @@ class Taxonomies {
 	public static function taxonomies() {
 		$taxonomies = get_taxonomies( array( 'show_ui' => true ), 'objects' );
 		unset( $taxonomies['nav_menu'], $taxonomies['wp_pattern_category'] );
-		return $taxonomies;
+
+		// Non-public taxonomies only for users who can work with their terms.
+		return array_filter(
+			$taxonomies,
+			static function ( $taxonomy ) {
+				return is_taxonomy_viewable( $taxonomy ) || current_user_can( $taxonomy->cap->assign_terms );
+			}
+		);
 	}
 
 	/**
@@ -177,7 +184,7 @@ class Taxonomies {
 	private static function taxonomy( $name ) {
 		$taxonomies = self::taxonomies();
 		if ( ! isset( $taxonomies[ $name ] ) ) {
-			return new WP_Error( 'mcpai_invalid_taxonomy', sprintf( /* translators: %s: taxonomy */ __( 'Unknown taxonomy "%s". Use list_taxonomies to see available ones.', 'mcpai' ), $name ) );
+			return new WP_Error( 'viagent_invalid_taxonomy', sprintf( /* translators: %s: taxonomy */ __( 'Unknown taxonomy "%s". Use list_taxonomies to see available ones.', 'viagent' ), $name ) );
 		}
 		return $taxonomies[ $name ];
 	}
@@ -285,7 +292,7 @@ class Taxonomies {
 	public static function update_term( $input ) {
 		$term = get_term( (int) $input['id'] );
 		if ( ! $term instanceof WP_Term || is_wp_error( self::taxonomy( $term->taxonomy ) ) ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No term found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No term found with that ID.', 'viagent' ) );
 		}
 
 		$args = self::term_args( $input );
@@ -311,7 +318,7 @@ class Taxonomies {
 	public static function delete_term( $input ) {
 		$term = get_term( (int) $input['id'] );
 		if ( ! $term instanceof WP_Term || is_wp_error( self::taxonomy( $term->taxonomy ) ) ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No term found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No term found with that ID.', 'viagent' ) );
 		}
 
 		Activity_Log::set_object( 'term', $term->term_id );
@@ -321,7 +328,7 @@ class Taxonomies {
 			return $result;
 		}
 		if ( true !== $result ) {
-			return new WP_Error( 'mcpai_delete_failed', __( 'This term cannot be deleted (it may be the default category).', 'mcpai' ) );
+			return new WP_Error( 'viagent_delete_failed', __( 'This term cannot be deleted (it may be the default category).', 'viagent' ) );
 		}
 
 		return array(
@@ -384,10 +391,10 @@ class Taxonomies {
 			return $tax;
 		}
 		if ( ! in_array( $post->post_type, $tax->object_type, true ) ) {
-			return new WP_Error( 'mcpai_taxonomy_mismatch', sprintf( /* translators: 1: taxonomy, 2: post type */ __( 'The taxonomy "%1$s" is not used by "%2$s".', 'mcpai' ), $tax->name, $post->post_type ) );
+			return new WP_Error( 'viagent_taxonomy_mismatch', sprintf( /* translators: 1: taxonomy, 2: post type */ __( 'The taxonomy "%1$s" is not used by "%2$s".', 'viagent' ), $tax->name, $post->post_type ) );
 		}
 		if ( ! current_user_can( $tax->cap->assign_terms ) ) {
-			return new WP_Error( 'mcpai_forbidden', __( 'You are not allowed to assign these terms.', 'mcpai' ) );
+			return new WP_Error( 'viagent_forbidden', __( 'You are not allowed to assign these terms.', 'viagent' ) );
 		}
 		$editable = Policy::check_post_editable( $post );
 		if ( is_wp_error( $editable ) ) {
@@ -405,7 +412,7 @@ class Taxonomies {
 			}
 			if ( ! $term instanceof WP_Term ) {
 				if ( ! current_user_can( $tax->cap->edit_terms ) ) {
-					return new WP_Error( 'mcpai_forbidden', sprintf( /* translators: %s: term name */ __( 'The term "%s" does not exist and you are not allowed to create it.', 'mcpai' ), $value ) );
+					return new WP_Error( 'viagent_forbidden', sprintf( /* translators: %s: term name */ __( 'The term "%s" does not exist and you are not allowed to create it.', 'viagent' ), $value ) );
 				}
 				$created = wp_insert_term( wp_slash( (string) $value ), $tax->name );
 				if ( is_wp_error( $created ) ) {

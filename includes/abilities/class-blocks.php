@@ -2,10 +2,10 @@
 /**
  * Block abilities: discover block types and patterns to build layouts with.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
 use WP_Error;
 
@@ -23,14 +23,14 @@ class Blocks {
 		Abilities::add(
 			'list-block-types',
 			array(
-				'category'    => 'mcpai-blocks',
-				'label'       => __( 'List block types', 'mcpai' ),
-				'description' => __( 'Lists blocks available on this site (core and from plugins) that can be used in content markup.', 'mcpai' ),
+				'category'    => 'viagent-blocks',
+				'label'       => __( 'List block types', 'viagent' ),
+				'description' => __( 'Lists blocks available on this site (core and from plugins) that can be used in content markup.', 'viagent' ),
 				'input'       => array(
 					'search'   => array( 'type' => 'string' ),
 					'category' => array(
 						'type'        => 'string',
-						'description' => __( 'e.g. "text", "media", "design", "widgets", "theme", "embed".', 'mcpai' ),
+						'description' => __( 'e.g. "text", "media", "design", "widgets", "theme", "embed".', 'viagent' ),
 					),
 				),
 				'execute'     => array( self::class, 'list_block_types' ),
@@ -42,9 +42,9 @@ class Blocks {
 		Abilities::add(
 			'list-patterns',
 			array(
-				'category'    => 'mcpai-blocks',
-				'label'       => __( 'List patterns', 'mcpai' ),
-				'description' => __( 'Lists ready-made block patterns (theme, plugin and saved patterns) such as heroes, pricing tables or footers. Use get_pattern to fetch the markup and insert it into content.', 'mcpai' ),
+				'category'    => 'viagent-blocks',
+				'label'       => __( 'List patterns', 'viagent' ),
+				'description' => __( 'Lists ready-made block patterns (theme, plugin and saved patterns) such as heroes, pricing tables or footers. Use get_pattern to fetch the markup and insert it into content.', 'viagent' ),
 				'input'       => array(
 					'search'   => array( 'type' => 'string' ),
 					'category' => array( 'type' => 'string' ),
@@ -58,9 +58,9 @@ class Blocks {
 		Abilities::add(
 			'get-pattern',
 			array(
-				'category'    => 'mcpai-blocks',
-				'label'       => __( 'Get pattern', 'mcpai' ),
-				'description' => __( 'Gets the block markup of a pattern by name (from list_patterns). Saved patterns use the name "saved/<id>".', 'mcpai' ),
+				'category'    => 'viagent-blocks',
+				'label'       => __( 'Get pattern', 'viagent' ),
+				'description' => __( 'Gets the block markup of a pattern by name (from list_patterns). Saved patterns use the name "saved/<id>".', 'viagent' ),
 				'input'       => array( 'name' => array( 'type' => 'string' ) ),
 				'required'    => array( 'name' ),
 				'execute'     => array( self::class, 'get_pattern' ),
@@ -152,7 +152,7 @@ class Blocks {
 				$result[] = array(
 					'name'        => 'saved/' . $saved->ID,
 					'title'       => $saved->post_title,
-					'description' => __( 'Saved pattern. Insert as <!-- wp:block {"ref":ID} /--> to keep it synced.', 'mcpai' ),
+					'description' => __( 'Saved pattern. Insert as <!-- wp:block {"ref":ID} /--> to keep it synced.', 'viagent' ),
 					'categories'  => array( 'saved' ),
 				);
 			}
@@ -173,7 +173,7 @@ class Blocks {
 		if ( 0 === strpos( $name, 'saved/' ) ) {
 			$saved = get_post( (int) substr( $name, 6 ) );
 			if ( ! $saved || 'wp_block' !== $saved->post_type || ! current_user_can( 'read_post', $saved->ID ) ) {
-				return new WP_Error( 'mcpai_not_found', __( 'No saved pattern found with that name.', 'mcpai' ) );
+				return new WP_Error( 'viagent_not_found', __( 'No saved pattern found with that name.', 'viagent' ) );
 			}
 			return array(
 				'name'         => $name,
@@ -185,7 +185,7 @@ class Blocks {
 
 		$pattern = \WP_Block_Patterns_Registry::get_instance()->get_registered( $name );
 		if ( ! $pattern ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No pattern found with that name. Use list_patterns.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No pattern found with that name. Use list_patterns.', 'viagent' ) );
 		}
 		return array(
 			'name'    => $pattern['name'],

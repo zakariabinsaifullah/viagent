@@ -2,14 +2,14 @@
 /**
  * MCP Streamable HTTP transport on top of the WordPress REST API.
  *
- * Endpoint: /wp-json/mcpai/v1/mcp
+ * Endpoint: /wp-json/viagent/v1/mcp
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\MCP;
+namespace Viagent\MCP;
 
-use MCPAI\Auth\Authenticator;
+use Viagent\Auth\Authenticator;
 use WP_REST_Request;
 use WP_REST_Response;
 
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Transport {
 
-	const REST_NAMESPACE = 'mcpai/v1';
+	const REST_NAMESPACE = 'viagent/v1';
 	const ROUTE          = '/mcp';
 	const MAX_BODY_BYTES = 8388608; // 8 MB, enough for base64 image uploads.
 	const SESSION_TTL    = DAY_IN_SECONDS;
@@ -252,7 +252,7 @@ class Transport {
 	 * @return string
 	 */
 	private static function session_key( $id ) {
-		return 'mcpai_sess_' . md5( $id );
+		return 'viagent_sess_' . md5( $id );
 	}
 
 	/**

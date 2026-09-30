@@ -1,0 +1,13 @@
+/* Viagent – OAuth consent screen (wp-login.php?action=viagent_authorize). */
+#login { width: 380px; }
+.viagent-consent { background: #fff; border: 1px solid #c3c4c7; box-shadow: 0 1px 3px rgba(0,0,0,.04); padding: 24px; margin-top: 20px; }
+.viagent-consent h2 { font-size: 18px; font-weight: 400; line-height: 1.4; margin: 0 0 8px; }
+.viagent-consent__meta, .viagent-consent__note { color: #50575e; font-size: 13px; }
+.viagent-consent fieldset { margin: 16px 0; padding: 0; border: 0; min-width: 0; }
+.viagent-consent legend { font-weight: 600; margin-bottom: 8px; padding: 0; }
+.login .viagent-consent .viagent-consent__option { display: flex; gap: 10px; align-items: flex-start; width: 100%; box-sizing: border-box; padding: 10px 12px; margin: 0 0 8px; border: 1px solid #dcdcde; border-radius: 4px; cursor: pointer; }
+.login .viagent-consent .viagent-consent__option:has(input:checked) { border-color: #2271b1; background: #f0f6fc; }
+.login .viagent-consent .viagent-consent__option input { margin: 3px 0 0; flex-shrink: 0; }
+.viagent-consent__option span { display: block; font-size: 13px; color: #50575e; line-height: 1.5; }
+.viagent-consent__option strong { display: block; color: #1d2327; font-size: 14px; }
+.viagent-consent__actions { display: flex; justify-content: flex-end; gap: 8px; margin: 16px 0 0; }

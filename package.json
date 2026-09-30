@@ -1,5 +1,5 @@
 {
-	"name": "mcpai",
+	"name": "viagent",
 	"version": "1.0.0",
 	"private": true,
 	"description": "Connect your WordPress site to AI agents with MCP.",
@@ -18,11 +18,12 @@
 		"@wordpress/icons": "^17.0.0"
 	},
 	"files": [
+		"assets",
 		"build",
 		"includes",
 		"languages",
 		"src",
-		"mcpai.php",
+		"viagent.php",
 		"uninstall.php",
 		"readme.txt",
 		"package.json"

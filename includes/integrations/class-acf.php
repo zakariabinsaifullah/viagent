@@ -3,14 +3,14 @@
  * Advanced Custom Fields tools: discover field groups and read or update
  * field values on posts, pages and products.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Integrations;
+namespace Viagent\Integrations;
 
-use MCPAI\Abilities\Abilities;
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Abilities\Abilities;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class ACF {
 
-	const CATEGORY = 'mcpai-acf';
+	const CATEGORY = 'viagent-acf';
 
 	/**
 	 * Field types the AI may write. Complex types (repeaters, flexible content,
@@ -32,9 +32,9 @@ class ACF {
 	 * Registers hooks.
 	 */
 	public static function init() {
-		add_filter( 'mcpai_apply_undo', array( self::class, 'apply_undo' ), 10, 2 );
-		add_filter( 'mcpai_tool_summaries', array( self::class, 'summaries' ) );
-		add_filter( 'mcpai_instructions', array( self::class, 'instructions' ) );
+		add_filter( 'viagent_apply_undo', array( self::class, 'apply_undo' ), 10, 2 );
+		add_filter( 'viagent_tool_summaries', array( self::class, 'summaries' ) );
+		add_filter( 'viagent_instructions', array( self::class, 'instructions' ) );
 	}
 
 	/**
@@ -44,8 +44,8 @@ class ACF {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'Custom fields (ACF)', 'mcpai' ),
-				'description' => __( 'Fields added with Advanced Custom Fields.', 'mcpai' ),
+				'label'       => __( 'Custom fields (ACF)', 'viagent' ),
+				'description' => __( 'Fields added with Advanced Custom Fields.', 'viagent' ),
 			)
 		);
 	}
@@ -74,8 +74,8 @@ class ACF {
 			'list-acf-field-groups',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List ACF field groups', 'mcpai' ),
-				'description' => __( 'Lists ACF field groups with their fields (name, label, type, choices) and where they appear. Optionally only groups that apply to one post.', 'mcpai' ),
+				'label'       => __( 'List ACF field groups', 'viagent' ),
+				'description' => __( 'Lists ACF field groups with their fields (name, label, type, choices) and where they appear. Optionally only groups that apply to one post.', 'viagent' ),
 				'input'       => array( 'post_id' => $post_id ),
 				'execute'     => array( self::class, 'list_field_groups' ),
 				'permission'  => 'edit_posts',
@@ -87,8 +87,8 @@ class ACF {
 			'get-acf-fields',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Get ACF fields', 'mcpai' ),
-				'description' => __( 'Gets all ACF field values of a post, page or product, with each field\'s label and type.', 'mcpai' ),
+				'label'       => __( 'Get ACF fields', 'viagent' ),
+				'description' => __( 'Gets all ACF field values of a post, page or product, with each field\'s label and type.', 'viagent' ),
 				'input'       => array( 'post_id' => $post_id ),
 				'required'    => array( 'post_id' ),
 				'execute'     => array( self::class, 'get_fields' ),
@@ -103,14 +103,14 @@ class ACF {
 			'update-acf-field',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Update ACF field', 'mcpai' ),
-				'description' => __( 'Sets one ACF field on a post by field name or key. Use IDs for image, file, post and user fields; arrays for checkboxes and relationships; true/false for toggles; "Ymd" dates such as "20261231" for date pickers.', 'mcpai' ),
+				'label'       => __( 'Update ACF field', 'viagent' ),
+				'description' => __( 'Sets one ACF field on a post by field name or key. Use IDs for image, file, post and user fields; arrays for checkboxes and relationships; true/false for toggles; "Ymd" dates such as "20261231" for date pickers.', 'viagent' ),
 				'input'       => array(
 					'post_id' => $post_id,
 					'field'   => array(
 						'type'        => 'string',
 						'minLength'   => 1,
-						'description' => __( 'Field name (e.g. "price_note") or key (e.g. "field_abc123").', 'mcpai' ),
+						'description' => __( 'Field name (e.g. "price_note") or key (e.g. "field_abc123").', 'viagent' ),
 					),
 					'value'   => array(
 						'type' => array( 'string', 'number', 'integer', 'boolean', 'array', 'object', 'null' ),
@@ -202,7 +202,7 @@ class ACF {
 	public static function get_fields( $input ) {
 		$post = get_post( (int) $input['post_id'] );
 		if ( ! $post ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No post found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No post found with that ID.', 'viagent' ) );
 		}
 
 		$fields = array();
@@ -229,7 +229,7 @@ class ACF {
 	public static function update_field( $input ) {
 		$post = get_post( (int) $input['post_id'] );
 		if ( ! $post ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No post found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No post found with that ID.', 'viagent' ) );
 		}
 		$editable = Policy::check_post_editable( $post );
 		if ( is_wp_error( $editable ) ) {
@@ -242,16 +242,16 @@ class ACF {
 			$field = get_field_object( $input['field'], $post->ID, false, false );
 		}
 		if ( ! $field ) {
-			return new WP_Error( 'mcpai_unknown_field', __( 'No ACF field with that name or key applies to this post. Use list_acf_field_groups with the post_id.', 'mcpai' ) );
+			return new WP_Error( 'viagent_unknown_field', __( 'No ACF field with that name or key applies to this post. Use list_acf_field_groups with the post_id.', 'viagent' ) );
 		}
 		if ( ! in_array( $field['type'], self::WRITABLE_TYPES, true ) ) {
 			/* translators: %s: field type */
-			return new WP_Error( 'mcpai_unsupported_field', sprintf( __( 'Fields of type "%s" can be read but not changed by AI apps yet. Edit this field in WordPress.', 'mcpai' ), $field['type'] ) );
+			return new WP_Error( 'viagent_unsupported_field', sprintf( __( 'Fields of type "%s" can be read but not changed by AI apps yet. Edit this field in WordPress.', 'viagent' ), $field['type'] ) );
 		}
 
 		$previous = get_field( $field['key'], $post->ID, false );
 		if ( ! update_field( $field['key'], $input['value'], $post->ID ) && get_field( $field['key'], $post->ID, false ) !== $input['value'] ) {
-			return new WP_Error( 'mcpai_update_failed', __( 'The field could not be saved.', 'mcpai' ) );
+			return new WP_Error( 'viagent_update_failed', __( 'The field could not be saved.', 'viagent' ) );
 		}
 
 		Activity_Log::set_object( 'post', $post->ID );
@@ -283,7 +283,7 @@ class ACF {
 			return $result;
 		}
 		if ( ! current_user_can( 'edit_post', (int) $undo['post_id'] ) ) {
-			return new WP_Error( 'mcpai_forbidden', __( 'You are not allowed to change this item.', 'mcpai' ) );
+			return new WP_Error( 'viagent_forbidden', __( 'You are not allowed to change this item.', 'viagent' ) );
 		}
 		if ( null === $undo['value'] ) {
 			delete_field( $undo['field_key'], (int) $undo['post_id'] );
@@ -303,9 +303,9 @@ class ACF {
 		return array_merge(
 			$summaries,
 			array(
-				'list_acf_field_groups' => __( 'See which custom fields exist and where.', 'mcpai' ),
-				'get_acf_fields'        => __( 'Read the custom fields of a post or page.', 'mcpai' ),
-				'update_acf_field'      => __( 'Fill in or change custom fields.', 'mcpai' ),
+				'list_acf_field_groups' => __( 'See which custom fields exist and where.', 'viagent' ),
+				'get_acf_fields'        => __( 'Read the custom fields of a post or page.', 'viagent' ),
+				'update_acf_field'      => __( 'Fill in or change custom fields.', 'viagent' ),
 			)
 		);
 	}

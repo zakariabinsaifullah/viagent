@@ -16,27 +16,27 @@ import {
 	levelTone,
 } from '../components';
 
-const settings = window.mcpaiSettings;
+const settings = window.viagentSettings;
 
 function ConnectionStatus( { connection, onHelp } ) {
 	if ( connection.last_used_at ) {
 		return (
-			<span className="mcpai-conn__status is-connected">
-				<span className="mcpai-dot is-success" aria-hidden="true" />
+			<span className="viagent-conn__status is-connected">
+				<span className="viagent-dot is-success" aria-hidden="true" />
 				{ sprintf(
 					/* translators: %s: relative time */
-					__( 'Active %s', 'mcpai' ),
+					__( 'Active %s', 'viagent' ),
 					humanTimeDiff( connection.last_used_at )
 				) }
 			</span>
 		);
 	}
 	return (
-		<span className="mcpai-conn__status is-waiting">
-			<span className="mcpai-dot is-warning" aria-hidden="true" />
-			{ __( 'Not connected yet', 'mcpai' ) }
+		<span className="viagent-conn__status is-waiting">
+			<span className="viagent-dot is-warning" aria-hidden="true" />
+			{ __( 'Not connected yet', 'viagent' ) }
 			<Button variant="link" onClick={ onHelp }>
-				{ __( 'How to finish', 'mcpai' ) }
+				{ __( 'How to finish', 'viagent' ) }
 			</Button>
 		</span>
 	);
@@ -78,17 +78,17 @@ export default function Connections( { navigate } ) {
 			icon={ plus }
 			onClick={ () => navigate( 'connect' ) }
 		>
-			{ __( 'Connect an app', 'mcpai' ) }
+			{ __( 'Connect an app', 'viagent' ) }
 		</Button>
 	);
 
 	return (
 		<>
 			<ScreenHeader
-				title={ __( 'Connections', 'mcpai' ) }
+				title={ __( 'Connections', 'viagent' ) }
 				description={ __(
 					'AI apps that can access your site. Revoke any of them at any time — they are disconnected immediately.',
-					'mcpai'
+					'viagent'
 				) }
 				actions={ newButton }
 			/>
@@ -102,15 +102,15 @@ export default function Connections( { navigate } ) {
 			{ connections === null && <Spinner /> }
 
 			{ connections && connections.length === 0 && (
-				<Card className="mcpai-empty">
-					<span className="mcpai-empty__icon" aria-hidden="true">
+				<Card className="viagent-empty">
+					<span className="viagent-empty__icon" aria-hidden="true">
 						✦
 					</span>
-					<h3>{ __( 'No AI apps connected yet', 'mcpai' ) }</h3>
+					<h3>{ __( 'No AI apps connected yet', 'viagent' ) }</h3>
 					<p>
 						{ __(
 							'Connect Claude, ChatGPT, Cursor or another AI app in about a minute.',
-							'mcpai'
+							'viagent'
 						) }
 					</p>
 					{ newButton }
@@ -118,19 +118,19 @@ export default function Connections( { navigate } ) {
 			) }
 
 			{ connections && connections.length > 0 && (
-				<Card className="mcpai-list">
+				<Card className="viagent-list">
 					{ connections.map( ( connection ) => {
 						const client = clientFor( connection.client );
 						return (
 							<div
-								className="mcpai-conn"
+								className="viagent-conn"
 								key={ `${ connection.type }-${ connection.id }` }
 							>
 								<ClientMark client={ client } />
-								<div className="mcpai-conn__main">
+								<div className="viagent-conn__main">
 									<strong>{ connection.name }</strong>
 									<span
-										className="mcpai-muted"
+										className="viagent-muted"
 										title={
 											connection.key_prefix
 												? `${ connection.key_prefix }…`
@@ -140,21 +140,21 @@ export default function Connections( { navigate } ) {
 										{ connection.type === 'oauth'
 											? __(
 													'Signed in with WordPress',
-													'mcpai'
+													'viagent'
 												)
 											: __(
 													'Connected with a key',
-													'mcpai'
+													'viagent'
 												) }
 										{ ' · ' }
 										{ sprintf(
 											/* translators: %s: user name */
-											__( 'acts as %s', 'mcpai' ),
+											__( 'acts as %s', 'viagent' ),
 											connection.user
 										) }
 									</span>
 								</div>
-								<div className="mcpai-conn__badges">
+								<div className="viagent-conn__badges">
 									<Badge
 										tone={ levelTone(
 											connection.access_level
@@ -169,12 +169,15 @@ export default function Connections( { navigate } ) {
 									{ connection.access_level !== 'read' &&
 										connection.draft_only && (
 											<Badge>
-												{ __( 'Drafts only', 'mcpai' ) }
+												{ __(
+													'Drafts only',
+													'viagent'
+												) }
 											</Badge>
 										) }
 									{ connection.compact && (
 										<Badge tone="info">
-											{ __( 'Compact', 'mcpai' ) }
+											{ __( 'Compact', 'viagent' ) }
 										</Badge>
 									) }
 								</div>
@@ -183,13 +186,13 @@ export default function Connections( { navigate } ) {
 									onHelp={ () => navigate( 'connect' ) }
 								/>
 								<Button
-									className="mcpai-conn__revoke"
+									className="viagent-conn__revoke"
 									variant="tertiary"
 									isDestructive
 									size="compact"
 									onClick={ () => setRevoking( connection ) }
 								>
-									{ __( 'Revoke', 'mcpai' ) }
+									{ __( 'Revoke', 'viagent' ) }
 								</Button>
 							</div>
 						);
@@ -199,7 +202,7 @@ export default function Connections( { navigate } ) {
 
 			{ revoking && (
 				<Modal
-					title={ __( 'Revoke this connection?', 'mcpai' ) }
+					title={ __( 'Revoke this connection?', 'viagent' ) }
 					onRequestClose={ () => setRevoking( null ) }
 					size="small"
 				>
@@ -208,17 +211,17 @@ export default function Connections( { navigate } ) {
 							/* translators: %s: connection name */
 							__(
 								'“%s” will immediately lose access to your site. You can create a new connection later.',
-								'mcpai'
+								'viagent'
 							),
 							revoking.name
 						) }
 					</p>
-					<div className="mcpai-actions">
+					<div className="viagent-actions">
 						<Button
 							variant="tertiary"
 							onClick={ () => setRevoking( null ) }
 						>
-							{ __( 'Cancel', 'mcpai' ) }
+							{ __( 'Cancel', 'viagent' ) }
 						</Button>
 						<Button
 							variant="primary"
@@ -227,7 +230,7 @@ export default function Connections( { navigate } ) {
 							disabled={ busy }
 							onClick={ revoke }
 						>
-							{ __( 'Revoke access', 'mcpai' ) }
+							{ __( 'Revoke access', 'viagent' ) }
 						</Button>
 					</div>
 				</Modal>

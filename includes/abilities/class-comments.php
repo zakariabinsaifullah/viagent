@@ -2,13 +2,13 @@
 /**
  * Comment abilities: list, reply and moderate.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WP_Comment;
 use WP_Error;
 
@@ -31,9 +31,9 @@ class Comments {
 		Abilities::add(
 			'list-comments',
 			array(
-				'category'    => 'mcpai-comments',
-				'label'       => __( 'List comments', 'mcpai' ),
-				'description' => __( 'Lists comments, newest first. Filter by post and status ("hold" = waiting for approval).', 'mcpai' ),
+				'category'    => 'viagent-comments',
+				'label'       => __( 'List comments', 'viagent' ),
+				'description' => __( 'Lists comments, newest first. Filter by post and status ("hold" = waiting for approval).', 'viagent' ),
 				'input'       => array_merge(
 					array(
 						'post_id' => array(
@@ -58,9 +58,9 @@ class Comments {
 		Abilities::add(
 			'reply-to-comment',
 			array(
-				'category'    => 'mcpai-comments',
-				'label'       => __( 'Reply to comment', 'mcpai' ),
-				'description' => __( 'Publishes a reply to a comment as the connected user. The reply is public immediately.', 'mcpai' ),
+				'category'    => 'viagent-comments',
+				'label'       => __( 'Reply to comment', 'viagent' ),
+				'description' => __( 'Publishes a reply to a comment as the connected user. The reply is public immediately.', 'viagent' ),
 				'input'       => array(
 					'comment_id' => $id,
 					'content'    => array(
@@ -78,9 +78,9 @@ class Comments {
 		Abilities::add(
 			'moderate-comment',
 			array(
-				'category'    => 'mcpai-comments',
-				'label'       => __( 'Moderate comment', 'mcpai' ),
-				'description' => __( 'Approves, unapproves, marks as spam or trashes a comment.', 'mcpai' ),
+				'category'    => 'viagent-comments',
+				'label'       => __( 'Moderate comment', 'viagent' ),
+				'description' => __( 'Approves, unapproves, marks as spam or trashes a comment.', 'viagent' ),
 				'input'       => array(
 					'comment_id' => $id,
 					'action'     => array(
@@ -166,7 +166,7 @@ class Comments {
 	public static function reply( $input ) {
 		$parent = get_comment( (int) $input['comment_id'] );
 		if ( ! $parent ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No comment found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No comment found with that ID.', 'viagent' ) );
 		}
 
 		$user = wp_get_current_user();
@@ -185,7 +185,7 @@ class Comments {
 			)
 		);
 		if ( ! $id ) {
-			return new WP_Error( 'mcpai_comment_failed', __( 'Could not save the reply.', 'mcpai' ) );
+			return new WP_Error( 'viagent_comment_failed', __( 'Could not save the reply.', 'viagent' ) );
 		}
 
 		Activity_Log::set_object( 'comment', $id );
@@ -201,7 +201,7 @@ class Comments {
 	public static function moderate( $input ) {
 		$comment = get_comment( (int) $input['comment_id'] );
 		if ( ! $comment ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No comment found with that ID.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No comment found with that ID.', 'viagent' ) );
 		}
 
 		$status = array(

@@ -3,10 +3,10 @@
  * Public OAuth endpoints: discovery (/.well-known/*), dynamic client
  * registration, token and revocation.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Auth\OAuth;
+namespace Viagent\Auth\OAuth;
 
 use WP_REST_Request;
 use WP_REST_Response;
@@ -83,7 +83,7 @@ class OAuth_API {
 		$public = '__return_true';
 
 		register_rest_route(
-			'mcpai/v1',
+			'viagent/v1',
 			'/oauth/protected-resource',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -95,7 +95,7 @@ class OAuth_API {
 		);
 
 		register_rest_route(
-			'mcpai/v1',
+			'viagent/v1',
 			'/oauth/authorization-server',
 			array(
 				'methods'             => WP_REST_Server::READABLE,
@@ -107,7 +107,7 @@ class OAuth_API {
 		);
 
 		register_rest_route(
-			'mcpai/v1',
+			'viagent/v1',
 			'/oauth/register',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -117,7 +117,7 @@ class OAuth_API {
 		);
 
 		register_rest_route(
-			'mcpai/v1',
+			'viagent/v1',
 			'/oauth/token',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -127,7 +127,7 @@ class OAuth_API {
 		);
 
 		register_rest_route(
-			'mcpai/v1',
+			'viagent/v1',
 			'/oauth/revoke',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
@@ -176,7 +176,7 @@ class OAuth_API {
 	 * @return WP_REST_Response
 	 */
 	public static function register_client( WP_REST_Request $request ) {
-		$ip_key = 'mcpai_reg_' . md5( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) . gmdate( 'YmdH' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$ip_key = 'viagent_reg_' . md5( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) . gmdate( 'YmdH' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$count  = (int) get_transient( $ip_key ) + 1;
 		set_transient( $ip_key, $count, HOUR_IN_SECONDS );
 		if ( $count > self::REGISTRATIONS_PER_HOUR ) {

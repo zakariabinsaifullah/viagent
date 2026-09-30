@@ -1,14 +1,14 @@
 <?php
 /**
- * The Mcpai admin page: menu, assets, first-run redirect and admin bar status.
+ * The Viagent admin page: menu, assets, first-run redirect and admin bar status.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Admin;
+namespace Viagent\Admin;
 
-use MCPAI\MCP\Transport;
-use MCPAI\Security\Policy;
+use Viagent\MCP\Transport;
+use Viagent\Security\Policy;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -17,11 +17,11 @@ defined( 'ABSPATH' ) || exit;
  */
 class Admin {
 
-	const SLUG            = 'mcpai';
-	const REDIRECT_OPTION = 'mcpai_activation_redirect';
+	const SLUG            = 'viagent';
+	const REDIRECT_OPTION = 'viagent_activation_redirect';
 
 	/**
-	 * Hook suffix of the admin page (tools_page_mcpai).
+	 * Hook suffix of the admin page (tools_page_viagent).
 	 *
 	 * @var string
 	 */
@@ -35,7 +35,7 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
 		add_action( 'admin_init', array( self::class, 'maybe_redirect' ) );
 		add_action( 'admin_bar_menu', array( self::class, 'admin_bar' ), 100 );
-		add_filter( 'plugin_action_links_' . plugin_basename( MCPAI_FILE ), array( self::class, 'action_links' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( VIAGENT_FILE ), array( self::class, 'action_links' ) );
 	}
 
 	/**
@@ -53,8 +53,8 @@ class Admin {
 	 */
 	public static function add_menu() {
 		self::$hook_suffix = (string) add_management_page(
-			__( 'Mcpai', 'mcpai' ),
-			__( 'Mcpai', 'mcpai' ),
+			__( 'Viagent', 'viagent' ),
+			__( 'Viagent', 'viagent' ),
 			'manage_options',
 			self::SLUG,
 			array( self::class, 'render' )
@@ -65,7 +65,7 @@ class Admin {
 	 * Renders the React root.
 	 */
 	public static function render() {
-		echo '<div class="wrap mcpai-wrap"><div id="mcpai-root"><p class="mcpai-loading">' . esc_html__( 'Loading…', 'mcpai' ) . '</p></div></div>';
+		echo '<div class="wrap viagent-wrap"><div id="viagent-root"><p class="viagent-loading">' . esc_html__( 'Loading…', 'viagent' ) . '</p></div></div>';
 	}
 
 	/**
@@ -78,20 +78,20 @@ class Admin {
 			return;
 		}
 
-		$asset_file = MCPAI_DIR . 'build/index.asset.php';
+		$asset_file = VIAGENT_DIR . 'build/index.asset.php';
 		if ( ! file_exists( $asset_file ) ) {
 			return;
 		}
 		$asset = require $asset_file;
 
-		wp_enqueue_script( 'mcpai-admin', MCPAI_URL . 'build/index.js', $asset['dependencies'], $asset['version'], true );
-		wp_enqueue_style( 'mcpai-admin', MCPAI_URL . 'build/index.css', array( 'wp-components' ), $asset['version'] );
-		wp_style_add_data( 'mcpai-admin', 'rtl', 'replace' );
-		wp_set_script_translations( 'mcpai-admin', 'mcpai' );
+		wp_enqueue_script( 'viagent-admin', VIAGENT_URL . 'build/index.js', $asset['dependencies'], $asset['version'], true );
+		wp_enqueue_style( 'viagent-admin', VIAGENT_URL . 'build/index.css', array( 'wp-components' ), $asset['version'] );
+		wp_style_add_data( 'viagent-admin', 'rtl', 'replace' );
+		wp_set_script_translations( 'viagent-admin', 'viagent' );
 
 		wp_add_inline_script(
-			'mcpai-admin',
-			'window.mcpaiSettings = ' . wp_json_encode( self::settings() ) . ';',
+			'viagent-admin',
+			'window.viagentSettings = ' . wp_json_encode( self::settings() ) . ';',
 			'before'
 		);
 	}
@@ -102,7 +102,7 @@ class Admin {
 	 * @return array
 	 */
 	private static function settings() {
-		$clients = require MCPAI_DIR . 'includes/clients/catalog.php';
+		$clients = require VIAGENT_DIR . 'includes/clients/catalog.php';
 		foreach ( $clients as $slug => $client ) {
 			$clients[ $slug ]['slug'] = $slug;
 			if ( isset( $client['verify'] ) ) {
@@ -112,12 +112,12 @@ class Admin {
 
 		return array(
 			'endpoint'   => Transport::endpoint_url(),
-			'probeUrl'   => rest_url( 'mcpai/v1/probe' ),
+			'probeUrl'   => rest_url( 'viagent/v1/probe' ),
 			'serverName' => self::server_name(),
 			'siteName'   => get_bloginfo( 'name' ),
 			'siteUrl'    => home_url( '/' ),
 			'isLocal'    => Health::is_local(),
-			'oauth'      => \MCPAI\Auth\OAuth\OAuth::enabled(),
+			'oauth'      => \Viagent\Auth\OAuth\OAuth::enabled(),
 			'user'       => wp_get_current_user()->display_name,
 			'levels'     => Policy::level_labels(),
 			'clients'    => array_values( $clients ),
@@ -163,10 +163,10 @@ class Admin {
 		}
 		$bar->add_node(
 			array(
-				'id'    => 'mcpai-paused',
-				'title' => esc_html__( 'AI access paused', 'mcpai' ),
+				'id'    => 'viagent-paused',
+				'title' => esc_html__( 'AI access paused', 'viagent' ),
 				'href'  => self::url( 'settings' ),
-				'meta'  => array( 'title' => esc_attr__( 'AI apps cannot connect. Click to resume.', 'mcpai' ) ),
+				'meta'  => array( 'title' => esc_attr__( 'AI apps cannot connect. Click to resume.', 'viagent' ) ),
 			)
 		);
 	}
@@ -178,7 +178,7 @@ class Admin {
 	 * @return array
 	 */
 	public static function action_links( $links ) {
-		array_unshift( $links, '<a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Settings', 'mcpai' ) . '</a>' );
+		array_unshift( $links, '<a href="' . esc_url( self::url() ) . '">' . esc_html__( 'Settings', 'viagent' ) . '</a>' );
 		return $links;
 	}
 }

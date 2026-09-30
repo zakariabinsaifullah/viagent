@@ -1,30 +1,30 @@
-# Copyright (C) 2026 Mcpai
+# Copyright (C) 2026 Viagent
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Mcpai 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mcpai\n"
+"Project-Id-Version: Viagent 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/viagent\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-29T11:29:13+00:00\n"
+"POT-Creation-Date: 2026-09-30T05:47:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: mcpai\n"
+"X-Domain: viagent\n"
 
 #. Plugin Name of the plugin
 #. Author of the plugin
-#: mcpai.php
+#: viagent.php
 #: includes/admin/class-admin.php:56
 #: includes/admin/class-admin.php:57
 #: src/admin/index.js:76
-msgid "Mcpai"
+msgid "Viagent"
 msgstr ""
 
 #. Description of the plugin
-#: mcpai.php
+#: viagent.php
 msgid "Connect your WordPress site to AI agents like Claude, ChatGPT, Cursor, Codex and more using the Model Context Protocol (MCP) — in a few clicks."
 msgstr ""
 
@@ -81,7 +81,7 @@ msgid "Users"
 msgstr ""
 
 #: includes/abilities/class-abilities.php:30
-msgid "User accounts and profiles."
+msgid "User accounts and profiles (read only)."
 msgstr ""
 
 #: includes/abilities/class-abilities.php:31
@@ -95,7 +95,7 @@ msgstr ""
 #: includes/abilities/class-abilities.php:32
 #: includes/admin/class-admin.php:181
 #: src/admin/index.js:25
-#: src/admin/screens/settings.js:209
+#: src/admin/screens/settings.js:215
 msgid "Settings"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgid "Plugins & themes"
 msgstr ""
 
 #: includes/abilities/class-abilities.php:33
-msgid "Installing and activating plugins and themes."
+msgid "Installed plugins and themes (read only)."
 msgstr ""
 
 #: includes/abilities/class-abilities.php:34
@@ -326,13 +326,12 @@ msgstr ""
 
 #. translators: %s: post type
 #: includes/abilities/class-content.php:439
-#: includes/abilities/class-content.php:802
+#: includes/abilities/class-content.php:817
 #, php-format
 msgid "Unknown post type \"%s\". Use list_post_types to see available types."
 msgstr ""
 
 #: includes/abilities/class-content.php:500
-#: includes/abilities/class-users.php:304
 msgid "Pass at least one field to change."
 msgstr ""
 
@@ -369,13 +368,13 @@ msgstr ""
 msgid "Could not restore the revision."
 msgstr ""
 
-#: includes/abilities/class-content.php:766
+#: includes/abilities/class-content.php:781
 #: includes/integrations/class-acf.php:205
 #: includes/integrations/class-acf.php:232
 msgid "No post found with that ID."
 msgstr ""
 
-#: includes/abilities/class-content.php:811
+#: includes/abilities/class-content.php:826
 msgid "You are not allowed to list items with that status."
 msgstr ""
 
@@ -395,102 +394,28 @@ msgstr ""
 msgid "Returns the last lines of the PHP / WordPress debug log to help find errors."
 msgstr ""
 
-#: includes/abilities/class-diagnostics.php:127
+#: includes/abilities/class-diagnostics.php:124
 msgid "No readable error log. The site owner can turn on WP_DEBUG_LOG to start logging."
 msgstr ""
 
-#: includes/abilities/class-diagnostics.php:133
+#: includes/abilities/class-diagnostics.php:130
 msgid "The error log could not be opened."
 msgstr ""
 
-#: includes/abilities/class-extensions.php:27
-msgid "Plugin slug (e.g. \"akismet\") or file (e.g. \"akismet/akismet.php\")."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:34
+#: includes/abilities/class-extensions.php:28
 msgid "List plugins"
 msgstr ""
 
-#: includes/abilities/class-extensions.php:35
+#: includes/abilities/class-extensions.php:29
 msgid "Lists installed plugins with version, active state and whether an update is available."
 msgstr ""
 
-#: includes/abilities/class-extensions.php:46
-msgid "Activate plugin"
-msgstr ""
-
-#: includes/abilities/class-extensions.php:47
-msgid "Activates an installed plugin."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:60
-msgid "Deactivate plugin"
-msgstr ""
-
-#: includes/abilities/class-extensions.php:61
-msgid "Deactivates a plugin. Mcpai itself cannot be deactivated this way."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:74
-msgid "Install plugin"
-msgstr ""
-
-#: includes/abilities/class-extensions.php:75
-msgid "Installs a plugin from the WordPress.org directory by slug, optionally activating it."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:97
+#: includes/abilities/class-extensions.php:40
 msgid "List themes"
 msgstr ""
 
-#: includes/abilities/class-extensions.php:98
+#: includes/abilities/class-extensions.php:41
 msgid "Lists installed themes and which one is active."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:109
-msgid "Activate theme"
-msgstr ""
-
-#: includes/abilities/class-extensions.php:110
-msgid "Switches the active theme. This changes how the whole site looks."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:114
-msgid "Theme folder name from list_themes."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:150
-msgid "That plugin is not installed. Use list_plugins to see installed plugins, or install_plugin to add one."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:212
-msgid "Mcpai cannot deactivate itself — that would disconnect you. The site owner can do it from the Plugins screen."
-msgstr ""
-
-#. translators: %s: plugin file
-#: includes/abilities/class-extensions.php:238
-#, php-format
-msgid "This plugin is already installed (%s). Use activate_plugin."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:249
-msgid "No plugin with that slug was found on WordPress.org."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:253
-msgid "WordPress cannot write files on this server without FTP credentials, so plugins must be installed from the Plugins screen."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:270
-msgid "The plugin could not be installed."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:324
-msgid "That theme is not installed. Use list_themes to see installed themes."
-msgstr ""
-
-#: includes/abilities/class-extensions.php:327
-msgid "That theme is not allowed on this site."
 msgstr ""
 
 #: includes/abilities/class-media.php:32
@@ -594,7 +519,7 @@ msgid "image_id is not an image in the media library."
 msgstr ""
 
 #: includes/abilities/class-media.php:451
-msgid "Deleting media is permanent and is turned off on this site. Ask the site owner to allow permanent deletion in Mcpai."
+msgid "Deleting media is permanent and is turned off on this site. Ask the site owner to allow permanent deletion in Viagent."
 msgstr ""
 
 #: includes/abilities/class-media.php:456
@@ -868,63 +793,24 @@ msgstr ""
 msgid "The term \"%s\" does not exist and you are not allowed to create it."
 msgstr ""
 
-#: includes/abilities/class-users.php:38
-msgid "Role slug, e.g. \"subscriber\", \"author\" or \"editor\". Administrator cannot be assigned."
-msgstr ""
-
-#: includes/abilities/class-users.php:46
+#: includes/abilities/class-users.php:29
 msgid "List users"
 msgstr ""
 
-#: includes/abilities/class-users.php:47
+#: includes/abilities/class-users.php:30
 msgid "Lists user accounts with their roles. Filter by role or search by name/email."
 msgstr ""
 
-#: includes/abilities/class-users.php:65
+#: includes/abilities/class-users.php:48
 msgid "Get user"
 msgstr ""
 
-#: includes/abilities/class-users.php:66
+#: includes/abilities/class-users.php:49
 msgid "Gets one user account by ID."
 msgstr ""
 
-#: includes/abilities/class-users.php:84
-msgid "Create user"
-msgstr ""
-
-#: includes/abilities/class-users.php:85
-msgid "Creates a user account. A strong password is generated and the new user gets an email to set their own."
-msgstr ""
-
-#: includes/abilities/class-users.php:106
-msgid "Update user"
-msgstr ""
-
-#: includes/abilities/class-users.php:107
-msgid "Updates a user's profile or role. Passwords cannot be changed, and administrators cannot be edited."
-msgstr ""
-
-#: includes/abilities/class-users.php:201
-#: includes/abilities/class-users.php:287
+#: includes/abilities/class-users.php:120
 msgid "No user found with that ID."
-msgstr ""
-
-#. translators: 1: role, 2: allowed roles
-#: includes/abilities/class-users.php:216
-#, php-format
-msgid "The role \"%1$s\" cannot be assigned by an AI agent. Allowed roles: %2$s. Administrators must be added by a person in WordPress."
-msgstr ""
-
-#: includes/abilities/class-users.php:275
-msgid "The user was emailed a link to set their password."
-msgstr ""
-
-#: includes/abilities/class-users.php:290
-msgid "Administrator accounts cannot be changed by an AI agent."
-msgstr ""
-
-#: includes/abilities/class-users.php:294
-msgid "You cannot change your own role."
 msgstr ""
 
 #: includes/admin/class-admin-api.php:310
@@ -935,7 +821,7 @@ msgstr ""
 #: includes/admin/class-admin-api.php:339
 #: includes/auth/class-authenticator.php:145
 #: includes/auth/oauth/class-oauth.php:193
-#: src/admin/components.js:163
+#: src/admin/components.js:165
 msgid "AI app"
 msgstr ""
 
@@ -1086,131 +972,107 @@ msgid "See one user account."
 msgstr ""
 
 #: includes/admin/class-admin-api.php:582
-msgid "Add user accounts (never administrators)."
-msgstr ""
-
-#: includes/admin/class-admin-api.php:583
-msgid "Edit user profiles and roles (never administrators)."
-msgstr ""
-
-#: includes/admin/class-admin-api.php:584
 msgid "See the site’s navigation menus."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:585
+#: includes/admin/class-admin-api.php:583
 msgid "See the links in a menu."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:586
+#: includes/admin/class-admin-api.php:584
 msgid "Add links to a menu."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:587
+#: includes/admin/class-admin-api.php:585
 msgid "Remove links from a menu."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:588
+#: includes/admin/class-admin-api.php:586
 msgid "Edit the navigation menu of a block theme."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:589
+#: includes/admin/class-admin-api.php:587
 msgid "See the site title, homepage, timezone and other settings."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:590
+#: includes/admin/class-admin-api.php:588
 msgid "Change the site title, homepage, timezone and similar settings."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:591
+#: includes/admin/class-admin-api.php:589
 msgid "See installed plugins."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:592
-msgid "Turn installed plugins on."
-msgstr ""
-
-#: includes/admin/class-admin-api.php:593
-msgid "Turn plugins off."
-msgstr ""
-
-#: includes/admin/class-admin-api.php:594
-msgid "Install plugins from WordPress.org."
-msgstr ""
-
-#: includes/admin/class-admin-api.php:595
+#: includes/admin/class-admin-api.php:590
 msgid "See installed themes."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:596
-msgid "Switch the site’s theme."
-msgstr ""
-
-#: includes/admin/class-admin-api.php:597
+#: includes/admin/class-admin-api.php:591
 msgid "Check versions, updates and technical health."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:598
+#: includes/admin/class-admin-api.php:592
 msgid "Read the PHP error log to help fix problems."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:618
+#: includes/admin/class-admin-api.php:612
 msgid "Tool not found."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:672
+#: includes/admin/class-admin-api.php:666
 msgid "Task not found."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:759
+#: includes/admin/class-admin-api.php:753
 msgid "The item the AI created will be moved to the trash."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:761
+#: includes/admin/class-admin-api.php:755
 msgid "The item will be restored from the trash."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:763
+#: includes/admin/class-admin-api.php:757
 msgid "The title, content and status will go back to how they were before this change."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:765
+#: includes/admin/class-admin-api.php:759
 msgid "The field will go back to its previous value."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:767
+#: includes/admin/class-admin-api.php:761
 msgid "The categories or tags will go back to how they were."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:769
+#: includes/admin/class-admin-api.php:763
 msgid "The settings will go back to their previous values."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:771
+#: includes/admin/class-admin-api.php:765
 msgid "The fields will go back to their previous values."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:780
+#: includes/admin/class-admin-api.php:774
 msgid "This change will be rolled back."
 msgstr ""
 
-#: includes/admin/class-admin-api.php:817
+#: includes/admin/class-admin-api.php:811
 msgid "(no title)"
 msgstr ""
 
 #. translators: %d: comment ID
-#: includes/admin/class-admin-api.php:828
+#: includes/admin/class-admin-api.php:822
 #, php-format
 msgid "Comment #%d"
 msgstr ""
 
 #. translators: %s: order number
-#: includes/admin/class-admin-api.php:841
+#: includes/admin/class-admin-api.php:835
 #, php-format
 msgid "Order #%s"
 msgstr ""
 
 #: includes/admin/class-admin.php:68
-#: src/admin/screens/overview.js:130
+#: src/admin/screens/overview.js:131
 msgid "Loading…"
 msgstr ""
 
@@ -1302,7 +1164,7 @@ msgid "AI access to this site is paused by the site owner."
 msgstr ""
 
 #: includes/auth/class-authenticator.php:64
-msgid "Missing or invalid Mcpai key. Create a connection in WordPress under Mcpai."
+msgid "Missing or invalid Viagent key. Create a connection in WordPress under Viagent."
 msgstr ""
 
 #: includes/auth/class-authenticator.php:175
@@ -1318,7 +1180,7 @@ msgid "The app sent an unexpected return address, so the request was stopped for
 msgstr ""
 
 #: includes/auth/oauth/class-authorize.php:129
-msgid "AI access to this site is paused. Resume it in Mcpai → Settings, then try again."
+msgid "AI access to this site is paused. Resume it in Viagent → Settings, then try again."
 msgstr ""
 
 #: includes/auth/oauth/class-authorize.php:164
@@ -1331,8 +1193,8 @@ msgstr ""
 msgid "the %s app on this computer"
 msgstr ""
 
-#: includes/auth/oauth/class-authorize.php:213
-#: includes/auth/oauth/class-authorize.php:276
+#: includes/auth/oauth/class-authorize.php:214
+#: includes/auth/oauth/class-authorize.php:277
 msgid "Connect an AI app"
 msgstr ""
 
@@ -1353,12 +1215,12 @@ msgid "What may it do?"
 msgstr ""
 
 #: includes/auth/oauth/class-authorize.php:252
-msgid "Only approve apps you trust. You can see everything it does and disconnect it any time in Mcpai."
+msgid "Only approve apps you trust. You can see everything it does and disconnect it any time in Viagent."
 msgstr ""
 
 #: includes/auth/oauth/class-authorize.php:261
-#: src/admin/screens/activity.js:325
-#: src/admin/screens/connections.js:221
+#: src/admin/screens/activity.js:348
+#: src/admin/screens/connections.js:224
 msgid "Cancel"
 msgstr ""
 
@@ -1403,7 +1265,8 @@ msgid "Full control"
 msgstr ""
 
 #: includes/auth/oauth/class-oauth.php:577
-msgid "Everything above plus settings, menus, plugins, themes and users (never administrators)."
+#: src/admin/screens/connect.js:60
+msgid "Everything above plus site settings and menus, and a read-only view of plugins, themes and users."
 msgstr ""
 
 #: includes/clients/catalog.php:50
@@ -1627,63 +1490,63 @@ msgstr ""
 msgid "Paste this (merge with \"mcp\" if it exists) and save."
 msgstr ""
 
-#: includes/clients/catalog.php:294
+#: includes/clients/catalog.php:293
 msgid "Open OpenClaw’s MCP settings: “{{name}}” should be listed as connected."
 msgstr ""
 
-#: includes/clients/catalog.php:295
+#: includes/clients/catalog.php:294
 msgid "Personal AI assistant"
 msgstr ""
 
-#: includes/clients/catalog.php:300
+#: includes/clients/catalog.php:299
 msgid "Uses the mcp-remote bridge, which requires Node.js 18 or newer."
 msgstr ""
 
-#: includes/clients/catalog.php:302
+#: includes/clients/catalog.php:301
 msgid "Open OpenClaw's MCP server settings."
 msgstr ""
 
-#: includes/clients/catalog.php:303
+#: includes/clients/catalog.php:302
 msgid "Add a server using this configuration and save."
 msgstr ""
 
-#: includes/clients/catalog.php:310
+#: includes/clients/catalog.php:309
 msgid "Open Command Code’s MCP settings: “{{name}}” should be listed as connected."
 msgstr ""
 
-#: includes/clients/catalog.php:311
+#: includes/clients/catalog.php:310
 msgid "AI coding agent"
 msgstr ""
 
-#: includes/clients/catalog.php:317
+#: includes/clients/catalog.php:316
 msgid "Open Command Code's MCP server settings."
 msgstr ""
 
-#: includes/clients/catalog.php:318
+#: includes/clients/catalog.php:317
 msgid "Add a remote (HTTP) server with this configuration."
 msgstr ""
 
-#: includes/clients/catalog.php:331
+#: includes/clients/catalog.php:330
 msgid "Other app"
 msgstr ""
 
-#: includes/clients/catalog.php:333
+#: includes/clients/catalog.php:332
 msgid "Open your app’s MCP settings: “{{name}}” should be listed as connected."
 msgstr ""
 
-#: includes/clients/catalog.php:334
+#: includes/clients/catalog.php:333
 msgid "Any MCP-compatible app, e.g. for DeepSeek or local models"
 msgstr ""
 
-#: includes/clients/catalog.php:339
+#: includes/clients/catalog.php:338
 msgid "Models like DeepSeek connect through an MCP-capable app (for example OpenCode, Cherry Studio or LibreChat). Add your site there as a \"Streamable HTTP\" server."
 msgstr ""
 
-#: includes/clients/catalog.php:341
+#: includes/clients/catalog.php:340
 msgid "Open your app's MCP server settings."
 msgstr ""
 
-#: includes/clients/catalog.php:342
+#: includes/clients/catalog.php:341
 msgid "Add a \"Streamable HTTP\" server with the URL and header below."
 msgstr ""
 
@@ -1830,19 +1693,19 @@ msgstr ""
 msgid "Read what people submitted through your forms."
 msgstr ""
 
-#: includes/integrations/class-integrations.php:33
+#: includes/integrations/class-integrations.php:70
 msgid "SEO (Yoast SEO or Rank Math)"
 msgstr ""
 
-#: includes/integrations/class-integrations.php:40
+#: includes/integrations/class-integrations.php:72
 msgid "Forms (Contact Form 7, WPForms, Gravity Forms)"
 msgstr ""
 
-#: includes/integrations/class-integrations.php:47
+#: includes/integrations/class-integrations.php:74
 msgid "Multisite network"
 msgstr ""
 
-#: includes/integrations/class-integrations.php:54
+#: includes/integrations/class-integrations.php:76
 msgid "Advanced Custom Fields"
 msgstr ""
 
@@ -1863,65 +1726,45 @@ msgid "Lists the sites in this WordPress network with their ID, name, address, s
 msgstr ""
 
 #: includes/integrations/class-network.php:91
-msgid "Create network site"
-msgstr ""
-
-#: includes/integrations/class-network.php:92
-msgid "Creates a new site in the network. The connected super admin becomes its administrator."
-msgstr ""
-
-#: includes/integrations/class-network.php:101
-msgid "Lowercase address part, e.g. \"shop\" for shop.example.com or example.com/shop/."
-msgstr ""
-
-#: includes/integrations/class-network.php:115
 msgid "Run a tool on another site"
 msgstr ""
 
-#: includes/integrations/class-network.php:116
+#: includes/integrations/class-network.php:92
 msgid "Runs any other tool (e.g. list_posts, create_post, update_settings) on another site of the network. Pass the site_id from list_sites, the tool name and its arguments."
 msgstr ""
 
-#: includes/integrations/class-network.php:125
+#: includes/integrations/class-network.php:101
 #: includes/mcp/class-meta-tools.php:86
 msgid "Arguments for the tool."
 msgstr ""
 
-#: includes/integrations/class-network.php:204
-msgid "A site with that address already exists."
-msgstr ""
-
-#: includes/integrations/class-network.php:239
+#: includes/integrations/class-network.php:176
 msgid "run_on_site cannot run itself or the compact-mode tools."
 msgstr ""
 
-#: includes/integrations/class-network.php:243
+#: includes/integrations/class-network.php:180
 msgid "No active site found with that ID. Use list_sites."
 msgstr ""
 
-#: includes/integrations/class-network.php:246
+#: includes/integrations/class-network.php:183
 msgid "That is the site you are connected to; call the tool directly."
 msgstr ""
 
-#: includes/integrations/class-network.php:252
+#: includes/integrations/class-network.php:189
 msgid "AI access to that site is paused by its owner."
 msgstr ""
 
 #. translators: %s: tool name
-#: includes/integrations/class-network.php:258
+#: includes/integrations/class-network.php:195
 #, php-format
 msgid "The tool \"%s\" is not available on that site."
 msgstr ""
 
-#: includes/integrations/class-network.php:285
+#: includes/integrations/class-network.php:222
 msgid "See the sites in your network."
 msgstr ""
 
-#: includes/integrations/class-network.php:286
-msgid "Add new sites to your network."
-msgstr ""
-
-#: includes/integrations/class-network.php:287
+#: includes/integrations/class-network.php:223
 msgid "Work on any site of your network."
 msgstr ""
 
@@ -2172,7 +2015,7 @@ msgid "The order no longer exists or you cannot edit it."
 msgstr ""
 
 #: includes/integrations/class-woocommerce.php:1113
-msgid "Status restored from Mcpai activity."
+msgid "Status restored from Viagent activity."
 msgstr ""
 
 #: includes/integrations/class-woocommerce.php:1130
@@ -2415,21 +2258,21 @@ msgid "Content editor"
 msgstr ""
 
 #: includes/security/class-policy.php:126
-msgid "Draft-only mode is on, so the status can only be \"draft\" or \"pending\". Ask the site owner to publish it from WordPress, or to allow publishing in Mcpai."
+msgid "Draft-only mode is on, so the status can only be \"draft\" or \"pending\". Ask the site owner to publish it from WordPress, or to allow publishing in Viagent."
 msgstr ""
 
 #. translators: %s: post status
 #: includes/security/class-policy.php:144
 #, php-format
-msgid "Draft-only mode is on and this item is \"%s\", so it cannot be changed. Create a new draft instead, or ask the site owner for more access in Mcpai."
+msgid "Draft-only mode is on and this item is \"%s\", so it cannot be changed. Create a new draft instead, or ask the site owner for more access in Viagent."
 msgstr ""
 
 #: includes/security/class-policy.php:206
 msgid "Too many requests. Please wait a minute and try again."
 msgstr ""
 
-#: mcpai.php:31
-msgid "Mcpai needs WordPress 6.9 or newer. Please update WordPress to connect your site to AI agents."
+#: viagent.php:31
+msgid "Viagent needs WordPress 6.9 or newer. Please update WordPress to connect your site to AI agents."
 msgstr ""
 
 #: src/admin/components.js:48
@@ -2446,7 +2289,7 @@ msgstr ""
 
 #: src/admin/index.js:21
 #: src/admin/screens/connections.js:81
-#: src/admin/screens/overview.js:153
+#: src/admin/screens/overview.js:155
 msgid "Connect an app"
 msgstr ""
 
@@ -2479,7 +2322,7 @@ msgid "Resume"
 msgstr ""
 
 #: src/admin/index.js:104
-msgid "Mcpai sections"
+msgid "Viagent sections"
 msgstr ""
 
 #: src/admin/screens/activity.js:49
@@ -2499,102 +2342,102 @@ msgstr ""
 msgid "Changes only"
 msgstr ""
 
-#: src/admin/screens/activity.js:81
+#: src/admin/screens/activity.js:82
 msgid "All activity"
 msgstr ""
 
-#: src/admin/screens/activity.js:83
+#: src/admin/screens/activity.js:86
 msgid "Errors only"
 msgstr ""
 
-#: src/admin/screens/activity.js:108
+#: src/admin/screens/activity.js:111
 msgid "Nothing here yet"
 msgstr ""
 
-#: src/admin/screens/activity.js:110
+#: src/admin/screens/activity.js:113
 msgid "When an AI app reads or changes something on your site, it shows up here."
 msgstr ""
 
-#: src/admin/screens/activity.js:123
-#: src/admin/screens/activity.js:140
+#: src/admin/screens/activity.js:126
+#: src/admin/screens/activity.js:143
 msgid "When"
 msgstr ""
 
-#: src/admin/screens/activity.js:124
-#: src/admin/screens/activity.js:148
+#: src/admin/screens/activity.js:127
+#: src/admin/screens/activity.js:155
 msgid "App"
 msgstr ""
 
-#: src/admin/screens/activity.js:125
-#: src/admin/screens/activity.js:161
+#: src/admin/screens/activity.js:128
+#: src/admin/screens/activity.js:175
 msgid "Action"
 msgstr ""
 
-#: src/admin/screens/activity.js:126
-#: src/admin/screens/activity.js:192
+#: src/admin/screens/activity.js:129
+#: src/admin/screens/activity.js:206
 msgid "Item"
 msgstr ""
 
-#: src/admin/screens/activity.js:127
-#: src/admin/screens/activity.js:208
+#: src/admin/screens/activity.js:130
+#: src/admin/screens/activity.js:225
 msgid "Result"
 msgstr ""
 
-#: src/admin/screens/activity.js:130
+#: src/admin/screens/activity.js:133
 msgid "Actions"
 msgstr ""
 
 #. translators: %s: program name, e.g. curl
-#: src/admin/screens/activity.js:154
-#: src/admin/screens/overview.js:302
+#: src/admin/screens/activity.js:165
+#: src/admin/screens/overview.js:304
 #, js-format
 msgid "via %s"
 msgstr ""
 
-#: src/admin/screens/activity.js:215
-#: src/admin/screens/connect.js:623
+#: src/admin/screens/activity.js:232
+#: src/admin/screens/connect.js:629
 msgid "Done"
 msgstr ""
 
-#: src/admin/screens/activity.js:219
-#: src/admin/screens/overview.js:311
+#: src/admin/screens/activity.js:236
+#: src/admin/screens/overview.js:313
 msgid "Failed"
 msgstr ""
 
-#: src/admin/screens/activity.js:224
-#: src/admin/screens/overview.js:315
+#: src/admin/screens/activity.js:244
+#: src/admin/screens/overview.js:317
 msgid "Undone"
 msgstr ""
 
-#: src/admin/screens/activity.js:238
+#: src/admin/screens/activity.js:261
 msgid "Undo"
 msgstr ""
 
 #. translators: 1: tool name, 2: duration in ms
-#: src/admin/screens/activity.js:261
+#: src/admin/screens/activity.js:284
 #, js-format
 msgid "Tool %1$s · %2$d ms"
 msgstr ""
 
-#: src/admin/screens/activity.js:286
+#: src/admin/screens/activity.js:309
 msgid "Newer"
 msgstr ""
 
 #. translators: 1: page, 2: total pages
-#: src/admin/screens/activity.js:291
+#: src/admin/screens/activity.js:314
 #, js-format
 msgid "Page %1$d of %2$d"
 msgstr ""
 
-#: src/admin/screens/activity.js:301
+#: src/admin/screens/activity.js:324
 msgid "Older"
 msgstr ""
 
-#: src/admin/screens/activity.js:308
+#: src/admin/screens/activity.js:331
 msgid "Undo this change?"
 msgstr ""
 
-#: src/admin/screens/activity.js:333
+#: src/admin/screens/activity.js:356
 msgid "Undo change"
 msgstr ""
 
@@ -2634,299 +2477,295 @@ msgstr ""
 msgid "“Draft a blog post about our spring sale”"
 msgstr ""
 
-#: src/admin/screens/connect.js:60
-msgid "Everything above plus settings, menus, plugins, themes and users. It can never create or edit administrators."
-msgstr ""
-
 #: src/admin/screens/connect.js:64
-msgid "“Install an SEO plugin and set the homepage”"
+msgid "“Set my Contact page as the homepage”"
 msgstr ""
 
 #: src/admin/screens/connect.js:69
 msgid "What is my WordPress site about? Give me a quick overview."
 msgstr ""
 
-#: src/admin/screens/connect.js:70
+#: src/admin/screens/connect.js:73
 msgid "Write a 600-word blog post about why our customers love us and save it as a draft."
 msgstr ""
 
-#: src/admin/screens/connect.js:74
+#: src/admin/screens/connect.js:77
 msgid "Find my posts that have no featured image."
 msgstr ""
 
-#: src/admin/screens/connect.js:86
+#: src/admin/screens/connect.js:89
 msgid "Choose your AI app"
 msgstr ""
 
-#: src/admin/screens/connect.js:87
+#: src/admin/screens/connect.js:90
 msgid "Choose what it can do"
 msgstr ""
 
-#: src/admin/screens/connect.js:88
+#: src/admin/screens/connect.js:91
 msgid "Connect"
 msgstr ""
 
-#: src/admin/screens/connect.js:130
+#: src/admin/screens/connect.js:133
 msgid "Connected"
 msgstr ""
 
-#: src/admin/screens/connect.js:134
+#: src/admin/screens/connect.js:137
 msgid "Set up · not connected yet"
 msgstr ""
 
-#: src/admin/screens/connect.js:154
+#: src/admin/screens/connect.js:157
 msgid "Show me how to finish"
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:162
+#: src/admin/screens/connect.js:165
 #, js-format
 msgid "%s is set up but hasn’t connected to your site yet."
 msgstr ""
 
-#: src/admin/screens/connect.js:189
+#: src/admin/screens/connect.js:192
 msgid "Coming soon"
 msgstr ""
 
-#: src/admin/screens/connect.js:195
+#: src/admin/screens/connect.js:198
 msgid "Sign in"
 msgstr ""
 
-#: src/admin/screens/connect.js:201
+#: src/admin/screens/connect.js:204
 msgid "One-click"
 msgstr ""
 
 #. translators: %s: site name
-#: src/admin/screens/connect.js:262
+#: src/admin/screens/connect.js:265
 #, js-format
 msgid "my “%s” connector"
 msgstr ""
 
 #. translators: %s: server name
-#: src/admin/screens/connect.js:267
+#: src/admin/screens/connect.js:270
 #, js-format
 msgid "the “%s” tools"
 msgstr ""
 
 #. translators: %s: connector or tools name
-#: src/admin/screens/connect.js:272
+#: src/admin/screens/connect.js:275
 #, js-format
 msgid "Use %s to look at my WordPress site and give me a short overview: the site name, how many posts and pages it has, and which theme it uses."
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:317
+#: src/admin/screens/connect.js:320
 #, js-format
 msgid "Check that %s can see your site"
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:328
+#: src/admin/screens/connect.js:331
 #, js-format
 msgid "Send this first message in %s"
 msgstr ""
 
-#: src/admin/screens/connect.js:336
+#: src/admin/screens/connect.js:339
 msgid "Copy message"
 msgstr ""
 
-#: src/admin/screens/connect.js:341
+#: src/admin/screens/connect.js:344
 msgid "The first time, your AI asks for permission to use your site’s tools — choose “Allow”. Then come back here: the app will show as Connected."
 msgstr ""
 
-#: src/admin/screens/connect.js:345
+#: src/admin/screens/connect.js:348
 msgid "The first time, your AI asks for permission to use your site’s tools — choose “Allow”. The box below turns green as soon as it connects."
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:369
+#: src/admin/screens/connect.js:372
 #, js-format
 msgid "Finish connecting %s"
 msgstr ""
 
-#: src/admin/screens/connect.js:378
+#: src/admin/screens/connect.js:381
 msgid "This site runs on your computer and uses a development security certificate. Make sure the \"env\" section of your configuration also contains this line, then restart the app:"
 msgstr ""
 
-#: src/admin/screens/connect.js:390
+#: src/admin/screens/connect.js:393
 msgid "Still not working? Create a fresh connection and follow the steps again — the old one can be revoked under Connections."
 msgstr ""
 
-#: src/admin/screens/connect.js:397
+#: src/admin/screens/connect.js:400
 msgid "Close"
 msgstr ""
 
-#: src/admin/screens/connect.js:400
+#: src/admin/screens/connect.js:403
 msgid "Set it up again"
 msgstr ""
 
-#: src/admin/screens/connect.js:442
+#: src/admin/screens/connect.js:445
 msgid "Access level"
 msgstr ""
 
-#: src/admin/screens/connect.js:458
+#: src/admin/screens/connect.js:461
 msgid "Recommended"
 msgstr ""
 
-#: src/admin/screens/connect.js:477
+#: src/admin/screens/connect.js:480
 msgid "Drafts only (safest)"
 msgstr ""
 
-#: src/admin/screens/connect.js:480
+#: src/admin/screens/connect.js:483
 msgid "The AI can create and edit drafts, but cannot publish, delete, or change anything visitors already see. You review and publish."
 msgstr ""
 
-#: src/admin/screens/connect.js:484
+#: src/admin/screens/connect.js:487
 msgid "The AI can publish and delete directly. Deleted items go to the trash, and you can undo changes from the Activity screen."
 msgstr ""
 
-#: src/admin/screens/connect.js:499
+#: src/admin/screens/connect.js:502
 msgid "Connection name"
 msgstr ""
 
-#: src/admin/screens/connect.js:500
+#: src/admin/screens/connect.js:503
 msgid "Helps you recognise it later, e.g. “Claude on my laptop”."
 msgstr ""
 
 #. translators: %s: user display name
-#: src/admin/screens/connect.js:511
+#: src/admin/screens/connect.js:514
 #, js-format
 msgid "The AI will act as you (%s), so it can never do more than your own account can."
 msgstr ""
 
-#: src/admin/screens/connect.js:531
-#: src/admin/screens/connect.js:872
+#: src/admin/screens/connect.js:534
+#: src/admin/screens/connect.js:883
 msgid "Back"
 msgstr ""
 
-#: src/admin/screens/connect.js:539
+#: src/admin/screens/connect.js:542
 msgid "Create connection"
 msgstr ""
 
-#: src/admin/screens/connect.js:579
+#: src/admin/screens/connect.js:582
 msgid "Waiting for your AI app to connect…"
 msgstr ""
 
-#: src/admin/screens/connect.js:582
+#: src/admin/screens/connect.js:588
 msgid "Finish the steps above and send the first message. This page updates by itself."
 msgstr ""
 
-#: src/admin/screens/connect.js:598
+#: src/admin/screens/connect.js:604
 msgid "Connected! Your AI can now work on your site."
 msgstr ""
 
-#: src/admin/screens/connect.js:603
+#: src/admin/screens/connect.js:609
 msgid "Try asking it:"
 msgstr ""
 
-#: src/admin/screens/connect.js:613
+#: src/admin/screens/connect.js:619
 msgid "Tip: many apps also offer ready-made tasks from your site, such as “Write a blog post” or “SEO check-up” — look in the “+” or / menu."
 msgstr ""
 
-#: src/admin/screens/connect.js:620
+#: src/admin/screens/connect.js:626
 msgid "Connect another app"
 msgstr ""
 
-#: src/admin/screens/connect.js:652
+#: src/admin/screens/connect.js:658
 msgid "Command"
 msgstr ""
 
-#: src/admin/screens/connect.js:660
+#: src/admin/screens/connect.js:666
 msgid "Your connection key is shown only once. It is already included below — copy it now if you need it elsewhere. Treat it like a password."
 msgstr ""
 
-#: src/admin/screens/connect.js:667
+#: src/admin/screens/connect.js:673
 msgid "Connection key"
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:682
-#: src/admin/screens/connect.js:814
+#: src/admin/screens/connect.js:688
+#: src/admin/screens/connect.js:825
 #, js-format
 msgid "Add your site to %s"
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:691
+#: src/admin/screens/connect.js:697
 #, js-format
 msgid "Add to %s"
 msgstr ""
 
-#: src/admin/screens/connect.js:696
+#: src/admin/screens/connect.js:702
 msgid "Opens the app and asks you to confirm."
 msgstr ""
 
-#: src/admin/screens/connect.js:720
+#: src/admin/screens/connect.js:727
 msgid "Manual setup details"
 msgstr ""
 
-#: src/admin/screens/connect.js:722
+#: src/admin/screens/connect.js:730
 msgid "Server URL (Streamable HTTP)"
 msgstr ""
 
-#: src/admin/screens/connect.js:726
+#: src/admin/screens/connect.js:737
 msgid "Header"
 msgstr ""
 
-#: src/admin/screens/connect.js:730
-msgid "If your server strips the Authorization header, send the key as “X-MCPAI-Key” instead."
+#: src/admin/screens/connect.js:741
+msgid "If your server strips the Authorization header, send the key as “X-VIAGENT-Key” instead."
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:745
+#: src/admin/screens/connect.js:756
 #, js-format
 msgid "%s MCP documentation"
 msgstr ""
 
-#: src/admin/screens/connect.js:753
+#: src/admin/screens/connect.js:764
 msgid "Because this site runs on your computer, the configuration includes a line that lets the bridge accept its local security certificate. Live sites don’t need it."
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:801
+#: src/admin/screens/connect.js:812
 #, js-format
 msgid "This site runs on your computer, so %s (which runs in the cloud) cannot reach it. Publish the site or use a Studio preview or tunnel first — or connect an app on this computer instead, such as Claude Code, Claude Desktop or Cursor."
 msgstr ""
 
-#: src/admin/screens/connect.js:819
+#: src/admin/screens/connect.js:830
 msgid "Your connector URL"
 msgstr ""
 
-#: src/admin/screens/connect.js:830
+#: src/admin/screens/connect.js:841
 msgid "No key needed: you’ll sign in to WordPress and choose what the app may do. You can disconnect it any time."
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:851
+#: src/admin/screens/connect.js:862
 #, js-format
 msgid "%s’s official setup guide"
 msgstr ""
 
-#: src/admin/screens/connect.js:905
+#: src/admin/screens/connect.js:916
 msgid "Which AI app do you want to connect?"
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:908
+#: src/admin/screens/connect.js:919
 #, js-format
 msgid "What should %s be allowed to do?"
 msgstr ""
 
 #. translators: %s: app name
-#: src/admin/screens/connect.js:913
+#: src/admin/screens/connect.js:924
 #, js-format
 msgid "Connect %s"
 msgstr ""
 
 #. translators: %s: relative time
 #: src/admin/screens/connections.js:28
-#: src/admin/screens/overview.js:236
+#: src/admin/screens/overview.js:238
 #, js-format
 msgid "Active %s"
 msgstr ""
 
 #: src/admin/screens/connections.js:37
-#: src/admin/screens/overview.js:244
+#: src/admin/screens/overview.js:246
 msgid "Not connected yet"
 msgstr ""
 
@@ -2964,25 +2803,25 @@ msgstr ""
 msgid "Drafts only"
 msgstr ""
 
-#: src/admin/screens/connections.js:177
+#: src/admin/screens/connections.js:180
 msgid "Compact"
 msgstr ""
 
-#: src/admin/screens/connections.js:192
+#: src/admin/screens/connections.js:195
 msgid "Revoke"
 msgstr ""
 
-#: src/admin/screens/connections.js:202
+#: src/admin/screens/connections.js:205
 msgid "Revoke this connection?"
 msgstr ""
 
 #. translators: %s: connection name
-#: src/admin/screens/connections.js:209
+#: src/admin/screens/connections.js:212
 #, js-format
 msgid "“%s” will immediately lose access to your site. You can create a new connection later."
 msgstr ""
 
-#: src/admin/screens/connections.js:230
+#: src/admin/screens/connections.js:233
 msgid "Revoke access"
 msgstr ""
 
@@ -3029,61 +2868,61 @@ msgid "Paused"
 msgstr ""
 
 #. translators: %s: relative time
-#: src/admin/screens/overview.js:135
+#: src/admin/screens/overview.js:137
 #, js-format
 msgid "Last activity %s. Every change is logged and can be undone."
 msgstr ""
 
-#: src/admin/screens/overview.js:141
+#: src/admin/screens/overview.js:143
 msgid "Connect Claude, ChatGPT, Cursor or another AI app in about a minute. Every change it makes is logged and can be undone."
 msgstr ""
 
-#: src/admin/screens/overview.js:166
+#: src/admin/screens/overview.js:168
 msgid "Resume AI access"
 msgstr ""
 
-#: src/admin/screens/overview.js:167
+#: src/admin/screens/overview.js:169
 msgid "Pause AI access"
 msgstr ""
 
-#: src/admin/screens/overview.js:175
+#: src/admin/screens/overview.js:177
 msgid "Needs your attention"
 msgstr ""
 
-#: src/admin/screens/overview.js:202
+#: src/admin/screens/overview.js:204
 msgid "Connected apps"
 msgstr ""
 
-#: src/admin/screens/overview.js:207
+#: src/admin/screens/overview.js:209
 msgid "Manage"
 msgstr ""
 
-#: src/admin/screens/overview.js:214
+#: src/admin/screens/overview.js:216
 msgid "Nothing connected yet."
 msgstr ""
 
-#: src/admin/screens/overview.js:264
+#: src/admin/screens/overview.js:266
 msgid "Recent changes"
 msgstr ""
 
-#: src/admin/screens/overview.js:269
+#: src/admin/screens/overview.js:271
 msgid "View all"
 msgstr ""
 
-#: src/admin/screens/overview.js:276
+#: src/admin/screens/overview.js:278
 msgid "When an AI app changes something, it shows up here — with an Undo button."
 msgstr ""
 
-#: src/admin/screens/overview.js:328
+#: src/admin/screens/overview.js:330
 msgid "Ready-made tasks your AI can do"
 msgstr ""
 
-#: src/admin/screens/overview.js:334
+#: src/admin/screens/overview.js:336
 msgid "Find them in your AI app’s “+” or / menu — or just ask in your own words."
 msgstr ""
 
-#: src/admin/screens/overview.js:346
-#: src/admin/screens/tools.js:271
+#: src/admin/screens/overview.js:348
+#: src/admin/screens/tools.js:272
 msgid "All tools"
 msgstr ""
 
@@ -3119,119 +2958,119 @@ msgid "The connection URL answered with an unexpected status (%d)."
 msgstr ""
 
 #: src/admin/screens/settings.js:66
-msgid "A security plugin, firewall or cache may be blocking /wp-json/. Allow requests to /wp-json/mcpai/."
+msgid "A security plugin, firewall or cache may be blocking /wp-json/. Allow requests to /wp-json/viagent/."
 msgstr ""
 
 #: src/admin/screens/settings.js:76
 msgid "The connection URL could not be reached."
 msgstr ""
 
-#: src/admin/screens/settings.js:77
+#: src/admin/screens/settings.js:80
 msgid "Check that the REST API is not disabled by a security plugin or firewall."
 msgstr ""
 
-#: src/admin/screens/settings.js:95
-#: src/admin/screens/settings.js:104
+#: src/admin/screens/settings.js:98
+#: src/admin/screens/settings.js:107
 msgid "Key header"
 msgstr ""
 
-#: src/admin/screens/settings.js:96
+#: src/admin/screens/settings.js:99
 msgid "Your server passes the key header through to WordPress."
 msgstr ""
 
-#: src/admin/screens/settings.js:105
-msgid "Your server removes the \"Authorization\" header, so apps sending the key that way are rejected. Apps can send it as \"X-MCPAI-Key\" instead."
+#: src/admin/screens/settings.js:108
+msgid "Your server removes the \"Authorization\" header, so apps sending the key that way are rejected. Apps can send it as \"X-VIAGENT-Key\" instead."
 msgstr ""
 
-#: src/admin/screens/settings.js:109
+#: src/admin/screens/settings.js:112
 msgid "Add this line to .htaccess above \"# BEGIN WordPress\": SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=$1"
 msgstr ""
 
-#: src/admin/screens/settings.js:146
+#: src/admin/screens/settings.js:149
 msgid "Connection check"
 msgstr ""
 
-#: src/admin/screens/settings.js:154
+#: src/admin/screens/settings.js:157
 msgid "Run again"
 msgstr ""
 
-#: src/admin/screens/settings.js:180
+#: src/admin/screens/settings.js:183
 msgid "How to fix:"
 msgstr ""
 
-#: src/admin/screens/settings.js:210
+#: src/admin/screens/settings.js:216
 msgid "Safety switches that apply to every connected AI app."
 msgstr ""
 
-#: src/admin/screens/settings.js:225
+#: src/admin/screens/settings.js:231
 msgid "Safety"
 msgstr ""
 
-#: src/admin/screens/settings.js:230
+#: src/admin/screens/settings.js:236
 msgid "Pause all AI access"
 msgstr ""
 
-#: src/admin/screens/settings.js:231
+#: src/admin/screens/settings.js:237
 msgid "Instantly blocks every connected app. Turn it off to resume — connections are kept."
 msgstr ""
 
-#: src/admin/screens/settings.js:245
+#: src/admin/screens/settings.js:251
 msgid "Allow permanent deletion"
 msgstr ""
 
-#: src/admin/screens/settings.js:249
+#: src/admin/screens/settings.js:255
 msgid "Off (recommended): deleted posts go to the trash and media cannot be deleted. On: AI apps with delete access can skip the trash and delete media — this cannot be undone."
 msgstr ""
 
-#: src/admin/screens/settings.js:262
+#: src/admin/screens/settings.js:268
 msgid "Permanent deletion is on. AI apps with delete access can remove things that cannot be undone."
 msgstr ""
 
-#: src/admin/screens/settings.js:274
+#: src/admin/screens/settings.js:280
 msgid "Advanced"
 msgstr ""
 
-#: src/admin/screens/settings.js:279
+#: src/admin/screens/settings.js:285
 msgid "Compact tool list for all apps"
 msgstr ""
 
-#: src/admin/screens/settings.js:283
+#: src/admin/screens/settings.js:289
 msgid "Shows AI apps 3 tools that look up the others, instead of the full list. Useful for apps or small models that struggle with many tools. Apps with a known tool limit, like Cursor, use this automatically when needed."
 msgstr ""
 
-#: src/admin/screens/settings.js:294
-msgid "Delete all Mcpai data when the plugin is deleted"
+#: src/admin/screens/settings.js:300
+msgid "Delete all Viagent data when the plugin is deleted"
 msgstr ""
 
-#: src/admin/screens/settings.js:298
+#: src/admin/screens/settings.js:304
 msgid "Removes connections, activity history and settings when you delete the plugin from the Plugins screen. Deactivating the plugin never deletes anything."
 msgstr ""
 
-#: src/admin/screens/settings.js:312
+#: src/admin/screens/settings.js:318
 msgid "Connection details"
 msgstr ""
 
-#: src/admin/screens/settings.js:316
+#: src/admin/screens/settings.js:322
 msgid "MCP server URL (Streamable HTTP)"
 msgstr ""
 
-#: src/admin/screens/settings.js:323
+#: src/admin/screens/settings.js:329
 msgid "Apps authenticate with a connection key (Authorization: Bearer …), or with a WordPress Application Password."
 msgstr ""
 
-#: src/admin/screens/settings.js:333
+#: src/admin/screens/settings.js:339
 msgid "Integrations"
 msgstr ""
 
-#: src/admin/screens/settings.js:337
+#: src/admin/screens/settings.js:343
 msgid "Extra tools appear automatically when these plugins are active. Manage them under Tools."
 msgstr ""
 
-#: src/admin/screens/settings.js:348
+#: src/admin/screens/settings.js:354
 msgid "Active"
 msgstr ""
 
-#: src/admin/screens/settings.js:352
+#: src/admin/screens/settings.js:358
 msgid "Not active"
 msgstr ""
 
@@ -3274,7 +3113,7 @@ msgstr ""
 #. translators: 1: enabled tasks, 2: total tasks
 #. translators: 1: enabled tools, 2: total tools
 #: src/admin/screens/tools.js:126
-#: src/admin/screens/tools.js:328
+#: src/admin/screens/tools.js:333
 #, js-format
 msgid "%1$d of %2$d on"
 msgstr ""
@@ -3299,20 +3138,20 @@ msgstr ""
 msgid "Search tools, e.g. “media” or “publish”"
 msgstr ""
 
-#: src/admin/screens/tools.js:273
+#: src/admin/screens/tools.js:276
 msgid "Switched on"
 msgstr ""
 
-#: src/admin/screens/tools.js:277
+#: src/admin/screens/tools.js:280
 msgid "Switched off"
 msgstr ""
 
 #. translators: 1: enabled tools, 2: total tools
-#: src/admin/screens/tools.js:286
+#: src/admin/screens/tools.js:289
 #, js-format
 msgid "%1$d of %2$d tools on"
 msgstr ""
 
-#: src/admin/screens/tools.js:298
+#: src/admin/screens/tools.js:302
 msgid "No tools match your search."
 msgstr ""

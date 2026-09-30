@@ -46,7 +46,7 @@ export default function Activity() {
 			await api.revert( reverting.id );
 			setNotice( {
 				status: 'success',
-				text: __( 'The change was undone.', 'mcpai' ),
+				text: __( 'The change was undone.', 'viagent' ),
 			} );
 			await load();
 		} catch ( e ) {
@@ -61,26 +61,29 @@ export default function Activity() {
 	return (
 		<>
 			<ScreenHeader
-				title={ __( 'Activity', 'mcpai' ) }
+				title={ __( 'Activity', 'viagent' ) }
 				description={ __(
 					'Everything AI apps did on your site. Undo content changes with one click. Entries are kept for 90 days.',
-					'mcpai'
+					'viagent'
 				) }
 				actions={
 					<SelectControl
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
-						label={ __( 'Show', 'mcpai' ) }
+						label={ __( 'Show', 'viagent' ) }
 						hideLabelFromVision
 						value={ status }
 						options={ [
 							{
-								label: __( 'Changes only', 'mcpai' ),
+								label: __( 'Changes only', 'viagent' ),
 								value: 'changes',
 							},
-							{ label: __( 'All activity', 'mcpai' ), value: '' },
 							{
-								label: __( 'Errors only', 'mcpai' ),
+								label: __( 'All activity', 'viagent' ),
+								value: '',
+							},
+							{
+								label: __( 'Errors only', 'viagent' ),
 								value: 'error',
 							},
 						] }
@@ -104,30 +107,30 @@ export default function Activity() {
 			{ data === null && <Spinner /> }
 
 			{ data && data.items.length === 0 && (
-				<Card className="mcpai-empty">
-					<h3>{ __( 'Nothing here yet', 'mcpai' ) }</h3>
+				<Card className="viagent-empty">
+					<h3>{ __( 'Nothing here yet', 'viagent' ) }</h3>
 					<p>
 						{ __(
 							'When an AI app reads or changes something on your site, it shows up here.',
-							'mcpai'
+							'viagent'
 						) }
 					</p>
 				</Card>
 			) }
 
 			{ data && data.items.length > 0 && (
-				<Card className="mcpai-table-card">
-					<table className="mcpai-table">
+				<Card className="viagent-table-card">
+					<table className="viagent-table">
 						<thead>
 							<tr>
-								<th>{ __( 'When', 'mcpai' ) }</th>
-								<th>{ __( 'App', 'mcpai' ) }</th>
-								<th>{ __( 'Action', 'mcpai' ) }</th>
-								<th>{ __( 'Item', 'mcpai' ) }</th>
-								<th>{ __( 'Result', 'mcpai' ) }</th>
+								<th>{ __( 'When', 'viagent' ) }</th>
+								<th>{ __( 'App', 'viagent' ) }</th>
+								<th>{ __( 'Action', 'viagent' ) }</th>
+								<th>{ __( 'Item', 'viagent' ) }</th>
+								<th>{ __( 'Result', 'viagent' ) }</th>
 								<th>
 									<span className="screen-reader-text">
-										{ __( 'Actions', 'mcpai' ) }
+										{ __( 'Actions', 'viagent' ) }
 									</span>
 								</th>
 							</tr>
@@ -137,7 +140,10 @@ export default function Activity() {
 								<Fragment key={ item.id }>
 									<tr>
 										<td
-											data-label={ __( 'When', 'mcpai' ) }
+											data-label={ __(
+												'When',
+												'viagent'
+											) }
 											title={ dateI18n(
 												format,
 												item.created_at
@@ -145,13 +151,21 @@ export default function Activity() {
 										>
 											{ humanTimeDiff( item.created_at ) }
 										</td>
-										<td data-label={ __( 'App', 'mcpai' ) }>
+										<td
+											data-label={ __(
+												'App',
+												'viagent'
+											) }
+										>
 											{ item.connection }
 											{ item.agent && (
-												<span className="mcpai-via">
+												<span className="viagent-via">
 													{ sprintf(
 														/* translators: %s: program name, e.g. curl */
-														__( 'via %s', 'mcpai' ),
+														__(
+															'via %s',
+															'viagent'
+														),
 														item.agent
 													) }
 												</span>
@@ -160,12 +174,12 @@ export default function Activity() {
 										<td
 											data-label={ __(
 												'Action',
-												'mcpai'
+												'viagent'
 											) }
 										>
 											<button
 												type="button"
-												className="mcpai-link-button"
+												className="viagent-link-button"
 												aria-expanded={
 													open === item.id
 												}
@@ -179,7 +193,7 @@ export default function Activity() {
 											>
 												{ humanizeTool( item.tool ) }
 												<span
-													className="mcpai-link-button__chevron"
+													className="viagent-link-button__chevron"
 													aria-hidden="true"
 												>
 													{ open === item.id
@@ -189,7 +203,10 @@ export default function Activity() {
 											</button>
 										</td>
 										<td
-											data-label={ __( 'Item', 'mcpai' ) }
+											data-label={ __(
+												'Item',
+												'viagent'
+											) }
 										>
 											{ item.site && (
 												<Badge tone="info">
@@ -207,25 +224,31 @@ export default function Activity() {
 										<td
 											data-label={ __(
 												'Result',
-												'mcpai'
+												'viagent'
 											) }
 										>
 											{ item.status === 'ok' ? (
 												<Badge tone="success">
-													{ __( 'Done', 'mcpai' ) }
+													{ __( 'Done', 'viagent' ) }
 												</Badge>
 											) : (
 												<Badge tone="danger">
-													{ __( 'Failed', 'mcpai' ) }
+													{ __(
+														'Failed',
+														'viagent'
+													) }
 												</Badge>
 											) }
 											{ item.reverted_at && (
 												<Badge>
-													{ __( 'Undone', 'mcpai' ) }
+													{ __(
+														'Undone',
+														'viagent'
+													) }
 												</Badge>
 											) }
 										</td>
-										<td className="mcpai-table__actions">
+										<td className="viagent-table__actions">
 											{ item.can_revert && (
 												<Button
 													variant="secondary"
@@ -235,16 +258,16 @@ export default function Activity() {
 														setReverting( item )
 													}
 												>
-													{ __( 'Undo', 'mcpai' ) }
+													{ __( 'Undo', 'viagent' ) }
 												</Button>
 											) }
 										</td>
 									</tr>
 									{ open === item.id && (
-										<tr className="mcpai-table__details">
+										<tr className="viagent-table__details">
 											<td colSpan="6">
 												{ item.message && (
-													<p className="mcpai-error-text">
+													<p className="viagent-error-text">
 														{ item.message }
 													</p>
 												) }
@@ -255,12 +278,12 @@ export default function Activity() {
 														2
 													) }
 												</pre>
-												<span className="mcpai-muted">
+												<span className="viagent-muted">
 													{ sprintf(
 														/* translators: 1: tool name, 2: duration in ms */
 														__(
 															'Tool %1$s · %2$d ms',
-															'mcpai'
+															'viagent'
 														),
 														item.tool,
 														item.duration_ms
@@ -277,18 +300,18 @@ export default function Activity() {
 			) }
 
 			{ data && data.total_pages > 1 && (
-				<div className="mcpai-pagination">
+				<div className="viagent-pagination">
 					<Button
 						variant="secondary"
 						disabled={ page <= 1 }
 						onClick={ () => setPage( page - 1 ) }
 					>
-						{ __( 'Newer', 'mcpai' ) }
+						{ __( 'Newer', 'viagent' ) }
 					</Button>
 					<span>
 						{ sprintf(
 							/* translators: 1: page, 2: total pages */
-							__( 'Page %1$d of %2$d', 'mcpai' ),
+							__( 'Page %1$d of %2$d', 'viagent' ),
 							page,
 							data.total_pages
 						) }
@@ -298,14 +321,14 @@ export default function Activity() {
 						disabled={ page >= data.total_pages }
 						onClick={ () => setPage( page + 1 ) }
 					>
-						{ __( 'Older', 'mcpai' ) }
+						{ __( 'Older', 'viagent' ) }
 					</Button>
 				</div>
 			) }
 
 			{ reverting && (
 				<Modal
-					title={ __( 'Undo this change?', 'mcpai' ) }
+					title={ __( 'Undo this change?', 'viagent' ) }
 					onRequestClose={ () => setReverting( null ) }
 					size="small"
 				>
@@ -317,12 +340,12 @@ export default function Activity() {
 						</strong>
 					</p>
 					<p>{ reverting.undo_label }</p>
-					<div className="mcpai-actions">
+					<div className="viagent-actions">
 						<Button
 							variant="tertiary"
 							onClick={ () => setReverting( null ) }
 						>
-							{ __( 'Cancel', 'mcpai' ) }
+							{ __( 'Cancel', 'viagent' ) }
 						</Button>
 						<Button
 							variant="primary"
@@ -330,7 +353,7 @@ export default function Activity() {
 							disabled={ busy }
 							onClick={ revert }
 						>
-							{ __( 'Undo change', 'mcpai' ) }
+							{ __( 'Undo change', 'viagent' ) }
 						</Button>
 					</div>
 				</Modal>

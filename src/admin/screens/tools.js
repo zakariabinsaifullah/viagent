@@ -16,37 +16,37 @@ import { __, sprintf } from '@wordpress/i18n';
 import { api } from '../api';
 import { Badge, ScreenHeader, levelTone } from '../components';
 
-const settings = window.mcpaiSettings;
+const settings = window.viagentSettings;
 
 function ToolRow( { tool, onToggle } ) {
 	return (
-		<div className="mcpai-tool">
-			<div className="mcpai-tool__text">
+		<div className="viagent-tool">
+			<div className="viagent-tool__text">
 				<strong>{ tool.label }</strong>
 				<span>{ tool.summary }</span>
-				<span className="mcpai-tool__badges">
+				<span className="viagent-tool__badges">
 					<Badge tone={ levelTone( tool.level ) }>
 						{ sprintf(
 							/* translators: %s: access level */
-							__( 'Access: %s', 'mcpai' ),
+							__( 'Access: %s', 'viagent' ),
 							settings.levels[ tool.level ]
 						) }
 					</Badge>
 					{ ! tool.readonly && (
 						<Badge tone="info">
-							{ __( 'Makes changes', 'mcpai' ) }
+							{ __( 'Makes changes', 'viagent' ) }
 						</Badge>
 					) }
 					{ tool.destructive && (
 						<Badge tone="danger">
-							{ __( 'Can delete', 'mcpai' ) }
+							{ __( 'Can delete', 'viagent' ) }
 						</Badge>
 					) }
 					{ tool.source && (
 						<Badge tone="warning">
 							{ sprintf(
 								/* translators: %s: plugin namespace */
-								__( 'From: %s', 'mcpai' ),
+								__( 'From: %s', 'viagent' ),
 								tool.source
 							) }
 						</Badge>
@@ -60,7 +60,7 @@ function ToolRow( { tool, onToggle } ) {
 					<span className="screen-reader-text">
 						{ sprintf(
 							/* translators: %s: tool name */
-							__( 'Enable %s', 'mcpai' ),
+							__( 'Enable %s', 'viagent' ),
 							tool.label
 						) }
 					</span>
@@ -104,45 +104,45 @@ function PromptsCard() {
 	}
 
 	return (
-		<Card className="mcpai-group mcpai-group--tasks">
+		<Card className="viagent-group viagent-group--tasks">
 			<button
 				type="button"
-				className="mcpai-group__header"
+				className="viagent-group__header"
 				aria-expanded={ isOpen }
 				onClick={ () => setIsOpen( ! isOpen ) }
 			>
-				<span className="mcpai-group__text">
-					<strong>{ __( 'Ready-made tasks', 'mcpai' ) }</strong>
-					<span className="mcpai-muted">
+				<span className="viagent-group__text">
+					<strong>{ __( 'Ready-made tasks', 'viagent' ) }</strong>
+					<span className="viagent-muted">
 						{ __(
 							'One-click tasks AI apps can offer, e.g. in Claude Desktop’s “+” menu or as / commands in Claude Code and VS Code. Each appears only when the connection has the tools it needs.',
-							'mcpai'
+							'viagent'
 						) }
 					</span>
 				</span>
 				<Badge tone="success">
 					{ sprintf(
 						/* translators: 1: enabled tasks, 2: total tasks */
-						__( '%1$d of %2$d on', 'mcpai' ),
+						__( '%1$d of %2$d on', 'viagent' ),
 						prompts.filter( ( item ) => item.enabled ).length,
 						prompts.length
 					) }
 				</Badge>
-				<span className="mcpai-group__chevron" aria-hidden="true" />
+				<span className="viagent-group__chevron" aria-hidden="true" />
 			</button>
 			{ isOpen && (
-				<CardBody className="mcpai-tool-list">
+				<CardBody className="viagent-tool-list">
 					{ prompts.map( ( prompt ) => (
-						<div className="mcpai-tool" key={ prompt.name }>
-							<div className="mcpai-tool__text">
+						<div className="viagent-tool" key={ prompt.name }>
+							<div className="viagent-tool__text">
 								<strong>{ prompt.title }</strong>
 								<span>{ prompt.description }</span>
-								<span className="mcpai-tool__badges">
+								<span className="viagent-tool__badges">
 									{ ! prompt.available && (
 										<Badge>
 											{ __(
 												'Needs tools that are off or missing',
-												'mcpai'
+												'viagent'
 											) }
 										</Badge>
 									) }
@@ -155,7 +155,7 @@ function PromptsCard() {
 									<span className="screen-reader-text">
 										{ sprintf(
 											/* translators: %s: task name */
-											__( 'Enable %s', 'mcpai' ),
+											__( 'Enable %s', 'viagent' ),
 											prompt.title
 										) }
 									</span>
@@ -234,10 +234,10 @@ export default function Tools() {
 	return (
 		<>
 			<ScreenHeader
-				title={ __( 'Tools & permissions', 'mcpai' ) }
+				title={ __( 'Tools & permissions', 'viagent' ) }
 				description={ __(
 					'Tools are the actions AI apps can take. Each connection only sees the tools its access level allows — switch a tool off here to hide it from every app.',
-					'mcpai'
+					'viagent'
 				) }
 			/>
 
@@ -250,13 +250,13 @@ export default function Tools() {
 			{ groups === null && <Spinner /> }
 
 			{ groups && (
-				<div className="mcpai-toolbar">
+				<div className="viagent-toolbar">
 					<SearchControl
 						__nextHasNoMarginBottom
-						label={ __( 'Search tools', 'mcpai' ) }
+						label={ __( 'Search tools', 'viagent' ) }
 						placeholder={ __(
 							'Search tools, e.g. “media” or “publish”',
-							'mcpai'
+							'viagent'
 						) }
 						value={ search }
 						onChange={ setSearch }
@@ -264,26 +264,29 @@ export default function Tools() {
 					<SelectControl
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
-						label={ __( 'Show', 'mcpai' ) }
+						label={ __( 'Show', 'viagent' ) }
 						hideLabelFromVision
 						value={ show }
 						options={ [
-							{ label: __( 'All tools', 'mcpai' ), value: 'all' },
 							{
-								label: __( 'Switched on', 'mcpai' ),
+								label: __( 'All tools', 'viagent' ),
+								value: 'all',
+							},
+							{
+								label: __( 'Switched on', 'viagent' ),
 								value: 'on',
 							},
 							{
-								label: __( 'Switched off', 'mcpai' ),
+								label: __( 'Switched off', 'viagent' ),
 								value: 'off',
 							},
 						] }
 						onChange={ setShow }
 					/>
-					<span className="mcpai-toolbar__summary">
+					<span className="viagent-toolbar__summary">
 						{ sprintf(
 							/* translators: 1: enabled tools, 2: total tools */
-							__( '%1$d of %2$d tools on', 'mcpai' ),
+							__( '%1$d of %2$d tools on', 'viagent' ),
 							onCount,
 							all.length
 						) }
@@ -291,11 +294,13 @@ export default function Tools() {
 				</div>
 			) }
 
-			<div className="mcpai-tool-groups">
+			<div className="viagent-tool-groups">
 				{ ! filtering && <PromptsCard /> }
 				{ groups && visible.length === 0 && (
-					<Card className="mcpai-empty">
-						<p>{ __( 'No tools match your search.', 'mcpai' ) }</p>
+					<Card className="viagent-empty">
+						<p>
+							{ __( 'No tools match your search.', 'viagent' ) }
+						</p>
 					</Card>
 				) }
 				{ visible.map( ( group ) => {
@@ -304,10 +309,10 @@ export default function Tools() {
 					).length;
 					const isOpen = filtering || !! open[ group.slug ];
 					return (
-						<Card key={ group.slug } className="mcpai-group">
+						<Card key={ group.slug } className="viagent-group">
 							<button
 								type="button"
-								className="mcpai-group__header"
+								className="viagent-group__header"
 								aria-expanded={ isOpen }
 								onClick={ () =>
 									setOpen( {
@@ -316,27 +321,27 @@ export default function Tools() {
 									} )
 								}
 							>
-								<span className="mcpai-group__text">
+								<span className="viagent-group__text">
 									<strong>{ group.label }</strong>
-									<span className="mcpai-muted">
+									<span className="viagent-muted">
 										{ group.description }
 									</span>
 								</span>
 								<Badge tone={ on ? 'success' : 'neutral' }>
 									{ sprintf(
 										/* translators: 1: enabled tools, 2: total tools */
-										__( '%1$d of %2$d on', 'mcpai' ),
+										__( '%1$d of %2$d on', 'viagent' ),
 										on,
 										group.tools.length
 									) }
 								</Badge>
 								<span
-									className="mcpai-group__chevron"
+									className="viagent-group__chevron"
 									aria-hidden="true"
 								/>
 							</button>
 							{ isOpen && (
-								<CardBody className="mcpai-tool-list">
+								<CardBody className="viagent-tool-list">
 									{ group.tools.map( ( tool ) => (
 										<ToolRow
 											key={ tool.ability }

@@ -1,19 +1,19 @@
 <?php
 /**
- * REST endpoints for the Mcpai admin screens (mcpai/v1/admin/*).
+ * REST endpoints for the Viagent admin screens (viagent/v1/admin/*).
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Admin;
+namespace Viagent\Admin;
 
-use MCPAI\Auth\API_Keys;
-use MCPAI\Auth\OAuth\OAuth;
-use MCPAI\Log\Activity_Log;
-use MCPAI\MCP\Prompts;
-use MCPAI\MCP\Tool_Registry;
-use MCPAI\MCP\Transport;
-use MCPAI\Security\Policy;
+use Viagent\Auth\API_Keys;
+use Viagent\Auth\OAuth\OAuth;
+use Viagent\Log\Activity_Log;
+use Viagent\MCP\Prompts;
+use Viagent\MCP\Tool_Registry;
+use Viagent\MCP\Transport;
+use Viagent\Security\Policy;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
  */
 class Admin_API {
 
-	const NS = 'mcpai/v1';
+	const NS = 'viagent/v1';
 
 	/**
 	 * Registers routes.
@@ -231,7 +231,7 @@ class Admin_API {
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => static function ( WP_REST_Request $request ) {
-					return array( 'authorization' => 'Bearer mcpai-probe' === $request->get_header( 'authorization' ) );
+					return array( 'authorization' => 'Bearer viagent-probe' === $request->get_header( 'authorization' ) );
 				},
 				'permission_callback' => '__return_true',
 			)
@@ -258,9 +258,9 @@ class Admin_API {
 		return array(
 			'paused'                 => Policy::is_paused(),
 			'allow_permanent_delete' => Policy::allows_permanent_delete(),
-			'compact_mode'           => (bool) get_option( 'mcpai_compact_mode', false ),
-			'delete_data'            => (bool) get_option( 'mcpai_delete_data_on_uninstall', false ),
-			'integrations'           => \MCPAI\Integrations\Integrations::status(),
+			'compact_mode'           => (bool) get_option( 'viagent_compact_mode', false ),
+			'delete_data'            => (bool) get_option( 'viagent_delete_data_on_uninstall', false ),
+			'integrations'           => \Viagent\Integrations\Integrations::status(),
 			'endpoint'               => Transport::endpoint_url(),
 			'connections'            => count( API_Keys::all() ) + count( OAuth::active_grants() ),
 			'activity_total'         => $last['total'],
@@ -282,10 +282,10 @@ class Admin_API {
 			update_option( Policy::PERMANENT_DELETE_OPTION, (bool) $request['allow_permanent_delete'] );
 		}
 		if ( null !== $request['compact_mode'] ) {
-			update_option( 'mcpai_compact_mode', (bool) $request['compact_mode'] );
+			update_option( 'viagent_compact_mode', (bool) $request['compact_mode'] );
 		}
 		if ( null !== $request['delete_data'] ) {
-			update_option( 'mcpai_delete_data_on_uninstall', (bool) $request['delete_data'] );
+			update_option( 'viagent_delete_data_on_uninstall', (bool) $request['delete_data'] );
 		}
 		return self::get_state();
 	}
@@ -307,7 +307,7 @@ class Admin_API {
 			'access_level' => $row->access_level,
 			'draft_only'   => (bool) $row->draft_only,
 			'compact'      => ! empty( $row->compact ),
-			'user'         => $user ? $user->display_name : __( '(deleted user)', 'mcpai' ),
+			'user'         => $user ? $user->display_name : __( '(deleted user)', 'viagent' ),
 			'created_at'   => self::iso( $row->created_at ),
 			'last_used_at' => self::iso( $row->last_used_at ),
 		);
@@ -336,12 +336,12 @@ class Admin_API {
 			$connections[] = array(
 				'type'         => 'oauth',
 				'id'           => (int) $grant->id,
-				'name'         => $grant->client_name ? $grant->client_name : __( 'AI app', 'mcpai' ),
+				'name'         => $grant->client_name ? $grant->client_name : __( 'AI app', 'viagent' ),
 				'client'       => self::guess_client( (string) $grant->client_name ),
 				'key_prefix'   => '',
 				'access_level' => $grant->access_level,
 				'draft_only'   => (bool) $grant->draft_only,
-				'user'         => $user ? $user->display_name : __( '(deleted user)', 'mcpai' ),
+				'user'         => $user ? $user->display_name : __( '(deleted user)', 'viagent' ),
 				'created_at'   => self::iso( $grant->created_at ),
 				'last_used_at' => self::iso( $grant->last_used_at ),
 			);
@@ -393,7 +393,7 @@ class Admin_API {
 	 */
 	public static function revoke_grant( WP_REST_Request $request ) {
 		if ( ! OAuth::revoke_grant( (int) $request['id'] ) ) {
-			return new WP_Error( 'mcpai_not_found', __( 'Connection not found.', 'mcpai' ), array( 'status' => 404 ) );
+			return new WP_Error( 'viagent_not_found', __( 'Connection not found.', 'viagent' ), array( 'status' => 404 ) );
 		}
 		return array( 'revoked' => true );
 	}
@@ -410,7 +410,7 @@ class Admin_API {
 				return self::connection( $row );
 			}
 		}
-		return new WP_Error( 'mcpai_not_found', __( 'Connection not found.', 'mcpai' ), array( 'status' => 404 ) );
+		return new WP_Error( 'viagent_not_found', __( 'Connection not found.', 'viagent' ), array( 'status' => 404 ) );
 	}
 
 	/**
@@ -450,12 +450,12 @@ class Admin_API {
 	 * @return bool
 	 */
 	private static function needs_compact( $client, $level, $draft_only ) {
-		$catalog = require MCPAI_DIR . 'includes/clients/catalog.php';
+		$catalog = require VIAGENT_DIR . 'includes/clients/catalog.php';
 		$limit   = (int) ( $catalog[ $client ]['tool_limit'] ?? 0 );
 		if ( ! $limit ) {
 			return false;
 		}
-		$probe = new \MCPAI\Auth\Connection(
+		$probe = new \Viagent\Auth\Connection(
 			array(
 				'method'       => 'api_key',
 				'user_id'      => get_current_user_id(),
@@ -474,13 +474,13 @@ class Admin_API {
 	 */
 	public static function revoke_connection( WP_REST_Request $request ) {
 		if ( ! API_Keys::revoke( (int) $request['id'] ) ) {
-			return new WP_Error( 'mcpai_not_found', __( 'Connection not found.', 'mcpai' ), array( 'status' => 404 ) );
+			return new WP_Error( 'viagent_not_found', __( 'Connection not found.', 'viagent' ), array( 'status' => 404 ) );
 		}
 		return array( 'revoked' => true );
 	}
 
 	/**
-	 * Lists Mcpai tools grouped by category with their switches.
+	 * Lists Viagent tools grouped by category with their switches.
 	 *
 	 * @return array
 	 */
@@ -488,7 +488,7 @@ class Admin_API {
 		$groups    = array();
 		$summaries = self::tool_summaries();
 		foreach ( wp_get_ability_categories() as $category ) {
-			if ( 0 === strpos( $category->get_slug(), 'mcpai-' ) ) {
+			if ( 0 === strpos( $category->get_slug(), 'viagent-' ) ) {
 				$groups[ $category->get_slug() ] = array(
 					'slug'        => $category->get_slug(),
 					'label'       => $category->get_label(),
@@ -499,8 +499,8 @@ class Admin_API {
 		}
 		$groups['external'] = array(
 			'slug'        => 'external',
-			'label'       => __( 'From other plugins', 'mcpai' ),
-			'description' => __( 'Abilities added by WordPress or your other plugins. They are off until you switch them on; review them before allowing AI apps to use them.', 'mcpai' ),
+			'label'       => __( 'From other plugins', 'viagent' ),
+			'description' => __( 'Abilities added by WordPress or your other plugins. They are off until you switch them on; review them before allowing AI apps to use them.', 'viagent' ),
 			'tools'       => array(),
 		);
 
@@ -539,63 +539,57 @@ class Admin_API {
 	}
 
 	/**
-	 * Plain-language summaries of Mcpai tools for the Tools screen. The ability
+	 * Plain-language summaries of Viagent tools for the Tools screen. The ability
 	 * descriptions are written for the AI; these are written for people.
 	 *
 	 * @return array<string,string>
 	 */
 	private static function tool_summaries() {
 		$summaries = array(
-			'get_site_info'          => __( 'See the site name, address, language, theme and content types.', 'mcpai' ),
-			'search_content'         => __( 'Search all posts, pages and other content.', 'mcpai' ),
-			'list_post_types'        => __( 'See which kinds of content the site has.', 'mcpai' ),
-			'list_posts'             => __( 'Browse posts, pages and other content.', 'mcpai' ),
-			'get_post'               => __( 'Read a post or page in full.', 'mcpai' ),
-			'create_post'            => __( 'Write new posts and pages.', 'mcpai' ),
-			'update_post'            => __( 'Edit existing posts and pages.', 'mcpai' ),
-			'delete_post'            => __( 'Move posts and pages to the trash.', 'mcpai' ),
-			'restore_post'           => __( 'Bring posts and pages back from the trash.', 'mcpai' ),
-			'list_revisions'         => __( 'See earlier versions of a post or page.', 'mcpai' ),
-			'restore_revision'       => __( 'Roll a post or page back to an earlier version.', 'mcpai' ),
-			'get_post_meta'          => __( 'Read custom fields on a post.', 'mcpai' ),
-			'update_post_meta'       => __( 'Change custom fields on a post.', 'mcpai' ),
-			'list_block_types'       => __( 'See which blocks can be used in content.', 'mcpai' ),
-			'list_patterns'          => __( 'Browse ready-made layouts (patterns).', 'mcpai' ),
-			'get_pattern'            => __( 'Use a ready-made layout in content.', 'mcpai' ),
-			'list_taxonomies'        => __( 'See the kinds of categories and tags.', 'mcpai' ),
-			'list_terms'             => __( 'Browse categories and tags.', 'mcpai' ),
-			'create_term'            => __( 'Add new categories and tags.', 'mcpai' ),
-			'update_term'            => __( 'Rename or edit categories and tags.', 'mcpai' ),
-			'delete_term'            => __( 'Delete categories and tags.', 'mcpai' ),
-			'assign_terms'           => __( 'Put posts into categories and add tags.', 'mcpai' ),
-			'list_media'             => __( 'Browse the media library.', 'mcpai' ),
-			'upload_media_from_url'  => __( 'Add images and files from a web address.', 'mcpai' ),
-			'upload_media_base64'    => __( 'Upload images and files the AI created.', 'mcpai' ),
-			'update_media'           => __( 'Edit image titles, captions and alt text.', 'mcpai' ),
-			'set_featured_image'     => __( 'Choose the featured image of a post.', 'mcpai' ),
-			'delete_media'           => __( 'Permanently delete files from the media library.', 'mcpai' ),
-			'list_comments'          => __( 'Read comments, including ones waiting for approval.', 'mcpai' ),
-			'reply_to_comment'       => __( 'Reply to comments publicly.', 'mcpai' ),
-			'moderate_comment'       => __( 'Approve, hold, mark as spam or trash comments.', 'mcpai' ),
-			'list_users'             => __( 'See user accounts and their roles.', 'mcpai' ),
-			'get_user'               => __( 'See one user account.', 'mcpai' ),
-			'create_user'            => __( 'Add user accounts (never administrators).', 'mcpai' ),
-			'update_user'            => __( 'Edit user profiles and roles (never administrators).', 'mcpai' ),
-			'list_menus'             => __( 'See the site’s navigation menus.', 'mcpai' ),
-			'get_menu'               => __( 'See the links in a menu.', 'mcpai' ),
-			'add_menu_item'          => __( 'Add links to a menu.', 'mcpai' ),
-			'remove_menu_item'       => __( 'Remove links from a menu.', 'mcpai' ),
-			'update_navigation_menu' => __( 'Edit the navigation menu of a block theme.', 'mcpai' ),
-			'get_settings'           => __( 'See the site title, homepage, timezone and other settings.', 'mcpai' ),
-			'update_settings'        => __( 'Change the site title, homepage, timezone and similar settings.', 'mcpai' ),
-			'list_plugins'           => __( 'See installed plugins.', 'mcpai' ),
-			'activate_plugin'        => __( 'Turn installed plugins on.', 'mcpai' ),
-			'deactivate_plugin'      => __( 'Turn plugins off.', 'mcpai' ),
-			'install_plugin'         => __( 'Install plugins from WordPress.org.', 'mcpai' ),
-			'list_themes'            => __( 'See installed themes.', 'mcpai' ),
-			'activate_theme'         => __( 'Switch the site’s theme.', 'mcpai' ),
-			'get_site_health'        => __( 'Check versions, updates and technical health.', 'mcpai' ),
-			'get_error_log'          => __( 'Read the PHP error log to help fix problems.', 'mcpai' ),
+			'get_site_info'          => __( 'See the site name, address, language, theme and content types.', 'viagent' ),
+			'search_content'         => __( 'Search all posts, pages and other content.', 'viagent' ),
+			'list_post_types'        => __( 'See which kinds of content the site has.', 'viagent' ),
+			'list_posts'             => __( 'Browse posts, pages and other content.', 'viagent' ),
+			'get_post'               => __( 'Read a post or page in full.', 'viagent' ),
+			'create_post'            => __( 'Write new posts and pages.', 'viagent' ),
+			'update_post'            => __( 'Edit existing posts and pages.', 'viagent' ),
+			'delete_post'            => __( 'Move posts and pages to the trash.', 'viagent' ),
+			'restore_post'           => __( 'Bring posts and pages back from the trash.', 'viagent' ),
+			'list_revisions'         => __( 'See earlier versions of a post or page.', 'viagent' ),
+			'restore_revision'       => __( 'Roll a post or page back to an earlier version.', 'viagent' ),
+			'get_post_meta'          => __( 'Read custom fields on a post.', 'viagent' ),
+			'update_post_meta'       => __( 'Change custom fields on a post.', 'viagent' ),
+			'list_block_types'       => __( 'See which blocks can be used in content.', 'viagent' ),
+			'list_patterns'          => __( 'Browse ready-made layouts (patterns).', 'viagent' ),
+			'get_pattern'            => __( 'Use a ready-made layout in content.', 'viagent' ),
+			'list_taxonomies'        => __( 'See the kinds of categories and tags.', 'viagent' ),
+			'list_terms'             => __( 'Browse categories and tags.', 'viagent' ),
+			'create_term'            => __( 'Add new categories and tags.', 'viagent' ),
+			'update_term'            => __( 'Rename or edit categories and tags.', 'viagent' ),
+			'delete_term'            => __( 'Delete categories and tags.', 'viagent' ),
+			'assign_terms'           => __( 'Put posts into categories and add tags.', 'viagent' ),
+			'list_media'             => __( 'Browse the media library.', 'viagent' ),
+			'upload_media_from_url'  => __( 'Add images and files from a web address.', 'viagent' ),
+			'upload_media_base64'    => __( 'Upload images and files the AI created.', 'viagent' ),
+			'update_media'           => __( 'Edit image titles, captions and alt text.', 'viagent' ),
+			'set_featured_image'     => __( 'Choose the featured image of a post.', 'viagent' ),
+			'delete_media'           => __( 'Permanently delete files from the media library.', 'viagent' ),
+			'list_comments'          => __( 'Read comments, including ones waiting for approval.', 'viagent' ),
+			'reply_to_comment'       => __( 'Reply to comments publicly.', 'viagent' ),
+			'moderate_comment'       => __( 'Approve, hold, mark as spam or trash comments.', 'viagent' ),
+			'list_users'             => __( 'See user accounts and their roles.', 'viagent' ),
+			'get_user'               => __( 'See one user account.', 'viagent' ),
+			'list_menus'             => __( 'See the site’s navigation menus.', 'viagent' ),
+			'get_menu'               => __( 'See the links in a menu.', 'viagent' ),
+			'add_menu_item'          => __( 'Add links to a menu.', 'viagent' ),
+			'remove_menu_item'       => __( 'Remove links from a menu.', 'viagent' ),
+			'update_navigation_menu' => __( 'Edit the navigation menu of a block theme.', 'viagent' ),
+			'get_settings'           => __( 'See the site title, homepage, timezone and other settings.', 'viagent' ),
+			'update_settings'        => __( 'Change the site title, homepage, timezone and similar settings.', 'viagent' ),
+			'list_plugins'           => __( 'See installed plugins.', 'viagent' ),
+			'list_themes'            => __( 'See installed themes.', 'viagent' ),
+			'get_site_health'        => __( 'Check versions, updates and technical health.', 'viagent' ),
+			'get_error_log'          => __( 'Read the PHP error log to help fix problems.', 'viagent' ),
 		);
 
 		/**
@@ -603,7 +597,7 @@ class Admin_API {
 		 *
 		 * @param array<string,string> $summaries Tool name => summary.
 		 */
-		return apply_filters( 'mcpai_tool_summaries', $summaries );
+		return apply_filters( 'viagent_tool_summaries', $summaries );
 	}
 
 	/**
@@ -615,7 +609,7 @@ class Admin_API {
 	public static function toggle_tool( WP_REST_Request $request ) {
 		$ability = wp_get_ability( $request['ability'] );
 		if ( ! $ability ) {
-			return new WP_Error( 'mcpai_not_found', __( 'Tool not found.', 'mcpai' ), array( 'status' => 404 ) );
+			return new WP_Error( 'viagent_not_found', __( 'Tool not found.', 'viagent' ), array( 'status' => 404 ) );
 		}
 
 		$overrides = (array) get_option( Policy::TOOL_OVERRIDES_OPTION, array() );
@@ -623,7 +617,7 @@ class Admin_API {
 
 		// Abilities from other plugins are off unless explicitly switched on.
 		$default = Tool_Registry::is_own( $ability )
-			? ( ( (array) $ability->get_meta_item( 'mcpai', array() ) )['default_enabled'] ?? true )
+			? ( ( (array) $ability->get_meta_item( 'viagent', array() ) )['default_enabled'] ?? true )
 			: false;
 		if ( (bool) $request['enabled'] !== (bool) $default ) {
 			$overrides[ $ability->get_name() ] = (bool) $request['enabled'];
@@ -669,7 +663,7 @@ class Admin_API {
 	 */
 	public static function toggle_prompt( WP_REST_Request $request ) {
 		if ( ! isset( Prompts::definitions()[ $request['name'] ] ) ) {
-			return new WP_Error( 'mcpai_not_found', __( 'Task not found.', 'mcpai' ), array( 'status' => 404 ) );
+			return new WP_Error( 'viagent_not_found', __( 'Task not found.', 'viagent' ), array( 'status' => 404 ) );
 		}
 		$overrides = (array) get_option( Prompts::OVERRIDES_OPTION, array() );
 		if ( $request['enabled'] ) {
@@ -732,7 +726,7 @@ class Admin_API {
 	}
 
 	/**
-	 * MCP names of read-only Mcpai tools (hidden by the "changes only" filter).
+	 * MCP names of read-only Viagent tools (hidden by the "changes only" filter).
 	 *
 	 * @return string[]
 	 */
@@ -756,19 +750,19 @@ class Admin_API {
 	private static function undo_label( $undo ) {
 		switch ( $undo['action'] ?? '' ) {
 			case 'trash_post':
-				return __( 'The item the AI created will be moved to the trash.', 'mcpai' );
+				return __( 'The item the AI created will be moved to the trash.', 'viagent' );
 			case 'untrash_post':
-				return __( 'The item will be restored from the trash.', 'mcpai' );
+				return __( 'The item will be restored from the trash.', 'viagent' );
 			case 'restore_post_fields':
-				return __( 'The title, content and status will go back to how they were before this change.', 'mcpai' );
+				return __( 'The title, content and status will go back to how they were before this change.', 'viagent' );
 			case 'restore_meta':
-				return __( 'The field will go back to its previous value.', 'mcpai' );
+				return __( 'The field will go back to its previous value.', 'viagent' );
 			case 'restore_terms':
-				return __( 'The categories or tags will go back to how they were.', 'mcpai' );
+				return __( 'The categories or tags will go back to how they were.', 'viagent' );
 			case 'restore_options':
-				return __( 'The settings will go back to their previous values.', 'mcpai' );
+				return __( 'The settings will go back to their previous values.', 'viagent' );
 			case 'restore_metas':
-				return __( 'The fields will go back to their previous values.', 'mcpai' );
+				return __( 'The fields will go back to their previous values.', 'viagent' );
 		}
 
 		/**
@@ -777,7 +771,7 @@ class Admin_API {
 		 * @param string $label Label.
 		 * @param array  $undo  Undo instructions.
 		 */
-		return apply_filters( 'mcpai_undo_label', __( 'This change will be rolled back.', 'mcpai' ), $undo );
+		return apply_filters( 'viagent_undo_label', __( 'This change will be rolled back.', 'viagent' ), $undo );
 	}
 
 	/**
@@ -814,7 +808,7 @@ class Admin_API {
 			case 'attachment':
 				$post = get_post( $id );
 				return $post ? array(
-					'title' => $post->post_title ? $post->post_title : __( '(no title)', 'mcpai' ),
+					'title' => $post->post_title ? $post->post_title : __( '(no title)', 'viagent' ),
 					'url'   => get_edit_post_link( $id, 'raw' ),
 				) : null;
 			case 'term':
@@ -825,7 +819,7 @@ class Admin_API {
 				) : null;
 			case 'comment':
 				return array(
-					'title' => sprintf( /* translators: %d: comment ID */ __( 'Comment #%d', 'mcpai' ), $id ),
+					'title' => sprintf( /* translators: %d: comment ID */ __( 'Comment #%d', 'viagent' ), $id ),
 					'url'   => admin_url( 'comment.php?action=editcomment&c=' . $id ),
 				);
 			case 'user':
@@ -838,7 +832,7 @@ class Admin_API {
 				$order = function_exists( 'wc_get_order' ) ? wc_get_order( $id ) : null;
 				return $order ? array(
 					/* translators: %s: order number */
-					'title' => sprintf( __( 'Order #%s', 'mcpai' ), $order->get_order_number() ),
+					'title' => sprintf( __( 'Order #%s', 'viagent' ), $order->get_order_number() ),
 					'url'   => $order->get_edit_order_url(),
 				) : null;
 		}

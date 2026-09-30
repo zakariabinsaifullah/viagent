@@ -2,10 +2,10 @@
 /**
  * Main plugin class: loads files and wires hooks.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI;
+namespace Viagent;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -64,8 +64,8 @@ final class Plugin {
 		add_action( 'wp_abilities_api_init', array( Integrations\Integrations::class, 'register' ) );
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			require_once MCPAI_DIR . 'includes/cli/class-cli.php';
-			\WP_CLI::add_command( 'mcpai', CLI\CLI::class );
+			require_once VIAGENT_DIR . 'includes/cli/class-cli.php';
+			\WP_CLI::add_command( 'viagent', CLI\CLI::class );
 		}
 	}
 
@@ -113,7 +113,7 @@ final class Plugin {
 		);
 
 		foreach ( $files as $file ) {
-			require_once MCPAI_DIR . 'includes/' . $file;
+			require_once VIAGENT_DIR . 'includes/' . $file;
 		}
 	}
 }

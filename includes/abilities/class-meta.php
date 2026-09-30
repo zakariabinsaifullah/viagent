@@ -3,13 +3,13 @@
  * Custom field (post meta) abilities. Protected keys (starting with "_") are
  * only available when a plugin registers them with show_in_rest.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Abilities;
+namespace Viagent\Abilities;
 
-use MCPAI\Log\Activity_Log;
-use MCPAI\Security\Policy;
+use Viagent\Log\Activity_Log;
+use Viagent\Security\Policy;
 use WP_Error;
 use WP_Post;
 
@@ -32,9 +32,9 @@ class Meta {
 		Abilities::add(
 			'get-post-meta',
 			array(
-				'category'    => 'mcpai-content',
-				'label'       => __( 'Get custom fields', 'mcpai' ),
-				'description' => __( 'Gets the custom fields (post meta) of a post, or a single field by key.', 'mcpai' ),
+				'category'    => 'viagent-content',
+				'label'       => __( 'Get custom fields', 'viagent' ),
+				'description' => __( 'Gets the custom fields (post meta) of a post, or a single field by key.', 'viagent' ),
 				'input'       => array(
 					'post_id' => $post_id,
 					'key'     => array( 'type' => 'string' ),
@@ -51,9 +51,9 @@ class Meta {
 		Abilities::add(
 			'update-post-meta',
 			array(
-				'category'    => 'mcpai-content',
-				'label'       => __( 'Update custom field', 'mcpai' ),
-				'description' => __( 'Sets or deletes one custom field (post meta) on a post.', 'mcpai' ),
+				'category'    => 'viagent-content',
+				'label'       => __( 'Update custom field', 'viagent' ),
+				'description' => __( 'Sets or deletes one custom field (post meta) on a post.', 'viagent' ),
 				'input'       => array(
 					'post_id' => $post_id,
 					'key'     => array(
@@ -62,7 +62,7 @@ class Meta {
 					),
 					'value'   => array(
 						'type'        => array( 'string', 'number', 'integer', 'boolean', 'array', 'object', 'null' ),
-						'description' => __( 'New value. Omit or pass null with delete=true to remove the field.', 'mcpai' ),
+						'description' => __( 'New value. Omit or pass null with delete=true to remove the field.', 'viagent' ),
 					),
 					'delete'  => array(
 						'type'    => 'boolean',
@@ -114,7 +114,7 @@ class Meta {
 
 		if ( ! empty( $input['key'] ) ) {
 			if ( ! self::is_allowed_key( $post, $input['key'] ) ) {
-				return new WP_Error( 'mcpai_protected_meta', __( 'This custom field is private to a plugin and cannot be read.', 'mcpai' ) );
+				return new WP_Error( 'viagent_protected_meta', __( 'This custom field is private to a plugin and cannot be read.', 'viagent' ) );
 			}
 			return array(
 				'key'    => $input['key'],
@@ -146,7 +146,7 @@ class Meta {
 		}
 		$key = $input['key'];
 		if ( ! self::is_allowed_key( $post, $key ) ) {
-			return new WP_Error( 'mcpai_protected_meta', __( 'This custom field is private to a plugin and cannot be changed.', 'mcpai' ) );
+			return new WP_Error( 'viagent_protected_meta', __( 'This custom field is private to a plugin and cannot be changed.', 'viagent' ) );
 		}
 		$editable = Policy::check_post_editable( $post );
 		if ( is_wp_error( $editable ) ) {

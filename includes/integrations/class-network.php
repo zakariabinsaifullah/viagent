@@ -1,24 +1,24 @@
 <?php
 /**
- * Multisite network tools for super admins: list and create sites, and run
- * any tool on another site of the network.
+ * Multisite network tools for super admins: list sites, and run any tool on
+ * another site of the network. Creating sites is left to people.
  *
  * Every site keeps its own connections, settings and activity. A super admin
  * connected to one site can work on the others with run_on_site; the change is
  * logged on the connected site with a note of which site it touched, and it
  * can be undone from there.
  *
- * @package MCPAI
+ * @package Viagent
  */
 
-namespace MCPAI\Integrations;
+namespace Viagent\Integrations;
 
-use MCPAI\Abilities\Abilities;
-use MCPAI\Auth\Authenticator;
-use MCPAI\Log\Activity_Log;
-use MCPAI\MCP\Meta_Tools;
-use MCPAI\MCP\Tool_Registry;
-use MCPAI\Security\Policy;
+use Viagent\Abilities\Abilities;
+use Viagent\Auth\Authenticator;
+use Viagent\Log\Activity_Log;
+use Viagent\MCP\Meta_Tools;
+use Viagent\MCP\Tool_Registry;
+use Viagent\Security\Policy;
 use WP_Error;
 
 defined( 'ABSPATH' ) || exit;
@@ -28,14 +28,14 @@ defined( 'ABSPATH' ) || exit;
  */
 class Network {
 
-	const CATEGORY = 'mcpai-network';
+	const CATEGORY = 'viagent-network';
 
 	/**
 	 * Registers hooks.
 	 */
 	public static function init() {
-		add_filter( 'mcpai_tool_summaries', array( self::class, 'summaries' ) );
-		add_filter( 'mcpai_instructions', array( self::class, 'instructions' ) );
+		add_filter( 'viagent_tool_summaries', array( self::class, 'summaries' ) );
+		add_filter( 'viagent_instructions', array( self::class, 'instructions' ) );
 	}
 
 	/**
@@ -45,8 +45,8 @@ class Network {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'Network (multisite)', 'mcpai' ),
-				'description' => __( 'Sites in your WordPress network. Super admins only.', 'mcpai' ),
+				'label'       => __( 'Network (multisite)', 'viagent' ),
+				'description' => __( 'Sites in your WordPress network. Super admins only.', 'viagent' ),
 			)
 		);
 	}
@@ -72,8 +72,8 @@ class Network {
 			'list-sites',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'List network sites', 'mcpai' ),
-				'description' => __( 'Lists the sites in this WordPress network with their ID, name, address, status and post count.', 'mcpai' ),
+				'label'       => __( 'List network sites', 'viagent' ),
+				'description' => __( 'Lists the sites in this WordPress network with their ID, name, address, status and post count.', 'viagent' ),
 				'input'       => array_merge(
 					array( 'search' => array( 'type' => 'string' ) ),
 					Abilities::paging( 50 )
@@ -85,35 +85,11 @@ class Network {
 		);
 
 		Abilities::add(
-			'create-site',
-			array(
-				'category'    => self::CATEGORY,
-				'label'       => __( 'Create network site', 'mcpai' ),
-				'description' => __( 'Creates a new site in the network. The connected super admin becomes its administrator.', 'mcpai' ),
-				'input'       => array(
-					'title' => array(
-						'type'      => 'string',
-						'minLength' => 1,
-					),
-					'slug'  => array(
-						'type'        => 'string',
-						'pattern'     => '^[a-z0-9-]+$',
-						'description' => __( 'Lowercase address part, e.g. "shop" for shop.example.com or example.com/shop/.', 'mcpai' ),
-					),
-				),
-				'required'    => array( 'title', 'slug' ),
-				'execute'     => array( self::class, 'create_site' ),
-				'permission'  => 'create_sites',
-				'meta'        => Abilities::write_meta( Policy::ADMIN ),
-			)
-		);
-
-		Abilities::add(
 			'run-on-site',
 			array(
 				'category'    => self::CATEGORY,
-				'label'       => __( 'Run a tool on another site', 'mcpai' ),
-				'description' => __( 'Runs any other tool (e.g. list_posts, create_post, update_settings) on another site of the network. Pass the site_id from list_sites, the tool name and its arguments.', 'mcpai' ),
+				'label'       => __( 'Run a tool on another site', 'viagent' ),
+				'description' => __( 'Runs any other tool (e.g. list_posts, create_post, update_settings) on another site of the network. Pass the site_id from list_sites, the tool name and its arguments.', 'viagent' ),
 				'input'       => array(
 					'site_id'   => array(
 						'type'    => 'integer',
@@ -122,7 +98,7 @@ class Network {
 					'tool'      => array( 'type' => 'string' ),
 					'arguments' => array(
 						'type'        => 'object',
-						'description' => __( 'Arguments for the tool.', 'mcpai' ),
+						'description' => __( 'Arguments for the tool.', 'viagent' ),
 					),
 				),
 				'required'    => array( 'site_id', 'tool' ),
@@ -183,45 +159,6 @@ class Network {
 	}
 
 	/**
-	 * Creates a site.
-	 *
-	 * @param array $input Input.
-	 * @return array|WP_Error
-	 */
-	public static function create_site( $input ) {
-		$network = get_network();
-		$slug    = sanitize_title( $input['slug'] );
-
-		if ( is_subdomain_install() ) {
-			$domain = $slug . '.' . preg_replace( '|^www\.|', '', $network->domain );
-			$path   = $network->path;
-		} else {
-			$domain = $network->domain;
-			$path   = $network->path . $slug . '/';
-		}
-
-		if ( domain_exists( $domain, $path, $network->id ) ) {
-			return new WP_Error( 'mcpai_site_exists', __( 'A site with that address already exists.', 'mcpai' ) );
-		}
-
-		$site_id = wp_insert_site(
-			array(
-				'domain'     => $domain,
-				'path'       => $path,
-				'network_id' => $network->id,
-				'title'      => sanitize_text_field( $input['title'] ),
-				'user_id'    => get_current_user_id(),
-			)
-		);
-		if ( is_wp_error( $site_id ) ) {
-			return $site_id;
-		}
-
-		Activity_Log::set_object( 'site', $site_id );
-		return self::site( get_site( $site_id ) );
-	}
-
-	/**
 	 * Runs a tool on another site.
 	 *
 	 * @param array $input Input.
@@ -233,29 +170,29 @@ class Network {
 		$connection = Authenticator::current();
 
 		if ( ! $connection ) {
-			return new WP_Error( 'mcpai_no_connection', 'run_on_site can only be used over an MCP connection.' );
+			return new WP_Error( 'viagent_no_connection', 'run_on_site can only be used over an MCP connection.' );
 		}
 		if ( 'run_on_site' === $tool || Meta_Tools::is_meta( $tool ) ) {
-			return new WP_Error( 'mcpai_invalid_tool', __( 'run_on_site cannot run itself or the compact-mode tools.', 'mcpai' ) );
+			return new WP_Error( 'viagent_invalid_tool', __( 'run_on_site cannot run itself or the compact-mode tools.', 'viagent' ) );
 		}
 		$site = get_site( $site_id );
 		if ( ! $site || (int) $site->deleted ) {
-			return new WP_Error( 'mcpai_not_found', __( 'No active site found with that ID. Use list_sites.', 'mcpai' ) );
+			return new WP_Error( 'viagent_not_found', __( 'No active site found with that ID. Use list_sites.', 'viagent' ) );
 		}
 		if ( get_current_blog_id() === $site_id ) {
-			return new WP_Error( 'mcpai_same_site', __( 'That is the site you are connected to; call the tool directly.', 'mcpai' ) );
+			return new WP_Error( 'viagent_same_site', __( 'That is the site you are connected to; call the tool directly.', 'viagent' ) );
 		}
 
 		switch_to_blog( $site_id );
 		try {
 			if ( Policy::is_paused() ) {
-				return new WP_Error( 'mcpai_paused', __( 'AI access to that site is paused by its owner.', 'mcpai' ) );
+				return new WP_Error( 'viagent_paused', __( 'AI access to that site is paused by its owner.', 'viagent' ) );
 			}
 			// The target site's own tool switches and integrations apply.
 			$tools = Tool_Registry::for_connection( $connection );
 			if ( ! isset( $tools[ $tool ] ) ) {
 				/* translators: %s: tool name */
-				return new WP_Error( 'mcpai_unknown_tool', sprintf( __( 'The tool "%s" is not available on that site.', 'mcpai' ), $tool ) );
+				return new WP_Error( 'viagent_unknown_tool', sprintf( __( 'The tool "%s" is not available on that site.', 'viagent' ), $tool ) );
 			}
 
 			Activity_Log::set_site( $site_id );
@@ -282,9 +219,8 @@ class Network {
 		return array_merge(
 			$summaries,
 			array(
-				'list_sites'  => __( 'See the sites in your network.', 'mcpai' ),
-				'create_site' => __( 'Add new sites to your network.', 'mcpai' ),
-				'run_on_site' => __( 'Work on any site of your network.', 'mcpai' ),
+				'list_sites'  => __( 'See the sites in your network.', 'viagent' ),
+				'run_on_site' => __( 'Work on any site of your network.', 'viagent' ),
 			)
 		);
 	}
