@@ -4,7 +4,7 @@ Tags: mcp, ai, ai agent, chatgpt, claude
 Requires at least: 6.9
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,13 @@ AI apps such as Claude, ChatGPT or Cursor connect to your site; your site does n
 
 == Changelog ==
 
+= 1.0.1 =
+* Renamed the plugin to Viagent.
+* Removed tools that installed, activated or deactivated plugins, switched themes, created or edited users, or created network sites. Plugins, themes and users are now read-only.
+* Tightened permissions: non-public post types and taxonomies are only listed for users who can edit them.
+* The sign-in approval screen now loads its styles as a stylesheet.
+* Fixed translations being loaded too early.
+
 = 1.0.0 =
 * Initial release.
 * Native MCP server (Streamable HTTP) built on the WordPress Abilities API.
@@ -159,6 +166,9 @@ AI apps such as Claude, ChatGPT or Cursor connect to your site; your site does n
 * Safety controls: access levels, drafts-only mode, activity log with undo, and a pause switch.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Renamed to Viagent. Plugin, theme and user management tools were removed; those tasks stay in the WordPress dashboard.
 
 = 1.0.0 =
 Initial release of Viagent – connect WordPress to Claude, ChatGPT, Cursor and other AI agents.

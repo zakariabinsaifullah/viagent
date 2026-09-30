@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Viagent
  * Description:       Connect your WordPress site to AI agents like Claude, ChatGPT, Cursor, Codex and more using the Model Context Protocol (MCP) — in a few clicks.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.9
  * Requires PHP:      7.4
  * Author:            Viagent
@@ -15,7 +15,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'VIAGENT_VERSION', '1.0.0' );
+define( 'VIAGENT_VERSION', '1.0.1' );
 define( 'VIAGENT_FILE', __FILE__ );
 define( 'VIAGENT_DIR', plugin_dir_path( __FILE__ ) );
 define( 'VIAGENT_URL', plugin_dir_url( __FILE__ ) );
