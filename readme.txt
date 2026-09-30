@@ -134,7 +134,7 @@ Nothing is removed unless you turn on **Delete all Viagent data** under **Tools 
 
 = Where is the source code of the admin screens? =
 
-The readable JavaScript source is included in the `src` folder. The compiled files in `build` are created with `npm install && npm run build` (using @wordpress/scripts).
+The readable JavaScript and SCSS source is included in the `src` folder. The compiled files in `build` are created with @wordpress/scripts. The full development setup is on GitHub at https://github.com/zakariabinsaifullah/viagent: clone it, then run `npm install && npm run build`.
 
 == External services ==
 

@@ -6,6 +6,7 @@
 eslint.config.cjs
 composer.json
 composer.lock
+package.json
 package-lock.json
 phpcs.xml.dist
 CLAUDE.md
